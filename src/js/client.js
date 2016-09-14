@@ -6,7 +6,8 @@ import { Router, Route, IndexRoute, hashHistory } from "react-router";
 
 import Layout from "./pages/Layout"
 import Video from "./components/Video"
-import Tweet from "./components/Tweeter"
+import Tweet from "./components/Twitter"
+import Search from "./components/searchBar"
 import store from "./store"
 
 const app = document.getElementById('app')
@@ -14,8 +15,9 @@ const app = document.getElementById('app')
 ReactDOM.render(<Provider store={store}>
   <Router history={hashHistory}>
     <Route path="/" component={Layout}>
-      <IndexRoute component={Tweet}></IndexRoute>
-      <Route path="video" component={Video}></Route>
+      <IndexRoute component={Search}></IndexRoute>
+      <Route path="github/:githubId" component={Tweet}></Route>
+      <Route path="video/:videoId" component={Video}></Route>
     </Route>
   </Router>
 </Provider>, app);

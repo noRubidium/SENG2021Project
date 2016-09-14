@@ -22,11 +22,11 @@ export default class Video extends React.Component {
             autoplay: 0
           }
         };
-
+        console.log(this); // 1iAG6h9ff5s
     return <div>
       <h1>This is a video</h1>
         <YouTube
-          videoId="1iAG6h9ff5s"
+          videoId={this.props.routeParams.videoId}
           opts={opts}
           onReady={this._onReady}
         />

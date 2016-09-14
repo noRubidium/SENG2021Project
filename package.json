@@ -17,6 +17,7 @@
     "react-dom": "^0.14.6",
     "react-redux": "^4.4.5",
     "react-router": "^2.8.0",
+    "react-widgets": "^3.4.4",
     "react-youtube": "^7.1.1",
     "react-youtube-player": "^0.3.3",
     "redux": "^3.5.2",
