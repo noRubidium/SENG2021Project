@@ -4,18 +4,20 @@ import { Link } from "react-router"
 import { browserHistory } from 'react-router'
 
 
-const types = ["language", "video tutorial", "github"]
+const types = ["video", "language", "github"]
 
 export default class SearchBar extends React.Component {
   constructor(props){
     super(props);
-    this.state = { term:"", type: types[0]}
+    this.state = {
+      term:"",
+      type: types[0],
+      getLink: e =>this.state.type + "/"+ this.state.term,
+    }
   }
-  getLink(){
-    return this.state.type + "/"+ this.state.term;
-  }
+
   render(){
-    const types = ["language", "video", "github"]
+    const types = ["video", "language", "github"]
     const options = types.map((item) => {
       return (<option value={item} >{item}</option>);
     })
@@ -31,11 +33,12 @@ export default class SearchBar extends React.Component {
         <input value={this.state.term}
           onKeyPress={e => {
             if(e.keyCode == 13 || e.which == 13){
-              browserHistory.push("#/" + this.getLink())
+              console.log(this);
+              this.props.history.push(this.state.getLink());
             }
           }}
           onChange={e => this.setState({term: e.target.value})}></input>
-        <Link to={this.getLink()}><button>Search</button></Link>
+        <Link to={this.state.getLink()}><button>Search</button></Link>
       </div>
     )
   }
