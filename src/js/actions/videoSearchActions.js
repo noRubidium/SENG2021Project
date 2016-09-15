@@ -1,10 +1,10 @@
 import axios from "axios";
 
 export function fetchVideos(searchTerm) {
-  const url = "https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&key=AIzaSyDmsTbEA0uhRwaFmxfCM8w_jyaDoFdWM1o&q="
+  const url = "https://www.googleapis.com/youtube/v3/search?maxResults=9&hl=en&part=snippet&type=video&key=AIzaSyDmsTbEA0uhRwaFmxfCM8w_jyaDoFdWM1o&q="
   //https://www.googleapis.com/youtube/v3/search?part=snippet&q=python&type=video&key=AIzaSyDmsTbEA0uhRwaFmxfCM8w_jyaDoFdWM1o
   return function(dispatch) {
-    axios.get(url+searchTerm)
+    axios.get(url+searchTerm+"%20tutorial")
       .then((response) => {
         dispatch({type: "FETCH_VIDEOS_FULFILLED", payload: response.data})
       })

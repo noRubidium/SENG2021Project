@@ -1,9 +1,9 @@
 import React from "react"
-import YouTube from 'react-youtube'
 import { connect } from "react-redux"
 import { Link } from "react-router"
 
 import { fetchVideos } from "../actions/videoSearchActions"
+import VideoResult from "./VideoResult"
 
 @connect((store) => {
   return {
@@ -20,11 +20,8 @@ export default class VideoSearch extends React.Component {
   }
 
   render() {
-    console.log(this);
     const { videoSearch } = this.props;
     const videos = videoSearch.videos.items;
-    console.log("This is my object");
-    console.log( videos);
     if (!videos) {
       return (
       <div>
@@ -33,11 +30,16 @@ export default class VideoSearch extends React.Component {
       </div>)
     }
 
-    const mappedVideos = videos.map(video => <li key={video.id.videoId}><Link to={"/video/display/"+video.id.videoId}>{video.snippet.title}</Link></li>)
+    const mappedVideos = videos.map(video => <VideoResult video={video} key={video.id.videoId}></VideoResult>)
 
+    const rows = []
+    for(let i = 0; i < 9; i+= 3){
+      rows.push(<div class="row">{mappedVideos.slice(i, i+3)}</div>)
+    }
     return <div>
       <h1>Rendering!</h1>
-      <ul>{mappedVideos}</ul>
+      {rows}
+      {/*<div class="row">{mappedVideos}</div>*/}
     </div>
   }
 }
