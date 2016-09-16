@@ -15,6 +15,12 @@ export default class VideoSearch extends React.Component {
     this.props.dispatch(fetchVideos(this.props.routeParams.term))
   }
 
+  componentWillUpdate(nextProps, nextState) {
+    if (nextProps.routeParams.term !== this.props.routeParams.term) {
+      nextProps.dispatch(fetchVideos(nextProps.routeParams.term))
+    }
+  }
+  
   fetchVideos() {
     this.props.dispatch(fetchVideos(this.props.routeParams.term))
   }
