@@ -11,14 +11,14 @@ export default class SearchBar extends React.Component {
     super(props);
     this.state = {
       term:"",
-      type: "video",
+      type: "all",
       getLink: e => this.state.type + "/"+ this.state.term,
     }
   }
 
   render(){
 
-    const types = ["video", "forum", "github"]
+    const types = ["all", "video", "forum", "github"]
     const options = types.map((item) => {
       return (<option value={item} >{item}</option>);
     })
