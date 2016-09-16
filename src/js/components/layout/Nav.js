@@ -1,11 +1,15 @@
 import React from "react";
 import { IndexLink, Link } from "react-router";
 
+import { fetchVideos } from "../../actions/videoSearchActions"
+
 export default class Nav extends React.Component {
   constructor() {
     super()
     this.state = {
       collapsed: true,
+      search_field: "",
+      getLink: e => "video/"+ this.state.search_field, // only does video so far
     };
   }
 
@@ -14,16 +18,18 @@ export default class Nav extends React.Component {
     this.setState({collapsed});
   }
 
+  updateSearchField(search) {
+    this.setState({search_field: search.target.value});
+    this.props.dispatch(fetchVideos(this.state.search_field));
+  }
+
   render() {
     const { location } = this.props;
     const { collapsed } = this.state;
-    // const featuredClass = location.pathname === "/" ? "active" : "";
-    // const archivesClass = location.pathname.match(/^\/archives/) ? "active" : "";
-    // const settingsClass = location.pathname.match(/^\/settings/) ? "active" : "";
     const navClass = collapsed ? "collapse" : "";
 
     return (
-      <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle" onClick={this.toggleCollapse.bind(this)} >
@@ -35,11 +41,16 @@ export default class Nav extends React.Component {
           </div>
           <div class={"navbar-collapse " + navClass} id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-              <li activeClassName="active" onlyActiveOnIndex={true}>
-                <IndexLink to="/" onClick={this.toggleCollapse.bind(this)}>Index(Tweets)</IndexLink>
+              <li>
+                <IndexLink to="/" onClick={this.toggleCollapse.bind(this)}>Home</IndexLink>
               </li>
-              <li activeClassName="active">
-                <Link to="video" onClick={this.toggleCollapse.bind(this)}>Video</Link>
+              <li>
+              <form class="navbar-form" role="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Search" onChange={this.updateSearchField.bind(this)}/>
+                </div>
+                <Link to={this.state.getLink()}><button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button></Link>
+              </form>
               </li>
             </ul>
           </div>

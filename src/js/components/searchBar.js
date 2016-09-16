@@ -4,42 +4,60 @@ import { Link } from "react-router"
 import { browserHistory } from 'react-router'
 
 
-const types = ["video", "language", "github"]
+
 
 export default class SearchBar extends React.Component {
   constructor(props){
     super(props);
     this.state = {
       term:"",
-      type: types[0],
-      getLink: e =>this.state.type + "/"+ this.state.term,
+      type: "video",
+      getLink: e => this.state.type + "/"+ this.state.term,
     }
   }
 
   render(){
+
     const types = ["video", "language", "github"]
     const options = types.map((item) => {
       return (<option value={item} >{item}</option>);
     })
-    console.log(options);
+    const searchBarStyle = {
+      marginTop: "60px"
+    };
+
     return (
-      <div>
-        <select
-          value = {this.state.type}
-          onChange={e => this.setState({ type:e.target.value })}
-        >
-          {options}
-        </select>
-        <input value={this.state.term}
-          onKeyPress={e => {
-            if(e.keyCode == 13 || e.which == 13){
-              console.log(this);
-              this.props.history.push(this.state.getLink());
-            }
-          }}
-          onChange={e => this.setState({term: e.target.value})}></input>
-        <Link to={this.state.getLink()}><button>Search</button></Link>
+      <div class="container">
+
+        <div class="row">
+          <div class="col-sm-8 col-sm-offset-2 text-center">
+            <h1>Welcome</h1>
+            <h4>Search for any programming related topic</h4>
+          </div>
+        </div>
+
+        <div class="row" style={searchBarStyle}>
+          <div class="col-sm-6 col-sm-offset-3 text-center">
+            <div class="col-sm-4">
+              <select class="form-control" onChange={e => this.setState({type: e.target.value})}>
+                  {options}
+              </select>
+            </div>
+            <div class="col-sm-7">
+              <input type="text" class="form-control" placeholder="Search" onChange={e => this.setState({term: e.target.value})}></input>
+            </div>
+            <div class="col-sm-1">
+              <Link to={this.state.getLink()}>
+                <button type="submit" class="btn btn-default">
+                  <span class="glyphicon glyphicon-search"></span>
+                </button>
+              </Link>
+            </div>
+          </div>
+        </div>
+
       </div>
+
     )
   }
 }
