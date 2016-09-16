@@ -14,7 +14,7 @@ import VideoResult from "./VideoResult"
 })
 export default class AllSearch extends React.Component {
   componentWillMount() {
-      this.props.dispatch(fetchForums())
+      this.props.dispatch(fetchForums(this.props.routeParams.search))
       this.props.dispatch(fetchVideos(this.props.routeParams.search))
   }
 
@@ -27,9 +27,13 @@ export default class AllSearch extends React.Component {
       return (<div>Loading</div>)
     }
 
+    console.log("Logging from AllSearch")
+    console.log(forum_threads_json)
+    console.log(video_items_json)
+
     const forums = forum_threads_json.items;
     const videos = video_items_json.items;
-    const mappedForums = forums.map(forum => <li><h3>{forum.title}</h3>{forum.excerpt}</li>)
+    const mappedForums = forums.map(forum => <li><h3><a target="_blank" href={"http://stackoverflow.com/q/"+forum.question_id}>{forum.title}</a></h3>{forum.excerpt}</li>)
     const mappedVideos = videos.map(video => <VideoResult video={video} key={video.id.videoId}></VideoResult>)
 
     const videoRows = []

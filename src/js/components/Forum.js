@@ -28,7 +28,7 @@ export default class Forum extends React.Component {
     const mappedForums = forum_threads.map(forum => <li><h3>{forum.title}</h3>{forum.excerpt}</li>)
 
     return <div>
-        <h1>Hardcoded to search Java p.s. I don't know how to resolve the markdown issue</h1>
+        <h1>I dont know how to resolve the markdown issue</h1>
         <ul>{mappedForums}</ul>
     </div>
   }
