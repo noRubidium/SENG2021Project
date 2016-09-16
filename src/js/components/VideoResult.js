@@ -8,7 +8,7 @@ export default class VideoResult extends React.Component {
     const video = this.props.video
     console.log(video)
     return (
-      <div class="col-sm-6 col-md-4">
+      <div>
         <Link to={"/video/display/"+video.id.videoId} class="thumbnails">
             <img src={video.snippet.thumbnails.medium.url} class="img-small" />
 
