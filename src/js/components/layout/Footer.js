@@ -5,9 +5,9 @@ export default class Footer extends React.Component {
   render() {
     return (
       <footer>
-        <div class="row">
+        <div class="footer navbar-default navbar-fixed-bottom">
           <div class="col-lg-12">
-            <p>Copyright &copy; This becomes my work?</p>
+            &#47;&#47;TODO: Team Name
           </div>
         </div>
       </footer>
