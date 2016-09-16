@@ -5,6 +5,7 @@ import { Router, Route, IndexRoute, hashHistory } from "react-router";
 
 
 import Layout from "./pages/Layout"
+import Forum from "./components/Forum"
 import Video from "./components/Video"
 import Tweet from "./components/Twitter"
 import VideoSearch from "./components/VideoSearch"
@@ -17,6 +18,7 @@ ReactDOM.render(<Provider store={store}>
   <Router history={hashHistory}>
     <Route path="/" component={Layout}>
       <IndexRoute component={Search}></IndexRoute>
+      <Route path="forum(/:search)" component={Forum}></Route>
       <Route path="github/:githubId" component={Tweet}></Route>
       <Route path="video/:term" component={VideoSearch}></Route>
       <Route path="video/display/:videoId" component={Video}></Route>

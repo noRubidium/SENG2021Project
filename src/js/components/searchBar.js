@@ -18,7 +18,7 @@ export default class SearchBar extends React.Component {
 
   render(){
 
-    const types = ["video", "language", "github"]
+    const types = ["video", "forum", "github"]
     const options = types.map((item) => {
       return (<option value={item} >{item}</option>);
     })
