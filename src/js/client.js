@@ -7,7 +7,7 @@ import { Router, Route, IndexRoute, hashHistory } from "react-router";
 import Layout from "./pages/Layout"
 import Video from "./components/Video"
 import Tweet from "./components/Twitter"
-import VideoSearch from "./components/videoSearch"
+import VideoSearch from "./components/VideoSearch"
 import Search from "./components/searchBar"
 import store from "./store"
 
