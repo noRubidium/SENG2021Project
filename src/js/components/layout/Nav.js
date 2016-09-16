@@ -1,8 +1,6 @@
 import React from "react";
 import { IndexLink, Link } from "react-router";
 
-import { fetchVideos } from "../../actions/videoSearchActions"
-
 export default class Nav extends React.Component {
   constructor() {
     super()
@@ -20,7 +18,6 @@ export default class Nav extends React.Component {
 
   updateSearchField(search) {
     this.setState({search_field: search.target.value});
-    this.props.dispatch(fetchVideos(this.state.search_field));
   }
 
   render() {
