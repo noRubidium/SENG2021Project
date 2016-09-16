@@ -20,7 +20,7 @@ export default class VideoSearch extends React.Component {
       nextProps.dispatch(fetchVideos(nextProps.routeParams.term))
     }
   }
-  
+
   fetchVideos() {
     this.props.dispatch(fetchVideos(this.props.routeParams.term))
   }
@@ -36,13 +36,13 @@ export default class VideoSearch extends React.Component {
       </div>)
     }
 
-    const mappedVideos = videos.map(video => <VideoResult video={video} key={video.id.videoId}></VideoResult>)
+    const mappedVideos = videos.map(video => <div class="col-sm-6 col-md-4"><VideoResult video={video} key={video.id.videoId}></VideoResult></div>)
 
     const rows = []
     for(let i = 0; i < 9; i+= 3){
       rows.push(<div class="row">{mappedVideos.slice(i, i+3)}</div>)
     }
-    return <div>
+    return <div >
       <h1>Rendering!</h1>
       {rows}
       {/*<div class="row">{mappedVideos}</div>*/}
