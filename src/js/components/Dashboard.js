@@ -62,12 +62,13 @@ export default class Dashboard extends React.Component {
     const videos = video_items_json.items;
     const repos = github_repos_json.items;
 
-    var forums_sorted = forums
-    forums_sorted.sort(function(a,b) {return (a.score > b.score) ? -1 : ((b.score > a.score) ? 1 : 0);} );
-    const top_forums = forums_sorted.slice(0,3)
 
     var ReactMarkdown = require('react-markdown');
 
+    var forums_sorted = forums
+    forums_sorted.sort(function(a,b) {return (a.score > b.score) ? -1 : ((b.score > a.score) ? 1 : 0);} );
+    forums_sorted = forums_sorted.filter(function (forum) {return forum.body.length <= 500;});
+    console.log(forums_sorted)
     const mappedForums = forums_sorted.length ? forums_sorted.map(forum => <li><h3><Link to={"/forum/display/"+forum.question_id}>
         <ReactMarkdown source={forum.title} /></Link></h3>
         <ReactMarkdown source={forum.body} /></li>)
@@ -75,7 +76,7 @@ export default class Dashboard extends React.Component {
     const mappedVideos = videos.map(video => <VideoResult video={video} key={video.id.videoId}></VideoResult>)
     const mappedRepos = repos.map(repo => <GithubResult repo={repo}/>)
 
-    const forumList = mappedForums.slice(0,5)
+    const forumList = mappedForums.slice(0,10)
     const videoRows = mappedVideos.slice(0,9)
     const repoRows = mappedRepos.slice(0,26)
 
