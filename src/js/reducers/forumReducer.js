@@ -20,6 +20,20 @@ export default function reducer(state={
           forum_threads: action.payload,
         }
       }
+      case "FETCH_FORUMS_APPEND_INITIATED": {
+        return {...state, fetching: true}
+      }
+      case "FETCH_FORUMS_APPEND_REJECTED": {
+        return {...state, fetching: false, error: action.payload}
+      }
+      case "FETCH_FORUMS_APPEND_FULFILLED": {
+        return {
+          ...state,
+          fetching: false,
+          fetched: true,
+          forum_threads: {...state.forum_threads, items:[...state.forum_threads.items].concat(action.payload.items)},
+        }
+      }
     }
 
     return state

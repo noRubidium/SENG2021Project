@@ -21,10 +21,11 @@ export default class PreferenceBar extends React.Component {
     this.setState({preferencesRaw: e.target.value})
   }
 
-  handleSubmit() {
-    var preferences = this.state.preferencesRaw
-    preferences = preferences.replace(",","|")
-    this.props.dispatch(updatePreferences(preferences))
+  handleSubmit(e) {
+      e.preventDefault() // Crucial to stop page refreshing
+      var preferences = this.state.preferencesRaw
+      preferences = preferences.replace(",","|")
+      this.props.dispatch(updatePreferences(preferences))
   }
 
   render(){
@@ -41,7 +42,7 @@ export default class PreferenceBar extends React.Component {
           </div>
 
           <div class="col-md-1">
-            <button type="submit" class="btn btn-default">
+            <button type="button" class="btn btn-default">
               <span class="glyphicon glyphicon-ok"></span>
             </button>
           </div>
