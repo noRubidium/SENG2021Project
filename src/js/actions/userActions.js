@@ -1,3 +1,12 @@
+export function updatePreferences(preferences) {
+  return {
+    type: 'UPDATE_USER_PREFERENCES',
+    payload: {
+      preferences,
+    },
+  }
+}
+
 export function fetchUser() {
   return {
     type: "FETCH_USER_FULFILLED",
