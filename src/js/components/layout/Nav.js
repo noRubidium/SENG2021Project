@@ -43,7 +43,7 @@ export default class Nav extends React.Component {
                 <IndexLink to="/" onClick={this.toggleCollapse.bind(this)}>Home</IndexLink>
               </li>
               <li>
-                <SearchBar formClass="navbar-form" dropDownShow="hidden" textBox="form-group" button="form-group"/>
+                <SearchBar formClass="navbar-form" dropDownShow="hidden" textBox="form-group" button="form-group" placeholderText="Search All"/>
               {/*<form class="navbar-form" role="search">
                 <div class="form-group">
                   <input type="text" class="form-control" placeholder="Search All" onChange={this.updateSearchField.bind(this)}/>
