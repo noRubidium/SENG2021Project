@@ -33,7 +33,10 @@ export default class AllSearch extends React.Component {
 
     const forums = forum_threads_json.items;
     const videos = video_items_json.items;
-    const mappedForums = forums.map(forum => <li><h3><a target="_blank" href={"http://stackoverflow.com/q/"+forum.question_id}>{forum.title}</a></h3>{forum.excerpt}</li>)
+
+    var ReactMarkdown = require('react-markdown');
+    const mappedForums = forums.map(forum => <li><h3><a target="_blank" href={forum.link}>
+                                             <ReactMarkdown source={forum.title} /></a></h3><ReactMarkdown source={forum.body} /></li>)
     const mappedVideos = videos.map(video => <VideoResult video={video} key={video.id.videoId}></VideoResult>)
 
     const videoRows = []
@@ -43,13 +46,16 @@ export default class AllSearch extends React.Component {
 
     return (
       <div class="container">
+        <div class="row center-text">
+          <h2>Displaying search results for '{this.props.routeParams.search}'</h2>
+        </div>
         <div class="row">
           <div class="col-sm-6">
-            <h2>Tutorials</h2>
+            <h3>Tutorials</h3>
             {videoRows}
           </div>
           <div class="col-sm-6">
-            <h2>Forums</h2>
+            <h3>Forums</h3>
             <ul>{mappedForums}</ul>
           </div>
         </div>

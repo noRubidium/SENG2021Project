@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export function fetchForums(searchTerm) {
-  const url = "https://api.stackexchange.com/2.2/search/excerpts?pagesize=5&order=desc&sort=votes&accepted=True&tagged="+searchTerm+"&site=stackoverflow"
+  const url = "https://api.stackexchange.com//2.2/search/advanced?pagesize=3&order=desc&sort=votes&tagged=" + searchTerm + "&site=stackoverflow&filter=!)rjtA(EdGKGjGMtWs1jp"
   searchTerm = searchTerm.replace(" ","%20")
   return function(dispatch) {
     dispatch({type: "FETCH_FORUMS_INITIATED"});
