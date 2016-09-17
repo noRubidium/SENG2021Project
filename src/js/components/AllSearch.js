@@ -4,7 +4,7 @@ import { Link } from "react-router"
 
 import { fetchForums } from "../actions/forumActions"
 import { fetchVideos } from "../actions/videoSearchActions"
-import { fetchRepos } from "../actions/githubSearchActions"
+import { fetchRepos } from "../actions/githubActions"
 import VideoResult from "./VideoResult"
 import GithubResult from "./GithubResult"
 
@@ -12,7 +12,7 @@ import GithubResult from "./GithubResult"
   return {
     forum: store.forum,
     videoSearch: store.videoSearch,
-    githubSearch: store.githubSearch
+    github: store.github
   };
 })
 export default class AllSearch extends React.Component {
@@ -26,14 +26,14 @@ export default class AllSearch extends React.Component {
     if (nextProps.routeParams.search !== this.props.routeParams.search) {
       nextProps.dispatch(fetchForums(nextProps.routeParams.search))
       nextProps.dispatch(fetchVideos(nextProps.routeParams.search))
-      this.props.dispatch(fetchRepos(this.props.routeParams.search))
+      nextProps.dispatch(fetchRepos(nextProps.routeParams.search))
     }
   }
 
   render() {
     const forum_threads_json = this.props.forum.forum_threads
     const video_items_json = this.props.videoSearch.videos
-    const github_repos_json = this.props.githubSearch.repos
+    const github_repos_json = this.props.github.repos
 
     if ((forum_threads_json instanceof Array && !forum_threads_json.length)
         || (video_items_json instanceof Array && !video_items_json.length)
@@ -41,19 +41,11 @@ export default class AllSearch extends React.Component {
       return (<div>Loading</div>)
     }
 
-    console.log("Logging from AllSearch")
-    console.log(forum_threads_json)
-    console.log(video_items_json)
-    console.log(github_repos_json)
-
     const forums = forum_threads_json.items;
     const videos = video_items_json.items;
     const repos = github_repos_json.items;
 
     var ReactMarkdown = require('react-markdown');
-
-    console.log("Items:")
-    console.log(forums)
 
     const mappedForums = forums.length ? forums.map(forum => <li><h3><a target="_blank" href={forum.link}>
         <ReactMarkdown source={forum.title} /></a></h3>

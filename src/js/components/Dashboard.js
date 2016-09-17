@@ -6,7 +6,7 @@ import Draggable from 'react-draggable';
 
 import { fetchForums } from "../actions/forumActions"
 import { fetchVideos } from "../actions/videoSearchActions"
-import { fetchRepos } from "../actions/githubSearchActions"
+import { fetchRepos } from "../actions/githubActions"
 
 import VideoResult from "./VideoResult"
 import GithubResult from "./GithubResult"
@@ -18,7 +18,7 @@ import PreferenceBar from "./PreferenceBar"
     forum: store.forum,
     videoSearch: store.videoSearch,
     user: store.user,
-    githubSearch: store.githubSearch
+    github: store.github
   };
 })
 export default class Dashboard extends React.Component {
@@ -39,8 +39,6 @@ export default class Dashboard extends React.Component {
   }
 
   componentWillUpdate(nextProps, nextState) {
-    console.log(this.props)
-    console.log(nextProps)
     if (nextProps.user.user.preferences !== this.props.user.user.preferences) {
       this.props.dispatch(fetchForums(nextProps.user.user.preferences))
       this.props.dispatch(fetchVideos(nextProps.user.user.preferences))
@@ -51,7 +49,7 @@ export default class Dashboard extends React.Component {
   render() {
     const forum_threads_json = this.props.forum.forum_threads
     const video_items_json = this.props.videoSearch.videos
-    const github_repos_json = this.props.githubSearch.repos
+    const github_repos_json = this.props.github.repos
 
     if ((forum_threads_json instanceof Array && !forum_threads_json.length)
         || (video_items_json instanceof Array && !video_items_json.length)

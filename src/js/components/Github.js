@@ -1,7 +1,7 @@
 import React from "react"
 import { connect } from "react-redux"
 
-import { fetchRepoContent } from "../actions/githubContentActions"
+import { fetchRepoContent } from "../actions/githubActions"
 
 @connect((store) => {
   return {

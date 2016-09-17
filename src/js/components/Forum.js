@@ -10,7 +10,6 @@ import { fetchForums } from "../actions/forumActions"
 })
 export default class Forum extends React.Component {
   componentWillMount() {
-    console.log(this.props);
     this.props.dispatch(fetchForums(this.props.routeParams.search))
   }
 
