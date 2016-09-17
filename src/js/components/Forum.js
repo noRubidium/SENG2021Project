@@ -10,11 +10,12 @@ import { fetchForums } from "../actions/forumActions"
 })
 export default class Forum extends React.Component {
   componentWillMount() {
-    this.props.dispatch(fetchForums())
+    console.log(this.props);
+    this.props.dispatch(fetchForums(this.props.routeParams.search))
   }
 
   fetchForums() {
-    this.props.dispatch(fetchForums())
+    this.props.dispatch(fetchForums(this.props.routeParams.search))
   }
 
   render() {
@@ -24,11 +25,13 @@ export default class Forum extends React.Component {
       return (<div>Loading</div>)
     }
 
+    var ReactMarkdown = require('react-markdown');
     const forum_threads = forum_threads_json.items;
-    const mappedForums = forum_threads.map(forum => <li><h3>{forum.title}</h3>{forum.excerpt}</li>)
+    const mappedForums = forum_threads.map(forum => <li><h3><a target="_blank" href={forum.link}>
+          <ReactMarkdown source={forum.title} /></a></h3><ReactMarkdown source={forum.body} /></li>)
 
     return <div>
-        <h1>Hardcoded to search Java p.s. I don't know how to resolve the markdown issue</h1>
+        <h1>Search results for: '{this.props.routeParams.search}'</h1>
         <ul>{mappedForums}</ul>
     </div>
   }
