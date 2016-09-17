@@ -24,13 +24,13 @@ export default class HomePage extends React.Component {
       <div class="container">
 
         <div class="row">
-          <div class="col-sm-8 col-sm-offset-2 text-center">
+          <div class="text-center">
             <h1>Welcome</h1>
             <h4>Search for any programming related topic</h4>
           </div>
         </div>
 
-        <SearchBar searchBarStyle = {searchBarStyle} divStyle="col-sm-6 col-sm-offset-3 text-center" />
+        <SearchBar searchBarStyle = {searchBarStyle} divStyle="col-md-8 col-md-offset-2 text-center" />
       </div>
 
     )

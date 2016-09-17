@@ -93,15 +93,15 @@ export default class Dashboard extends React.Component {
         </div>
 
         <div class="row">
-          <div class="col-sm-4">
+          <div class="col-md-4">
             <h3>Tutorials</h3>
             {videoRows.map(video => <div class="row">{video}</div>)}
           </div>
-          <div class="col-sm-4">
+          <div class="col-md-4">
             <h3>Forums</h3>
             <ul>{forumList}</ul>
           </div>
-          <div class="col-sm-4">
+          <div class="col-md-4">
             <h3>Github Repositories</h3>
             <ul>{repoRows.map(repo => <li>{repo}</li>)}</ul>
           </div>

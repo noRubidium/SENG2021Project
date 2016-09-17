@@ -47,12 +47,6 @@ export default class Nav extends React.Component {
               </li>
               <li>
                 <SearchBar formClass="navbar-form" dropDownShow="hidden" textBox="form-group" button="form-group" placeholderText="Search All"/>
-              {/*<form class="navbar-form" role="search">
-                <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Search All" onChange={this.updateSearchField.bind(this)}/>
-                </div>
-                <Link to={this.state.getLink()}><button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button></Link>
-              </form>*/}
               </li>
             </ul>
           </div>
