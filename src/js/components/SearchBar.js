@@ -22,9 +22,6 @@ export default class SearchBar extends React.Component {
     const options = types.map((item) => {
       return (<option value={item} >{item}</option>);
     })
-    const searchBarStyle = this.props.searchBarStyle || {
-      marginTop: "60px"
-    };
     const searchBarClass = {
       dropDownShow: this.props.dropDownShow || "",
       divStyle: this.props.divStyle || "",
@@ -32,7 +29,7 @@ export default class SearchBar extends React.Component {
     }
 
     return (
-        <form class={searchBarClass.formClass} style={this.props.searchBarStyle} role="search">
+        <form class={searchBarClass.formClass} role="search">
           <div class={searchBarClass.divStyle}>
             <div class={searchBarClass.dropDownShow + " col-sm-3 "}>
               <select class="form-control" onChange={e => this.setState({type: e.target.value})}>

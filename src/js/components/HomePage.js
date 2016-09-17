@@ -30,9 +30,21 @@ export default class HomePage extends React.Component {
           </div>
         </div>
 
+        <div class="control-group">&nbsp;</div> {/*spacer*/}
         <SearchBar searchBarStyle = {searchBarStyle} divStyle="col-md-8 col-md-offset-2 text-center" />
-      </div>
+        <div class="control-group">&nbsp;</div> {/*spacer*/}
+        <div class="control-group">&nbsp;</div> {/*spacer*/}
 
+        <div class="row">
+          <div class="text-center">
+            <h4>Not sure where to begin? Select a topic.</h4>
+            <div class="control-group">&nbsp;</div> {/*spacer*/}
+            <Link to='/video/programming'><button class="btn btn-primary" style={{marginLeft:"5px"}}>Learn Technologies</button></Link>
+            <Link to='/forum/programming'><button class="btn btn-primary" style={{marginLeft:"5px"}}>Discuss Topics</button></Link>
+            <Link to='/github/programming'><button class="btn btn-primary" style={{marginLeft:"5px"}}>Explore Code</button></Link>
+          </div>
+        </div>
+      </div>
     )
   }
 }
