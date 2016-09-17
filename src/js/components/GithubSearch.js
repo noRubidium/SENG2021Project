@@ -1,15 +1,15 @@
 import React from "react"
 import { connect } from "react-redux"
 
-import { fetchRepos } from "../actions/githubSearchActions"
+import { fetchRepos } from "../actions/githubActions"
 import GithubResult from "./GithubResult"
 
 @connect((store) => {
   return {
-    githubSearch: store.githubSearch,
+    github: store.github,
   };
 })
-export default class githubSearch extends React.Component {
+export default class github extends React.Component {
   componentWillMount() {
     this.props.dispatch(fetchRepos(this.props.routeParams.search))
   }
@@ -21,8 +21,8 @@ export default class githubSearch extends React.Component {
   }
 
   render() {
-    const { githubSearch } = this.props;
-    const repos = githubSearch.repos.items;
+    const { github } = this.props;
+    const repos = github.repos.items;
 
     if (!repos) {
       return (
