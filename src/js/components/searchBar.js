@@ -25,49 +25,38 @@ export default class SearchBar extends React.Component {
     const options = types.map((item) => {
       return (<option value={item} >{item}</option>);
     })
-    const searchBarStyle = {
+    const searchBarStyle = this.props.searchBarStyle || {
       marginTop: "60px"
     };
+    const searchBarClass = {
+      dropDownShow: this.props.dropDownShow || "",
+      textBox : this.props.textBox || "col-sm-7",
+      button : this.props.button || "col-sm-1",
+      divStyle: this.props.divStyle || "",
+      formClass: this.props.formClass || "row",
+    }
 
     return (
-      <div class="container">
-
-        <div class="row">
-          <div class="col-sm-8 col-sm-offset-2 text-center">
-            <h1>Welcome</h1>
-            <h4>Search for any programming related topic</h4>
-          </div>
-        </div>
-
-        <div class="row" style={searchBarStyle}>
-          <div class="col-sm-6 col-sm-offset-3 text-center">
-            <div class="col-sm-4">
+        <form class={searchBarClass.formClass} style={this.props.searchBarStyle} role="search">
+          <div class={searchBarClass.divStyle}>
+            <div class={searchBarClass.dropDownShow + " col-sm-4 "}>
               <select class="form-control" onChange={e => this.setState({type: e.target.value})}>
                   {options}
               </select>
             </div>
-            <div class="col-sm-7">
-              <input type="text" class="form-control" placeholder="Search"
-                onKeyPress={e => {
-                  if(e.keyCode == 13 || e.which == 13){
-                    this.props.history.push(this.state.getLink());
-                  }
-                }}
-
+            <div class={searchBarClass.textBox}>
+              <input type="text" class="form-control" placeholder={this.props.placeholderText || "Search"}
                  onChange={e => this.setState({term: e.target.value})}></input>
             </div>
-            <div class="col-sm-1">
-              <Link to={this.state.getLink()}>
-                <button type="submit" class="btn btn-default">
-                  <span class="glyphicon glyphicon-search"></span>
-                </button>
-              </Link>
-            </div>
+            <div class={searchBarClass.button}>
+                <Link to={this.state.getLink()}>
+                  <button type="submit" class="btn btn-default">
+                    <span class="glyphicon glyphicon-search"></span>
+                  </button>
+                </Link>
+              </div>
           </div>
-        </div>
-
-      </div>
-
+        </form>
     )
   }
 }

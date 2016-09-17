@@ -9,7 +9,7 @@ import Forum from "./components/Forum"
 import Video from "./components/Video"
 import Tweet from "./components/Twitter"
 import VideoSearch from "./components/VideoSearch"
-import Search from "./components/searchBar"
+import Search from "./components/HomePage"
 import store from "./store"
 
 const app = document.getElementById('app')
