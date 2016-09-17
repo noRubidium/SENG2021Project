@@ -3,6 +3,7 @@ export default function reducer(state={
       id: null,
       name: null,
       age: null,
+      preferences: "random",
     },
     fetching: false,
     fetched: false,
@@ -10,6 +11,9 @@ export default function reducer(state={
   }, action) {
 
     switch (action.type) {
+      case "UPDATE_USER_PREFERENCES": {
+        return {...state, user:{...state.user, preferences: action.payload.preferences}}
+      }
       case "FETCH_USER": {
         return {...state, fetching: true}
       }

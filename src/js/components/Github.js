@@ -1,15 +1,43 @@
 import React from "react"
-import YouTube from 'react-youtube';
 import { connect } from "react-redux"
 
-import { fetchUser } from "../actions/userActions"
-import { fetchTweets } from "../actions/tweetsActions"
+import { fetchRepoContent } from "../actions/githubContentActions"
+
+@connect((store) => {
+  return {
+    githubContent: store.githubContent,
+  };
+})
 
 export default class Github extends React.Component {
+  componentWillMount() {
+    const { owner, repo } = this.props.routeParams
+    const name = owner + "/" + repo
+    this.props.dispatch(fetchRepoContent(name))
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    const { owner, repo } = this.props.routeParams
+    const name = owner + repo
+    const nextowner = nextProps.routeParams.owner
+    const nextrepo = nextProps.routeParams.repo
+    const nextname = nextowner + nextrepo
+    if (nextname !== name) {
+      nextProps.dispatch(fetchRepoContent(nextname))
+    }
+  }
 
   render() {
-    <div>
-    </div>
+    const { githubContent } = this.props
+    const { owner, repo } = this.props.routeParams
 
+    var ReactMarkdown = require('react-markdown')
+
+    return (
+      <div>
+          <h1>{owner}/{repo}</h1>
+          <ReactMarkdown source={githubContent.content} />
+      </div>
+    );
   }
 }

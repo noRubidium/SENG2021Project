@@ -7,14 +7,13 @@ export default class GithubResult extends React.Component {
     const { repo } = this.props
 
     return (
-      <div class="col-sm-6 col-md-4">
-        <Link to={"/github/display/"+repo.id} class="thumbnails">
-            <img src={repo.owner.avatar_url} width="100" height="100" />
+      <div>
+        <Link to={"/github/display/"+repo.full_name} class="thumbnails">
+          <h3>{repo.full_name}</h3>
         </Link>
 
-        <div class="caption">
-            <h3>{repo.full_name}</h3>
-        </div>
+        <h5>language: {repo.language}</h5>
+        <h5>description: {repo.description}</h5>
       </div>
     )
   }

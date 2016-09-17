@@ -1,5 +1,6 @@
 import React from "react";
 import { IndexLink, Link } from "react-router";
+import SearchBar from "../SearchBar";
 
 export default class Nav extends React.Component {
   constructor() {
@@ -7,7 +8,7 @@ export default class Nav extends React.Component {
     this.state = {
       collapsed: true,
       search_field: "",
-      getLink: e => "video/"+ this.state.search_field, // only does video so far
+      getLink: e => "all/"+ this.state.search_field, // only does video so far
     };
   }
 
@@ -42,12 +43,16 @@ export default class Nav extends React.Component {
                 <IndexLink to="/" onClick={this.toggleCollapse.bind(this)}>Home</IndexLink>
               </li>
               <li>
-              <form class="navbar-form" role="search">
+                <Link to="/Dashboard" onClick={this.toggleCollapse.bind(this)}>Dashboard (the homepage for non-first-time users)</Link>
+              </li>
+              <li>
+                <SearchBar formClass="navbar-form" dropDownShow="hidden" textBox="form-group" button="form-group" placeholderText="Search All"/>
+              {/*<form class="navbar-form" role="search">
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Search" onChange={this.updateSearchField.bind(this)}/>
+                  <input type="text" class="form-control" placeholder="Search All" onChange={this.updateSearchField.bind(this)}/>
                 </div>
                 <Link to={this.state.getLink()}><button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button></Link>
-              </form>
+              </form>*/}
               </li>
             </ul>
           </div>
