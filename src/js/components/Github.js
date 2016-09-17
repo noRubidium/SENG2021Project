@@ -5,7 +5,7 @@ import { fetchRepoContent } from "../actions/githubActions"
 
 @connect((store) => {
   return {
-    githubContent: store.githubContent,
+    github: store.github,
   };
 })
 
@@ -28,7 +28,7 @@ export default class Github extends React.Component {
   }
 
   render() {
-    const { githubContent } = this.props
+    const { github } = this.props
     const { owner, repo } = this.props.routeParams
 
     var ReactMarkdown = require('react-markdown')
@@ -36,7 +36,7 @@ export default class Github extends React.Component {
     return (
       <div>
           <h1>{owner}/{repo}</h1>
-          <ReactMarkdown source={githubContent.content} />
+          <ReactMarkdown source={github.content} />
       </div>
     );
   }

@@ -63,8 +63,8 @@ export default class Dashboard extends React.Component {
 
     var ReactMarkdown = require('react-markdown');
 
-    const mappedForums = forums.length ? forums.map(forum => <li><h3><a target="_blank" href={forum.link}>
-        <ReactMarkdown source={forum.title} /></a></h3>
+    const mappedForums = forums.length ? forums.map(forum => <li><h3><Link to={"/forum/display/"+forum.question_id}>
+        <ReactMarkdown source={forum.title} /></Link></h3>
         <ReactMarkdown source={forum.body} /></li>)
         : <li>No results. Try a different search term.</li>
     const mappedVideos = videos.map(video => <VideoResult video={video} key={video.id.videoId}></VideoResult>)
