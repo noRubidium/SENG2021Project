@@ -7,6 +7,7 @@ import Layout from "./pages/Layout"
 import AllSearch from "./components/AllSearch"
 import Dashboard from "./components/Dashboard"
 import ForumSearch from "./components/ForumSearch"
+import Forum from "./components/Forum"
 import Video from "./components/Video"
 import Tweet from "./components/Twitter"
 import GithubSearch from "./components/GithubSearch"
@@ -24,6 +25,7 @@ ReactDOM.render(<Provider store={store}>
       <Route path="all(/:search)" component={AllSearch}></Route>
       <Route path="dashboard" component={Dashboard}></Route>
       <Route path="forum(/:search)" component={ForumSearch}></Route>
+      <Route path="forum/display/:id" component={Forum}></Route>
       <Route path="github(/:search)" component={GithubSearch}></Route>
       <Route path="github/display/:owner/:repo" component={Github}></Route>
       <Route path="video/:term" component={VideoSearch}></Route>
