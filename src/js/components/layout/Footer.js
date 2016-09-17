@@ -8,14 +8,18 @@ export default class Footer extends React.Component {
       bottom: "0",
       left: "0",
       padding: "1rem",
+      position:"absolute",
       backgroundColor: "#efefef",
       textAlign: "center",
     }
 
     return (
+      null
+      /*
       <div style={footerStyle}>
-        '&#47;&#47;TODO: Team Name' (Hussein, Jessica, Leon, Mazen, Minjie)
+        <p>'&#47;&#47;TODO: Team Name' (Hussein, Jessica, Leon, Mazen, Minjie)</p>
       </div>
+      */
     );
   }
 }
