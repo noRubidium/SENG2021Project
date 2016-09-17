@@ -16,6 +16,9 @@ export default class SearchBar extends React.Component {
     }
   }
 
+  getLink(){
+     return this.state.type + "/"+ this.state.term;
+   }
   render(){
 
     const types = ["all", "video", "forum", "github"]
@@ -44,7 +47,14 @@ export default class SearchBar extends React.Component {
               </select>
             </div>
             <div class="col-sm-7">
-              <input type="text" class="form-control" placeholder="Search" onChange={e => this.setState({term: e.target.value})}></input>
+              <input type="text" class="form-control" placeholder="Search"
+                onKeyPress={e => {
+                  if(e.keyCode == 13 || e.which == 13){
+                    this.props.history.push(this.state.getLink());
+                  }
+                }}
+
+                 onChange={e => this.setState({term: e.target.value})}></input>
             </div>
             <div class="col-sm-1">
               <Link to={this.state.getLink()}>
