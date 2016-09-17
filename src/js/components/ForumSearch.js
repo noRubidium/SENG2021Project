@@ -1,8 +1,32 @@
 import React from "react"
+import ReactPaginate from 'react-paginate';
 import { connect } from "react-redux"
 import { Link } from "react-router"
 
 import { fetchForums } from "../actions/forumActions"
+
+export class ForumList extends React.Component {
+render() {
+  var ReactMarkdown = require('react-markdown');
+  let threads = this.props.data.map(function(forum, index) {
+    return (
+      <div key={index}>
+      <li><h3><Link to={"/forum/display/"+forum.question_id}>
+      <ReactMarkdown source={forum.title} /></Link></h3>
+      <ReactMarkdown source={forum.body} /></li>
+      </div>
+    );
+  });
+
+  return (
+    <div className="forumList">
+      <ul>
+        {threads}
+      </ul>
+    </div>
+  );
+}
+};
 
 @connect((store) => {
   return {
@@ -10,6 +34,15 @@ import { fetchForums } from "../actions/forumActions"
   };
 })
 export default class ForumSearch extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      data: [],
+      offset: 0
+    }
+  }
+
   componentWillMount() {
     this.props.dispatch(fetchForums(this.props.routeParams.search))
   }
@@ -33,9 +66,21 @@ export default class ForumSearch extends React.Component {
         : <li>No results. Try a different search term.</li>
 
     return (
-      <div>
+      <div className="forumBox">
           <h1>Search results for: '{this.props.routeParams.search}'</h1>
-          <ul>{mappedForums}</ul>
+          <ForumList data={forum_threads}/>
+          <ReactPaginate
+            previousLabel={"previous"}
+            nextLabel={"next"}
+            breakLabel={<a href="">...</a>}
+            breakClassName={"break-me"}
+            pageNum={5}
+            marginPagesDisplayed={2}
+            pageRangeDisplayed={5}
+            containerClassName={"pagination"}
+            subContainerClassName={"pages pagination"}
+            activeClassName={"active"}
+           />
       </div>
     );
   }

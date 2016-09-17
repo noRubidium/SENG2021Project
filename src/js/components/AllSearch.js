@@ -47,7 +47,10 @@ export default class AllSearch extends React.Component {
 
     var ReactMarkdown = require('react-markdown');
 
-    const mappedForums = forums.length ? forums.map(forum => <li><h3><Link to={"/forum/display/"+forum.question_id}>
+    var forums_sorted = forums
+    forums_sorted.sort(function(a,b) {return (a.score > b.score) ? -1 : ((b.score > a.score) ? 1 : 0);} );
+    forums_sorted = forums_sorted.filter(function (forum) {return forum.body.length <= 500;});
+    const mappedForums = forums_sorted.length ? forums_sorted.map(forum => <li><h3><Link to={"/forum/display/"+forum.question_id}>
         <ReactMarkdown source={forum.title} /></Link></h3>
         <ReactMarkdown source={forum.body} /></li>)
         : <li>No results. Try a different search term.</li>

@@ -19,13 +19,14 @@ export default class SearchBar extends React.Component {
   render(){
 
     const types = ["all", "video", "forum", "github"]
-    const options = types.map((item) => {
-      return (<option value={item} >{item}</option>);
+    const options = types.map((item, index) => {
+      return (<option key={index} value={item} >{item}</option>);
     })
     const searchBarClass = {
       dropDownShow: this.props.dropDownShow || "",
       divStyle: this.props.divStyle || "",
       formClass: this.props.formClass || "row",
+      placeholderText: this.props.placeholderText || "Search",
     }
 
     return (
@@ -40,7 +41,7 @@ export default class SearchBar extends React.Component {
               <input
                 type="text"
                 class="form-control"
-                placeholder={this.props.placeholderText || "Search"}
+                placeholder={searchBarClass.placeholderText}
                 onChange={e => this.setState({term: e.target.value})}>
               </input>
               <span class="input-group-btn">
