@@ -7,7 +7,7 @@ export default class Nav extends React.Component {
     this.state = {
       collapsed: true,
       search_field: "",
-      getLink: e => "video/"+ this.state.search_field, // only does video so far
+      getLink: e => "all/"+ this.state.search_field, // only does video so far
     };
   }
 
@@ -44,7 +44,7 @@ export default class Nav extends React.Component {
               <li>
               <form class="navbar-form" role="search">
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Search" onChange={this.updateSearchField.bind(this)}/>
+                  <input type="text" class="form-control" placeholder="Search All" onChange={this.updateSearchField.bind(this)}/>
                 </div>
                 <Link to={this.state.getLink()}><button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button></Link>
               </form>
