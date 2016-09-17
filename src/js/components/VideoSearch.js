@@ -36,7 +36,7 @@ export default class VideoSearch extends React.Component {
       </div>)
     }
 
-    const mappedVideos = videos.map(video => <div class="col-sm-6 col-md-4"><VideoResult video={video} key={video.id.videoId}></VideoResult></div>)
+    const mappedVideos = videos.map(video => <div class="col-md-4"><VideoResult video={video} key={video.id.videoId}></VideoResult></div>)
 
     const rows = []
     for(let i = 0; i < 9; i+= 3){

@@ -5,6 +5,7 @@ import Draggable from 'react-draggable';
 
 
 import { fetchForums } from "../actions/forumActions"
+import { fetchForumsAppend } from "../actions/forumActions"
 import { fetchVideos } from "../actions/videoSearchActions"
 import { fetchRepos } from "../actions/githubActions"
 
@@ -33,14 +34,14 @@ export default class Dashboard extends React.Component {
 
   componentWillMount() {
       {/*They may not have any preferences yet*/}
-      this.props.dispatch(fetchForums("Hardcode"))
-      this.props.dispatch(fetchVideos("Hardcode"))
-      this.props.dispatch(fetchRepos("Hardcode"))
+      this.props.dispatch(fetchForums("React"))
+      this.props.dispatch(fetchVideos("React"))
+      this.props.dispatch(fetchRepos("React"))
   }
 
   componentWillUpdate(nextProps, nextState) {
     if (nextProps.user.user.preferences !== this.props.user.user.preferences) {
-      this.props.dispatch(fetchForums(nextProps.user.user.preferences))
+      this.props.dispatch(fetchForumsAppend(nextProps.user.user.preferences))
       this.props.dispatch(fetchVideos(nextProps.user.user.preferences))
       this.props.dispatch(fetchRepos(nextProps.user.user.preferences))
     }
@@ -61,20 +62,24 @@ export default class Dashboard extends React.Component {
     const videos = video_items_json.items;
     const repos = github_repos_json.items;
 
+    var forums_sorted = forums
+    forums_sorted.sort(function(a,b) {return (a.score > b.score) ? -1 : ((b.score > a.score) ? 1 : 0);} );
+    const top_forums = forums_sorted.slice(0,3)
+
     var ReactMarkdown = require('react-markdown');
 
-    const mappedForums = forums.length ? forums.map(forum => <li><h3><Link to={"/forum/display/"+forum.question_id}>
+    const mappedForums = forums_sorted.length ? forums_sorted.map(forum => <li><h3><Link to={"/forum/display/"+forum.question_id}>
         <ReactMarkdown source={forum.title} /></Link></h3>
         <ReactMarkdown source={forum.body} /></li>)
         : <li>No results. Try a different search term.</li>
     const mappedVideos = videos.map(video => <VideoResult video={video} key={video.id.videoId}></VideoResult>)
     const mappedRepos = repos.map(repo => <GithubResult repo={repo}/>)
 
+    const forumList = mappedForums.slice(0,5)
     const videoRows = mappedVideos.slice(0,9)
     const repoRows = mappedRepos.slice(0,26)
 
     return (
-
       <div class="container">
         <div class="text-center">
           <h2>Welcome back to your Programming Dashboard, Mark</h2>
@@ -88,21 +93,20 @@ export default class Dashboard extends React.Component {
         </div>
 
         <div class="row">
-          <div class="col-sm-4">
+          <div class="col-md-4">
             <h3>Tutorials</h3>
             {videoRows.map(video => <div class="row">{video}</div>)}
           </div>
-          <div class="col-sm-4">
+          <div class="col-md-4">
             <h3>Forums</h3>
-            <ul>{mappedForums}</ul>
+            <ul>{forumList}</ul>
           </div>
-          <div class="col-sm-4">
+          <div class="col-md-4">
             <h3>Github Repositories</h3>
             <ul>{repoRows.map(repo => <li>{repo}</li>)}</ul>
           </div>
         </div>
       </div>
-
     );
   }
 }

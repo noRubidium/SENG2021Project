@@ -21,29 +21,30 @@ export default class PreferenceBar extends React.Component {
     this.setState({preferencesRaw: e.target.value})
   }
 
-  handleSubmit() {
-    var preferences = this.state.preferencesRaw
-    preferences = preferences.replace(",","|")
-    this.props.dispatch(updatePreferences(preferences))
+  handleSubmit(e) {
+      e.preventDefault() // Crucial to stop page refreshing
+      var preferences = this.state.preferencesRaw
+      preferences = preferences.replace(",","|")
+      this.props.dispatch(updatePreferences(preferences))
   }
 
   render(){
     return (
       <div>
         <form onSubmit={this.handleSubmit.bind(this)}>
-          <div class="col-md-11">
-            <input
-              type="text"
-              class="form-control"
-              placeholder={"e.g. \"react, redux, competitive programming\""}
-              onChange={this.handleChange.bind(this)}
-            />
-          </div>
+          <div class="input-group">
+              <input
+                type="text"
+                class="form-control"
+                placeholder={"e.g. \"react, redux, competitive programming\""}
+                onChange={this.handleChange.bind(this)}
+              />
 
-          <div class="col-md-1">
-            <button type="submit" class="btn btn-default">
-              <span class="glyphicon glyphicon-ok"></span>
-            </button>
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-ok"></span>
+              </button>
+            </span>
           </div>
         </form>
       </div>
