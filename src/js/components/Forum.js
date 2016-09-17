@@ -27,12 +27,16 @@ export default class Forum extends React.Component {
 
     var ReactMarkdown = require('react-markdown');
     const forum_threads = forum_threads_json.items;
-    const mappedForums = forum_threads.map(forum => <li><h3><a target="_blank" href={forum.link}>
-          <ReactMarkdown source={forum.title} /></a></h3><ReactMarkdown source={forum.body} /></li>)
+    const mappedForums = forum_threads.length ? forum_threads.map(forum => <li><h3><a target="_blank" href={forum.link}>
+        <ReactMarkdown source={forum.title} /></a></h3>
+        <ReactMarkdown source={forum.body} /></li>)
+        : <li>No results. Try a different search term.</li>
 
-    return <div>
-        <h1>Search results for: '{this.props.routeParams.search}'</h1>
-        <ul>{mappedForums}</ul>
-    </div>
+    return (
+      <div>
+          <h1>Search results for: '{this.props.routeParams.search}'</h1>
+          <ul>{mappedForums}</ul>
+      </div>
+    );
   }
 }

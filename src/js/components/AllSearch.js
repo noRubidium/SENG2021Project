@@ -18,6 +18,13 @@ export default class AllSearch extends React.Component {
       this.props.dispatch(fetchVideos(this.props.routeParams.search))
   }
 
+  componentWillUpdate(nextProps, nextState) {
+    if (nextProps.routeParams.search !== this.props.routeParams.search) {
+      nextProps.dispatch(fetchForums(nextProps.routeParams.search))
+      nextProps.dispatch(fetchVideos(nextProps.routeParams.search))
+    }
+  }
+
   render() {
     const forum_threads_json = this.props.forum.forum_threads
     const video_items_json = this.props.videoSearch.videos
@@ -35,8 +42,14 @@ export default class AllSearch extends React.Component {
     const videos = video_items_json.items;
 
     var ReactMarkdown = require('react-markdown');
-    const mappedForums = forums.map(forum => <li><h3><a target="_blank" href={forum.link}>
-                                             <ReactMarkdown source={forum.title} /></a></h3><ReactMarkdown source={forum.body} /></li>)
+
+    console.log("Items:")
+    console.log(forums)
+
+    const mappedForums = forums.length ? forums.map(forum => <li><h3><a target="_blank" href={forum.link}>
+        <ReactMarkdown source={forum.title} /></a></h3>
+        <ReactMarkdown source={forum.body} /></li>)
+        : <li>No results. Try a different search term.</li>
     const mappedVideos = videos.map(video => <VideoResult video={video} key={video.id.videoId}></VideoResult>)
 
     const videoRows = []
@@ -47,7 +60,7 @@ export default class AllSearch extends React.Component {
     return (
       <div class="container">
         <div class="row center-text">
-          <h2>Displaying search results for '{this.props.routeParams.search}'</h2>
+          <h2 >Displaying search results for '{this.props.routeParams.search}'</h2>
         </div>
         <div class="row">
           <div class="col-sm-6">
