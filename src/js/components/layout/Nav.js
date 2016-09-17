@@ -1,5 +1,6 @@
 import React from "react";
 import { IndexLink, Link } from "react-router";
+import SearchBar from "../SearchBar";
 
 export default class Nav extends React.Component {
   constructor() {
@@ -42,12 +43,13 @@ export default class Nav extends React.Component {
                 <IndexLink to="/" onClick={this.toggleCollapse.bind(this)}>Home</IndexLink>
               </li>
               <li>
-              <form class="navbar-form" role="search">
+                <SearchBar formClass="navbar-form" dropDownShow="hidden" textBox="form-group" button="form-group"/>
+              {/*<form class="navbar-form" role="search">
                 <div class="form-group">
                   <input type="text" class="form-control" placeholder="Search All" onChange={this.updateSearchField.bind(this)}/>
                 </div>
                 <Link to={this.state.getLink()}><button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button></Link>
-              </form>
+              </form>*/}
               </li>
             </ul>
           </div>
