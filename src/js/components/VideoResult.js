@@ -6,19 +6,13 @@ import { Link } from "react-router"
 export default class VideoResult extends React.Component {
   render() {
     const video = this.props.video
-    console.log(video)
     return (
       <div>
         <Link to={"/video/display/"+video.id.videoId} class="thumbnails">
-            <img src={video.snippet.thumbnails.medium.url} class="img-small" />
-
+          <h3>{video.snippet.title}</h3>
+          <img src={video.snippet.thumbnails.medium.url} class="img-small" />
         </Link>
-        <div class="caption">
-          <Link to={"/video/display/"+video.id.videoId} class="thumbnails">
-            <h3>{video.snippet.title}</h3>
-          </Link>
-          <p>{video.snippet.description}</p>
-        </div>
+        <p>{video.snippet.description}</p>
       </div>
     )
   }

@@ -43,6 +43,9 @@ export default class Nav extends React.Component {
                 <IndexLink to="/" onClick={this.toggleCollapse.bind(this)}>Home</IndexLink>
               </li>
               <li>
+                <Link to="/Dashboard" onClick={this.toggleCollapse.bind(this)}>Dashboard (the homepage for non-first-time users)</Link>
+              </li>
+              <li>
                 <SearchBar formClass="navbar-form" dropDownShow="hidden" textBox="form-group" button="form-group" placeholderText="Search All"/>
               {/*<form class="navbar-form" role="search">
                 <div class="form-group">
