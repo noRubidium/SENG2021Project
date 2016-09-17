@@ -41,19 +41,11 @@ export default class AllSearch extends React.Component {
       return (<div>Loading</div>)
     }
 
-    console.log("Logging from AllSearch")
-    console.log(forum_threads_json)
-    console.log(video_items_json)
-    console.log(github_repos_json)
-
     const forums = forum_threads_json.items;
     const videos = video_items_json.items;
     const repos = github_repos_json.items;
 
     var ReactMarkdown = require('react-markdown');
-
-    console.log("Items:")
-    console.log(forums)
 
     const mappedForums = forums.length ? forums.map(forum => <li><h3><a target="_blank" href={forum.link}>
         <ReactMarkdown source={forum.title} /></a></h3>

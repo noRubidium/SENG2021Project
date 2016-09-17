@@ -3,9 +3,6 @@ import { DropdownList } from "react-widgets"
 import { Link } from "react-router"
 import { browserHistory } from 'react-router'
 
-
-
-
 export default class SearchBar extends React.Component {
   constructor(props){
     super(props);

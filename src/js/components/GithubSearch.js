@@ -22,7 +22,6 @@ export default class githubSearch extends React.Component {
 
   render() {
     const { githubSearch } = this.props;
-    console.log(this.props)
     const repos = githubSearch.repos.items;
 
     if (!repos) {
