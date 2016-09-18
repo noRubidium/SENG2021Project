@@ -41,7 +41,7 @@ export default class Dashboard extends React.Component {
 
   componentWillUpdate(nextProps, nextState) {
     if (nextProps.user.user.preferences !== this.props.user.user.preferences) {
-      this.props.dispatch(fetchForumsAppend(nextProps.user.user.preferences))
+      this.props.dispatch(fetchForums(nextProps.user.user.preferences))
       this.props.dispatch(fetchVideos(nextProps.user.user.preferences))
       this.props.dispatch(fetchRepos(nextProps.user.user.preferences))
     }

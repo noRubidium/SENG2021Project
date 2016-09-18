@@ -4,6 +4,8 @@ export function fetchForums(searchTerm) {
   {/*Keep API doc URL here in case need to modify*/}
   {/*https://api.stackexchange.com/docs/advanced-search#pagesize=5&order=desc&sort=votes&q=java&filter=!)EhwLl5mQ7U-rlx.UJnk4uOY391iCBL(D*WYaavThWPzcGp7H&site=stackoverflow&run=true*/}
   const url = "https://api.stackexchange.com/2.2/search/advanced?pagesize=10&order=desc&sort=relevance&q="+searchTerm+"&site=stackoverflow&filter=!)EhwLl5mQ7U05E2REsN)vnfFYU(LzU*OhEX2x5POOu3IS89Si&key=X*Dl33mPzca8jXX)58SHiQ(("
+
+  {/*Mark you need to do some shit like searchTerm.split(',') and then utilise fetchForumsAppend (this action and reducer already set up so don't need to modify it)*/}
   return function(dispatch) {
     dispatch({type: "FETCH_FORUMS_INITIATED"});
     axios.get(url)
@@ -13,6 +15,8 @@ export function fetchForums(searchTerm) {
       .catch((err) => {
         dispatch({type: "FETCH_FORUMS_REJECTED", payload: err});
       })
+
+
   }
 }
 
