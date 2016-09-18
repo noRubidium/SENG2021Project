@@ -53,7 +53,7 @@ export default class VideoSearch extends React.Component {
       rows.push(<div class="row">{mappedVideos.slice(i, i+3)}</div>)
     }
     return <div >
-      <h1>Search Result for {this.props.routeParams.term}</h1>
+      <h1>Search results for: '{this.props.routeParams.term}'</h1>
       {rows}
       {/*<div class="row">{mappedVideos}</div>*/}
       {

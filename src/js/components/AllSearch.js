@@ -55,28 +55,32 @@ export default class AllSearch extends React.Component {
         <ReactMarkdown source={forum.body} /></li>)
         : <li>No results. Try a different search term.</li>
     const mappedVideos = videos.map(video => <VideoResult video={video} key={video.id.videoId}></VideoResult>)
-    const mappedRepos = repos.map(repo => <GithubResult repo={repo}/>)
 
+    var repos_sorted = repos
+    repos_sorted = repos_sorted.filter(repo => {return repo.language && repo.description && repo.forks > 100})
+    const mappedRepos = repos_sorted.length? repos_sorted.map(repo => <li><GithubResult repo={repo}/></li>)
+        : <li>No results. Try a different search term.</li>
+
+    const forumList = mappedForums.slice(0,10)
     const videoRows = mappedVideos.slice(0,9)
-    const repoRows = mappedRepos.slice(0,26)
 
     return (
       <div class="container">
         <div class="row center-text">
-          <h2 >Displaying search results for '{this.props.routeParams.search}'</h2>
+          <h1>Search results for: '{this.props.routeParams.search}'</h1>
         </div>
         <div class="row">
           <div class="col-md-4">
             <h3>Tutorials</h3>
-            {videoRows.map(video => <div class="row">{video}</div>)}
+            <ul>{videoRows.map(video => <li>{video}</li>)}</ul>
           </div>
           <div class="col-md-4">
             <h3>Forums</h3>
-            <ul>{mappedForums}</ul>
+            <ul>{forumList}</ul>
           </div>
           <div class="col-md-4">
             <h3>Github Repositories</h3>
-            <ul>{repoRows.map(repo => <li>{repo}</li>)}</ul>
+            <ul>{mappedRepos}</ul>
           </div>
         </div>
       </div>
