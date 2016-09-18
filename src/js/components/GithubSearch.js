@@ -26,7 +26,7 @@ export default class github extends React.Component {
     const { github } = this.props;
     const repos = github.repos.items;
 
-    if (!repos) {
+    if ((!github) || github.fetching || (! repos) ) {
       return (
       <div>
         Loading...
