@@ -37,7 +37,9 @@ export default class Video extends React.Component {
             autoplay: 0
           }
         };
-    console.log("winwidth:",winWidth);
+    // console.log("winwidth:",winWidth);
+    const pTag = video.video? video.video.localized.description.split(/\n/):[]
+    const description = pTag.map(ptag => <p> {ptag}</p>)
     return <div class="row">
       <div style={
           {
@@ -59,7 +61,7 @@ export default class Video extends React.Component {
           video.video?
           (<div>
             <div>
-              <pre>{ video.video.localized.description }</pre>
+              <p>{ description }</p>
             </div>
           </div>):
           <h1> Loading... </h1>
