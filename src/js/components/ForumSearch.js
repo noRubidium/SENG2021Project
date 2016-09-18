@@ -4,6 +4,8 @@ import { Link } from "react-router"
 
 import { fetchForums } from "../actions/forumActions"
 
+import NoResult from "../pages/NoResult"
+
 import ReactMarkdown from "react-markdown";
 
 @connect((store) => {
@@ -24,7 +26,10 @@ export default class ForumSearch extends React.Component {
     const { forum_threads_json } = this.props;
 
     if (forum_threads_json instanceof Array && !forum_threads_json.length) {
-      return (<div>Loading</div>)
+      return (<div>Loading...</div>)
+    }
+    if( ! forum_threads.length){
+      return <NoResult term={this.props.routeParams.term} history={this.props.history}/>
     }
 
     const forum_threads = forum_threads_json.items;

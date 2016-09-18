@@ -12,7 +12,7 @@ export default class VideoResult extends React.Component {
           <h3>{video.snippet.title}</h3>
           <img src={video.snippet.thumbnails.medium.url} class="img-small" />
         </Link>
-        <p>{video.snippet.description}</p>
+        <p style={{wordWrap: "break-word"}}>{video.snippet.description}</p>
       </div>
     )
   }

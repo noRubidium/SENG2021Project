@@ -1,4 +1,5 @@
 import React from "react"
+import ReactMarkdown  from 'react-markdown'
 import { connect } from "react-redux"
 import { Link } from "react-router"
 
@@ -7,6 +8,7 @@ import { fetchVideos } from "../actions/videoSearchActions"
 import { fetchRepos } from "../actions/githubActions"
 import VideoResult from "./VideoResult"
 import GithubResult from "./GithubResult"
+import NoResult from "../pages/NoResult"
 
 @connect((store) => {
   return {
@@ -38,14 +40,15 @@ export default class AllSearch extends React.Component {
     if ((forum_threads_json instanceof Array && !forum_threads_json.length)
         || (video_items_json instanceof Array && !video_items_json.length)
         || (github_repos_json instanceof Array && !github_repos_json.length)) {
-      return (<div>Loading</div>)
+      return (<div>Loading...</div>)
     }
-
+    if(! (forum_threads_json.length || video_items_json.length || github_repos_json.length)){
+      return <NoResult term={this.props.routeParams.search} history={this.props.history}/>
+    }
     const forums = forum_threads_json.items;
     const videos = video_items_json.items;
     const repos = github_repos_json.items;
 
-    var ReactMarkdown = require('react-markdown');
 
     var forums_sorted = forums
     forums_sorted.sort(function(a,b) {return (a.score > b.score) ? -1 : ((b.score > a.score) ? 1 : 0);} );
