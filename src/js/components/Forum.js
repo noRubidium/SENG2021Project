@@ -1,7 +1,7 @@
 import React from "react"
 import { connect } from "react-redux"
-import { Link } from "react-router"
-import { fetchForums } from "../actions/forumActions"
+
+import { fetchRepoContent } from "../actions/githubActions"
 
 @connect((store) => {
   return {
@@ -9,33 +9,32 @@ import { fetchForums } from "../actions/forumActions"
   };
 })
 export default class Forum extends React.Component {
-  componentWillMount() {
-    console.log(this.props);
-    this.props.dispatch(fetchForums(this.props.routeParams.search))
-  }
-
-  fetchForums() {
-    this.props.dispatch(fetchForums(this.props.routeParams.search))
-  }
-
   render() {
-    const { forum_threads_json } = this.props;
+    const { forum_threads_json } = this.props
 
     if (forum_threads_json instanceof Array && !forum_threads_json.length) {
-      return (<div>Loading</div>)
+      return (<div>Illegal access (must go through a link)</div>)
     }
 
-    var ReactMarkdown = require('react-markdown');
-    const forum_threads = forum_threads_json.items;
-    const mappedForums = forum_threads.length ? forum_threads.map(forum => <li><h3><a target="_blank" href={forum.link}>
-        <ReactMarkdown source={forum.title} /></a></h3>
-        <ReactMarkdown source={forum.body} /></li>)
-        : <li>No results. Try a different search term.</li>
+    const forum_threads = this.props.forum_threads_json.items;
+    const { id } = this.props.routeParams;
+    const target_thread = forum_threads.filter(function (question) { return question.question_id == id })[0]
 
+    var { answers } = target_thread
+    answers.sort(function(a,b) {return (a.score > b.score) ? -1 : ((b.score > a.score) ? 1 : 0);} );
+    const top_answers = answers.slice(0,3)
+
+    var ReactMarkdown = require('react-markdown');
+    const topAnswersMapped = top_answers.map((answer,index) => answer.is_accepted ?
+                <div><h3>Answer {index+1} - Score: {answer.score} (Accepted)</h3><ReactMarkdown source={answer.body} /></div>
+                : <div><h3>Answer {index+1} - Score: {answer.score}</h3><ReactMarkdown source={answer.body} /></div>)
     return (
       <div>
-          <h1>Search results for: '{this.props.routeParams.search}'</h1>
-          <ul>{mappedForums}</ul>
+        <h3><a target="_blank" href={target_thread.link}>
+          <ReactMarkdown source={target_thread.title} /></a></h3>
+          <ReactMarkdown source={target_thread.body} />
+          <hr/>
+          {topAnswersMapped}
       </div>
     );
   }

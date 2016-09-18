@@ -18,6 +18,9 @@ export default function reducer(state={
           fetching: false,
           fetched: true,
           videos: action.payload,
+          nextPage: action.payload.nextPageToken,
+          prevPage: action.payload.prevPageToken,
+          currPage: state.nextPage,
         }
       }
     }

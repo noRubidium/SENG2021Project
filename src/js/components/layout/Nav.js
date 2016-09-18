@@ -40,16 +40,17 @@ export default class Nav extends React.Component {
           <div class={"navbar-collapse " + navClass} id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
               <li>
+                <IndexLink to="/" onClick={this.toggleCollapse.bind(this)} style={{paddingTop:"10px", paddingBottom: "10px"}}><img src="/logo/sauceDark.svg" class="nav-logo" style={{height:"40px"}}/></IndexLink>
+              </li>
+              <li>
+                {/*<IndexLink to="/" onClick={this.toggleCollapse.bind(this)}class="navbar-left"><img src="/logo/sauceDark.svg" /></IndexLink>*/}
                 <IndexLink to="/" onClick={this.toggleCollapse.bind(this)}>Home</IndexLink>
               </li>
               <li>
-                <SearchBar formClass="navbar-form" dropDownShow="hidden" textBox="form-group" button="form-group" placeholderText="Search All"/>
-              {/*<form class="navbar-form" role="search">
-                <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Search All" onChange={this.updateSearchField.bind(this)}/>
-                </div>
-                <Link to={this.state.getLink()}><button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button></Link>
-              </form>*/}
+                <Link to="/Dashboard" onClick={this.toggleCollapse.bind(this)}>Dashboard (the homepage for non-first-time users)</Link>
+              </li>
+              <li>
+                <SearchBar formClass="navbar-form" dropDownShow="hidden" placeholderText="Search All"/>
               </li>
             </ul>
           </div>

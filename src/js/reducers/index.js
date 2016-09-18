@@ -1,13 +1,15 @@
 import { combineReducers } from "redux"
 
 import forum from "./forumReducer"
-import tweets from "./tweetsReducer"
 import user from "./userReducer"
 import videoSearch from "./videoSearchReducer"
+import github from "./githubReducer"
+import video from "./videoReducer"
 
 export default combineReducers({
   forum,
-  tweets,
   user,
   videoSearch,
+  github,
+  video,
 })
