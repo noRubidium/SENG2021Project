@@ -25,7 +25,7 @@ export default class ForumSearch extends React.Component {
   render() {
     const { forum_threads_json } = this.props;
 
-    if (forum_threads_json instanceof Array && !forum_threads_json.length) {
+    if ((!forum_threads_json) || forum_threads_json.fetching) {
       return (<div>Loading...</div>)
     }
     if( ! forum_threads.length){

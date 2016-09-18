@@ -42,9 +42,10 @@ export default class AllSearch extends React.Component {
         || (github_repos_json instanceof Array && !github_repos_json.length)) {
       return (<div>Loading...</div>)
     }
-    if(! (forum_threads_json.length || video_items_json.length || github_repos_json.length)){
-      return <NoResult term={this.props.routeParams.search} history={this.props.history}/>
-    }
+    console.log(forum_threads_json);
+    // if(! (forum_threads_json.length || video_items_json.length || github_repos_json.length)){
+    //   return <NoResult term={this.props.routeParams.search} history={this.props.history}/>
+    // }
     const forums = forum_threads_json.items;
     const videos = video_items_json.items;
     const repos = github_repos_json.items;

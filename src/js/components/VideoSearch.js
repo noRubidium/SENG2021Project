@@ -36,7 +36,8 @@ export default class VideoSearch extends React.Component {
   render() {
     const { videoSearch } = this.props;
     const videos = videoSearch.videos.items;
-    if (!videos) {
+    console.log(videoSearch)
+    if ((!videoSearch) || videoSearch.fetching || (!videos)) {
       return (
       <div>
         Loading...
