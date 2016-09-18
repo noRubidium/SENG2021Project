@@ -62,7 +62,7 @@ export default class AllSearch extends React.Component {
     const mappedVideos = videos.map(video => <VideoResult video={video} key={video.id.videoId}></VideoResult>)
 
     var repos_sorted = []
-    var minFork = 100
+    var minFork = 64
     while(minFork > 0 && repos_sorted.length < 3){
       repos_sorted = repos.filter(repo => {return repo.language && repo.description && repo.forks > minFork})
       minFork /= 2
@@ -83,7 +83,7 @@ export default class AllSearch extends React.Component {
             <h3>Tutorials</h3>
             <ul>{videoRows.map(video => <li>{video}</li>)}</ul>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-4 forumBox">
             <h3>Forums</h3>
             <ul>{forumList}</ul>
           </div>
