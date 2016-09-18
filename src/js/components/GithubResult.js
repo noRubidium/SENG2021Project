@@ -8,7 +8,7 @@ export default class GithubResult extends React.Component {
 
     return (
       <div>
-        <Link to={"/github/display/"+repo.full_name} class="thumbnails">
+        <Link to={"/github/display/"+repo.id} class="thumbnails">
           <h3>{repo.full_name}</h3>
         </Link>
 
