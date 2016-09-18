@@ -28,7 +28,8 @@ export default class ForumSearch extends React.Component {
     if ((!forum_threads_json) || forum_threads_json.fetching) {
       return (<div>Loading...</div>)
     }
-    if( ! forum_threads.length){
+    console.log(forum_threads_json)
+    if( (! forum_threads_json.items) || ! forum_threads_json.items.length){
       return <NoResult term={this.props.routeParams.term} history={this.props.history}/>
     }
 
