@@ -40,6 +40,9 @@ export default class Nav extends React.Component {
           <div class={"navbar-collapse " + navClass} id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
               <li>
+                <IndexLink to="/" onClick={this.toggleCollapse.bind(this)} style={{paddingTop:"10px", paddingBottom: "10px"}}><img src="/logo/sauceDark.svg" class="nav-logo" style={{height:"40px"}}/></IndexLink>
+              </li>
+              <li>
                 {/*<IndexLink to="/" onClick={this.toggleCollapse.bind(this)}class="navbar-left"><img src="/logo/sauceDark.svg" /></IndexLink>*/}
                 <IndexLink to="/" onClick={this.toggleCollapse.bind(this)}>Home</IndexLink>
               </li>
