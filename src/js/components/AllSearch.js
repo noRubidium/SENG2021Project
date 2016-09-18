@@ -33,23 +33,24 @@ export default class AllSearch extends React.Component {
   }
 
   render() {
-    const forum_threads = this.props.forum.forum_threads
-    const video_items = this.props.videoSearch.videos
-    const github_repos = this.props.github.repos
+    const { forum, videoSearch, github } = this.props
 
-    if ((forum_threads instanceof Array && !forum_threads.length)
-        || (video_items instanceof Array && !video_items.length)
-        || (github_repos instanceof Array && !github_repos.length)) {
+    if (!(forum.fetched || videoSearch.fetched || github.fetched)) {
       return (<div>Loading...</div>)
     }
-    console.log(forum_threads);
+
+    // console.log(forum_threads);
     // if(! (forum_threads.length || video_items.length || github_repos.length)){
     //   return <NoResult term={this.props.routeParams.search} history={this.props.history}/>
     // }
-    const forums = forum_threads.items;
-    const videos = video_items.items;
-    const repos = github_repos.items;
+    const forums = forum.forum_threads.items;
+    const videos = videoSearch.videos.items;
+    const repos = github.repos.items;
 
+    // console.log(forum, videoSearch, github)
+    if(!(forums.length || videos.length || repos.length)){
+      return <NoResult term={this.props.routeParams.search} history={this.props.history}/>
+    }
 
     var forums_sorted = forums
     forums_sorted.sort(function(a,b) {return (a.score > b.score) ? -1 : ((b.score > a.score) ? 1 : 0);} );

@@ -3,7 +3,7 @@ import axios from "axios";
 export function fetchForums(searchTerm, data = {items:[]}) {
   {/*Keep API doc URL here in case need to modify*/}
   {/*https://api.stackexchange.com/docs/advanced-search#pagesize=5&order=desc&sort=votes&q=java&filter=!)EhwLl5mQ7U-rlx.UJnk4uOY391iCBL(D*WYaavThWPzcGp7H&site=stackoverflow&run=true*/}
-  console.log("SearchTerm: '" + searchTerm +"'")
+  // console.log("SearchTerm: '" + searchTerm +"'")
   if(searchTerm == ""){
     return function(dispatch) {
       dispatch({type: "FETCH_FORUMS_FULFILLED", payload: data});

@@ -10,7 +10,7 @@ import ReactMarkdown from "react-markdown";
 
 @connect((store) => {
   return {
-    forum_threads: store.forum.forum_threads,
+    forum: store.forum,
   };
 })
 export default class ForumSearch extends React.Component {
@@ -23,11 +23,12 @@ export default class ForumSearch extends React.Component {
   }
 
   render() {
-    const { forum_threads } = this.props;
+    const { forum } = this.props;
 
-    if ((!forum_threads) || forum_threads.fetching) {
+    if ((!forum) || forum.fetching || ! forum.fetched) {
       return (<div>Loading...</div>)
     }
+    const { forum_threads } = forum;
     console.log(forum_threads)
     if( (! forum_threads.items) || ! forum_threads.items.length){
       return <NoResult term={this.props.routeParams.term} history={this.props.history}/>
