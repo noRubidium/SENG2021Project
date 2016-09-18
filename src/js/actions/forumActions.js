@@ -5,10 +5,8 @@ export function fetchForums(searchTerm, data = {items:[]}) {
   {/*https://api.stackexchange.com/docs/advanced-search#pagesize=5&order=desc&sort=votes&q=java&filter=!)EhwLl5mQ7U-rlx.UJnk4uOY391iCBL(D*WYaavThWPzcGp7H&site=stackoverflow&run=true*/}
   console.log("SearchTerm: '" + searchTerm +"'")
   if(searchTerm == ""){
-    console.log("hi", data)
     return function(dispatch) {
       dispatch({type: "FETCH_FORUMS_FULFILLED", payload: data});
-      console.log("why not", data)
     };
   }
 
@@ -26,7 +24,6 @@ export function fetchForums(searchTerm, data = {items:[]}) {
           ... response.data,
           items: [...response.data.items, ...data.items],
         };
-        console.log(response.data, thisData);
         fetchForums(restTerm, thisData)(dispatch)
 
       })
