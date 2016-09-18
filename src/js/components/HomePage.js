@@ -40,7 +40,7 @@ export default class HomePage extends React.Component {
             <h4>Not sure where to begin? Select a topic.</h4>
             <div class="control-group">&nbsp;</div> {/*spacer*/}
             <Link to='/video/programming'><button class="btn btn-primary" style={{marginLeft:"5px"}}>Learn Technologies</button></Link>
-            <Link to='/forum/programming'><button class="btn btn-primary" style={{marginLeft:"5px"}}>Discuss Topics</button></Link>
+            <Link to='/forum/programming%20language'><button class="btn btn-primary" style={{marginLeft:"5px"}}>Discuss Topics</button></Link>
             <Link to='/github/programming'><button class="btn btn-primary" style={{marginLeft:"5px"}}>Explore Code</button></Link>
           </div>
         </div>
