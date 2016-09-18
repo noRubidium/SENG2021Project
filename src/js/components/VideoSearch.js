@@ -4,7 +4,7 @@ import { Link } from "react-router"
 
 import { fetchVideos } from "../actions/videoSearchActions"
 import VideoResult from "./VideoResult"
-
+import NoResult from "../pages/NoResult"
 @connect((store) => {
   return {
     videoSearch: store.videoSearch,
@@ -39,15 +39,20 @@ export default class VideoSearch extends React.Component {
     if (!videos) {
       return (
       <div>
-        <Link to="video">video</Link>
+        Loading...
       </div>)
     }
-
+    if(!videos.length){
+      // console.log(this.props)
+      return (
+        <NoResult term={this.props.routeParams.term} history={this.props.history}/>
+      )
+    }
     const mappedVideos = videos.map(video => <div class="col-md-4" key={video.id.videoId}><VideoResult video={video}></VideoResult></div>)
     // this.updateNextPage(videoSearch.nextPageToken)
     const rows = []
     for(let i = 0; i < 9; i+= 3){
-      rows.push(<div class="row" key={i}>{mappedVideos.slice(i, i+3)}</div>)
+      rows.push(<div class="row" key={"video-result-row-" + i}>{mappedVideos.slice(i, i+3)}</div>)
     }
     return <div >
       <h1>Search Result for {this.props.routeParams.term}</h1>

@@ -4,6 +4,8 @@ import { connect } from "react-redux"
 import { fetchRepos } from "../actions/githubActions"
 import GithubResult from "./GithubResult"
 
+import NoResult from "../pages/NoResult"
+
 @connect((store) => {
   return {
     github: store.github,
@@ -27,8 +29,15 @@ export default class github extends React.Component {
     if (!repos) {
       return (
       <div>
-        Loading
+        Loading...
       </div>)
+    }
+
+    if(!repos.length){
+      // console.log(this.props)
+      return (
+        <NoResult term={this.props.routeParams.search} history={this.props.history}/>
+      )
     }
 
     const mappedRepos = repos.map(repo => <li><GithubResult repo={repo}/></li>)

@@ -4,6 +4,8 @@ import { Provider } from "react-redux"
 import { Router, Route, IndexRoute, hashHistory } from "react-router";
 
 import Layout from "./pages/Layout"
+import NotFound from "./pages/NotFound"
+
 import AllSearch from "./components/AllSearch"
 import Dashboard from "./components/Dashboard"
 import ForumSearch from "./components/ForumSearch"
@@ -29,6 +31,8 @@ ReactDOM.render(<Provider store={store}>
       <Route path="github/display/:owner/:repo" component={Github}></Route>
       <Route path="video/:term" component={VideoSearch}></Route>
       <Route path="video/display/:videoId" component={Video}></Route>
+      <Route path="*" component={NotFound}></Route>
     </Route>
+    <Route path="*" component={NotFound}></Route>
   </Router>
 </Provider>, app);
