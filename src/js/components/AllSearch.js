@@ -52,7 +52,7 @@ export default class AllSearch extends React.Component {
       return <NoResult term={this.props.routeParams.search} history={this.props.history}/>
     }
 
-    var forums_sorted = forums
+    let forums_sorted = forums
     forums_sorted.sort(function(a,b) {return (a.score > b.score) ? -1 : ((b.score > a.score) ? 1 : 0);} );
     forums_sorted = forums_sorted.filter(function (forum) {return forum.body.length <= 500;});
     const mappedForums = forums_sorted.length ? forums_sorted.map(forum => <li><h3><Link to={"/forum/display/"+forum.question_id}>
@@ -61,8 +61,8 @@ export default class AllSearch extends React.Component {
         : <li>No results. Try a different search term.</li>
     const mappedVideos = videos.map(video => <VideoResult video={video} key={video.id.videoId}></VideoResult>)
 
-    var repos_sorted = repos
-    repos_sorted = repos_sorted.filter(repo => {return repo.language && repo.description && repo.forks > 100})
+    // var repos_sorted = repos
+    const repos_sorted = repos.filter(repo => {return repo.language && repo.description && repo.forks > 100})
     const mappedRepos = repos_sorted.length? repos_sorted.map(repo => <li><GithubResult repo={repo}/></li>)
         : <li>No results. Try a different search term.</li>
 
