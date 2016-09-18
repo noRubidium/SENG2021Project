@@ -11,31 +11,32 @@ import { fetchRepoContent } from "../actions/githubActions"
 
 export default class Github extends React.Component {
   componentWillMount() {
-    const { owner, repo } = this.props.routeParams
-    const name = owner + "/" + repo
-    this.props.dispatch(fetchRepoContent(name))
-  }
-
-  componentWillUpdate(nextProps, nextState) {
-    const { owner, repo } = this.props.routeParams
-    const name = owner + repo
-    const nextowner = nextProps.routeParams.owner
-    const nextrepo = nextProps.routeParams.repo
-    const nextname = nextowner + nextrepo
-    if (nextname !== name) {
-      nextProps.dispatch(fetchRepoContent(nextname))
+    const repos = this.props.github.repos.items
+    const { repoId } = this.props.routeParams
+    if (repos instanceof Array && repos.length) {
+      const repo = repos.filter(repo => { return repo.id == repoId })[0]
+      this.props.dispatch(fetchRepoContent(repo.full_name))
     }
   }
 
   render() {
     const { github } = this.props
-    const { owner, repo } = this.props.routeParams
+    const repos = github.repos.items
+
+    if (!repos) {
+      return (
+        <div>Cannot access</div>
+      )
+    }
+
+    const { repoId } = this.props.routeParams
+    const repo = repos.filter(repo => { return repo.id == repoId })[0]
 
     var ReactMarkdown = require('react-markdown')
 
     return (
       <div>
-          <h1>{owner}/{repo}</h1>
+          <a target="_blank" href = {repo.html_url}><h1>{repo.full_name}</h1></a>
           <ReactMarkdown source={github.content} />
       </div>
     );

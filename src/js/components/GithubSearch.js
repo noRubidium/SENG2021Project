@@ -33,14 +33,19 @@ export default class github extends React.Component {
       </div>)
     }
 
-    if(!repos.length){
+    var repos_sorted = repos
+    repos_sorted = repos_sorted.filter(repo => {return repo.language && repo.description && repo.forks > 100})
+
+    console.log(repos_sorted)
+
+    if(!repos.length || !repos_sorted.length){
       // console.log(this.props)
       return (
         <NoResult term={this.props.routeParams.search} history={this.props.history}/>
       )
     }
 
-    const mappedRepos = repos.map(repo => <li><GithubResult repo={repo}/></li>)
+    const mappedRepos = repos_sorted.map(repo => <li><GithubResult repo={repo}/></li>)
 
     return (
       <div>
