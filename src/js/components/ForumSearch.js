@@ -1,5 +1,4 @@
 import React from "react"
-import ReactPaginate from 'react-paginate';
 import { connect } from "react-redux"
 import { Link } from "react-router"
 
