@@ -4,6 +4,8 @@ import { Link } from "react-router"
 
 import { fetchForums } from "../actions/forumActions"
 
+import ReactMarkdown from "react-markdown";
+
 @connect((store) => {
   return {
     forum_threads_json: store.forum.forum_threads,
@@ -25,9 +27,8 @@ export default class ForumSearch extends React.Component {
       return (<div>Loading</div>)
     }
 
-    var ReactMarkdown = require('react-markdown');
     const forum_threads = forum_threads_json.items;
-    const mappedForums = forum_threads.length ? forum_threads.map(forum => <li><h3><Link to={"/forum/display/"+forum.question_id}>
+    const mappedForums = forum_threads.length ? forum_threads.map(forum => <li key={forum.question_id}><h3><Link to={"/forum/display/"+forum.question_id}>
         <ReactMarkdown source={forum.title} /></Link></h3>
         <ReactMarkdown source={forum.body} /></li>)
         : <li>No results. Try a different search term.</li>
