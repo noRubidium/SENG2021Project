@@ -33,22 +33,22 @@ export default class AllSearch extends React.Component {
   }
 
   render() {
-    const forum_threads_json = this.props.forum.forum_threads
-    const video_items_json = this.props.videoSearch.videos
-    const github_repos_json = this.props.github.repos
+    const forum_threads = this.props.forum.forum_threads
+    const video_items = this.props.videoSearch.videos
+    const github_repos = this.props.github.repos
 
-    if ((forum_threads_json instanceof Array && !forum_threads_json.length)
-        || (video_items_json instanceof Array && !video_items_json.length)
-        || (github_repos_json instanceof Array && !github_repos_json.length)) {
+    if ((forum_threads instanceof Array && !forum_threads.length)
+        || (video_items instanceof Array && !video_items.length)
+        || (github_repos instanceof Array && !github_repos.length)) {
       return (<div>Loading...</div>)
     }
-    console.log(forum_threads_json);
-    // if(! (forum_threads_json.length || video_items_json.length || github_repos_json.length)){
+    console.log(forum_threads);
+    // if(! (forum_threads.length || video_items.length || github_repos.length)){
     //   return <NoResult term={this.props.routeParams.search} history={this.props.history}/>
     // }
-    const forums = forum_threads_json.items;
-    const videos = video_items_json.items;
-    const repos = github_repos_json.items;
+    const forums = forum_threads.items;
+    const videos = video_items.items;
+    const repos = github_repos.items;
 
 
     var forums_sorted = forums
