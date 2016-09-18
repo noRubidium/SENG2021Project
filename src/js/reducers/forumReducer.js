@@ -7,7 +7,7 @@ export default function reducer(state={
 
     switch (action.type) {
       case "FETCH_FORUMS_INITIATED": {
-        return {...state, fetching: true}
+        return {...state, fetching: true, fetched: false}
       }
       case "FETCH_FORUMS_REJECTED": {
         return {...state, fetching: false, error: action.payload}

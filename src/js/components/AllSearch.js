@@ -35,7 +35,7 @@ export default class AllSearch extends React.Component {
   render() {
     const { forum, videoSearch, github } = this.props
 
-    if (!(forum.fetched || videoSearch.fetched || github.fetched)) {
+    if (!(forum.fetched && videoSearch.fetched && github.fetched)) {
       return (<div>Loading...</div>)
     }
 
@@ -47,22 +47,26 @@ export default class AllSearch extends React.Component {
     const videos = videoSearch.videos.items;
     const repos = github.repos.items;
 
-    // console.log(forum, videoSearch, github)
+    console.log(forum, videoSearch, github)
     if(!(forums.length || videos.length || repos.length)){
       return <NoResult term={this.props.routeParams.search} history={this.props.history}/>
     }
 
-    let forums_sorted = forums
+    var forums_sorted = forums
     forums_sorted.sort(function(a,b) {return (a.score > b.score) ? -1 : ((b.score > a.score) ? 1 : 0);} );
-    forums_sorted = forums_sorted.filter(function (forum) {return forum.body.length <= 500;});
+    forums_sorted = forums_sorted.filter(function (forum) {return forum.body.length <= 700;});
     const mappedForums = forums_sorted.length ? forums_sorted.map(forum => <li><h3><Link to={"/forum/display/"+forum.question_id}>
         <ReactMarkdown source={forum.title} /></Link></h3>
         <ReactMarkdown source={forum.body} /></li>)
-        : <li>No results. Try a different search term.</li>
+        : [<li>No results. Try a different search term.</li>]
     const mappedVideos = videos.map(video => <VideoResult video={video} key={video.id.videoId}></VideoResult>)
 
-    // var repos_sorted = repos
-    const repos_sorted = repos.filter(repo => {return repo.language && repo.description && repo.forks > 100})
+    var repos_sorted = []
+    var minFork = 100
+    while(minFork > 0 && repos_sorted.length < 3){
+      repos_sorted = repos.filter(repo => {return repo.language && repo.description && repo.forks > minFork})
+      minFork /= 2
+    }
     const mappedRepos = repos_sorted.length? repos_sorted.map(repo => <li><GithubResult repo={repo}/></li>)
         : <li>No results. Try a different search term.</li>
 
