@@ -25,7 +25,7 @@ export default class HomePage extends React.Component {
 
         <div class="row">
           <div class="text-center">
-            <h1>Welcome</h1>
+            <img class="" src="/logo/sauceWhite.svg" />
             <h4>Search for any programming related topic</h4>
           </div>
         </div>
