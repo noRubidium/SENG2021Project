@@ -12,6 +12,7 @@ import VideoResult from "./VideoResult"
 import GithubResult from "./GithubResult"
 import SearchBar from "./SearchBar"
 import PreferenceBar from "./PreferenceBar"
+import ForumItem from "./ForumItem"
 
 @connect((store) => {
   return {
@@ -33,9 +34,12 @@ export default class Dashboard extends React.Component {
 
   componentWillMount() {
       {/*They may not have any preferences yet*/}
-      this.props.dispatch(fetchForums("React"))
-      this.props.dispatch(fetchVideos("React"))
-      this.props.dispatch(fetchRepos("React"))
+      // keeps this here until we have actual user login
+      if (this.props.user.user.preferences == "initial_user_pref") {
+        this.props.dispatch(fetchForums("React"))
+        this.props.dispatch(fetchVideos("React"))
+        this.props.dispatch(fetchRepos("React"))
+      }
   }
 
   componentWillUpdate(nextProps, nextState) {
@@ -68,10 +72,8 @@ export default class Dashboard extends React.Component {
     forums_sorted.sort(function(a,b) {return (a.score > b.score) ? -1 : ((b.score > a.score) ? 1 : 0);} );
     forums_sorted = forums_sorted.filter(function (forum) {return forum.body.length <= 500;});
     console.log(forums_sorted)
-    const mappedForums = forums_sorted.length ? forums_sorted.map(forum => <li><h3><Link to={"/forum/display/"+forum.question_id}>
-        <ReactMarkdown source={forum.title} /></Link></h3>
-        <ReactMarkdown source={forum.body} /></li>)
-        : <li>No results. Try a different search term.</li>
+    const mappedForums = forums_sorted.length ? forums_sorted.map(forum => <ForumItem key={forum.question_id} forum={forum}/>)
+        :[ <li>No results. Try a different search term.</li>]
     const mappedVideos = videos.map(video => <VideoResult video={video} key={video.id.videoId}></VideoResult>)
     var repos_sorted = repos
     repos_sorted = repos_sorted.filter(repo => {return repo.language && repo.description && repo.forks > 100})
@@ -80,7 +82,7 @@ export default class Dashboard extends React.Component {
         : <li>No results. Try a different search term.</li>
 
     const forumList = mappedForums.slice(0,10)
-    const videoRows = mappedVideos.slice(0,9)
+    const videoRows = mappedVideos.slice(0,5)
 
     return (
       <div class="container">

@@ -28,7 +28,7 @@ export function fetchRepos(searchTerm, data = {items:[]}) {
   let searchTerms = searchTerm.split("|")
   const currSearchTerm = searchTerms.shift()
   const restTerm = searchTerms.join("|")
-  const url = "https://api.github.com/search/repositories?q=" + currSearchTerm
+  const url = "https://api.github.com/search/repositories?sort=forks&q=" + currSearchTerm
 
   return function(dispatch) {
     dispatch({type: "FETCH_REPOS"});
@@ -56,13 +56,14 @@ export function fetchRepos(searchTerm, data = {items:[]}) {
 
 export function fetchRepoContent(name) {
   const path = "https://api.github.com/repos/" + name + "/readme/"
+  console.log(path)
   return function(dispatch) {
-    axios.get(path, {
+    axios.get(path/*, {
       headers: {
         'Authorization': 'token bff0e8d101c90760360066b75b4ac208ca6f75a0',
         'Accept': 'application/vnd.github.VERSION.raw'
       }
-    })
+    }*/)
       .then((response) => {
         dispatch({type: "FETCH_REPO_CONTENT_FULFILLED", payload: response.data})
       })
