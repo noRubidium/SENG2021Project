@@ -28,7 +28,7 @@ export function fetchRepos(searchTerm, data = {items:[]}) {
   let searchTerms = searchTerm.split("|")
   const currSearchTerm = searchTerms.shift()
   const restTerm = searchTerms.join("|")
-  const url = "https://api.github.com/search/repositories?q=" + currSearchTerm
+  const url = "https://api.github.com/search/repositories?sort=forks&q=" + currSearchTerm
 
   return function(dispatch) {
     dispatch({type: "FETCH_REPOS"});
