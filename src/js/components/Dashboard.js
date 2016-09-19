@@ -70,7 +70,7 @@ export default class Dashboard extends React.Component {
     forums_sorted = forums_sorted.filter(function (forum) {return forum.body.length <= 500;});
     console.log(forums_sorted)
     const mappedForums = forums_sorted.length ? forums_sorted.map(forum => <ForumItem key={forum.question_id} forum={forum}/>)
-        : <li>No results. Try a different search term.</li>
+        :[ <li>No results. Try a different search term.</li>]
     const mappedVideos = videos.map(video => <VideoResult video={video} key={video.id.videoId}></VideoResult>)
     var repos_sorted = repos
     repos_sorted = repos_sorted.filter(repo => {return repo.language && repo.description && repo.forks > 100})
