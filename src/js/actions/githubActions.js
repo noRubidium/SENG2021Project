@@ -59,7 +59,6 @@ export function fetchRepoContent(name) {
   return function(dispatch) {
     axios.get(path, {
       headers: {
-        'Authorization': 'token bff0e8d101c90760360066b75b4ac208ca6f75a0',
         'Accept': 'application/vnd.github.VERSION.raw'
       }
     })
