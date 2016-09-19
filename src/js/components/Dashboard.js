@@ -34,9 +34,12 @@ export default class Dashboard extends React.Component {
 
   componentWillMount() {
       {/*They may not have any preferences yet*/}
-      this.props.dispatch(fetchForums("React"))
-      this.props.dispatch(fetchVideos("React"))
-      this.props.dispatch(fetchRepos("React"))
+      // keeps this here until we have actual user login
+      if (this.props.user.user.preferences == "initial_user_pref") {
+        this.props.dispatch(fetchForums("React"))
+        this.props.dispatch(fetchVideos("React"))
+        this.props.dispatch(fetchRepos("React"))
+      }
   }
 
   componentWillUpdate(nextProps, nextState) {

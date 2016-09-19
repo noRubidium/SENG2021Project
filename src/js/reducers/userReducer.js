@@ -3,7 +3,7 @@ export default function reducer(state={
       id: null,
       name: null,
       age: null,
-      preferences: "random",
+      preferences: "initial_user_pref",
     },
     fetching: false,
     fetched: false,
