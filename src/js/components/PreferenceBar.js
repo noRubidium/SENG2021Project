@@ -41,7 +41,7 @@ export default class PreferenceBar extends React.Component {
               />
 
             <span class="input-group-btn">
-              <button type="button" class="btn btn-default">
+              <button type="submit" class="btn btn-default">
                 <span class="glyphicon glyphicon-ok"></span>
               </button>
             </span>
