@@ -31,13 +31,16 @@ export default class Github extends React.Component {
 
     const { repoId } = this.props.routeParams
     const repo = repos.filter(repo => { return repo.id == repoId })[0]
-
+    console.log("This is github:",github)
+    if(!github.content){
+      return <h1>Loading...</h1>
+    }
     var ReactMarkdown = require('react-markdown')
-
     return (
       <div>
           <a target="_blank" href = {repo.html_url}><h1>{repo.full_name}</h1></a>
-          <ReactMarkdown source={github.content} />
+          {/*<pre>{github.content}</pre>*/}
+          <ReactMarkdown source={atob(github.content.content)} />
       </div>
     );
   }

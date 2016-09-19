@@ -9,6 +9,7 @@ import { fetchRepos } from "../actions/githubActions"
 import VideoResult from "./VideoResult"
 import GithubResult from "./GithubResult"
 import NoResult from "../pages/NoResult"
+import ForumItem from "./ForumItem"
 
 @connect((store) => {
   return {
@@ -52,26 +53,24 @@ export default class AllSearch extends React.Component {
       return <NoResult term={this.props.routeParams.search} history={this.props.history}/>
     }
 
-    var forums_sorted = forums
-    forums_sorted.sort(function(a,b) {return (a.score > b.score) ? -1 : ((b.score > a.score) ? 1 : 0);} );
-    forums_sorted = forums_sorted.filter(function (forum) {return forum.body.length <= 700;});
-    const mappedForums = forums_sorted.length ? forums_sorted.map(forum => <li><h3><Link to={"/forum/display/"+forum.question_id}>
-        <ReactMarkdown source={forum.title} /></Link></h3>
-        <ReactMarkdown source={forum.body} /></li>)
+    // var forums_sorted = forums
+    const forums_sorted = forums.sort((a,b) => b.score - a.score ).filter( (forum) => forum.body.length <= 700);
+    // forums_sorted = forums_sorted
+    const mappedForums = forums_sorted.length ? forums_sorted.map(forum =>  <ForumItem key={forum.question_id} forum={forum}/>)
         : [<li>No results. Try a different search term.</li>]
     const mappedVideos = videos.map(video => <VideoResult video={video} key={video.id.videoId}></VideoResult>)
 
     var repos_sorted = []
     var minFork = 64
     while(minFork > 0 && repos_sorted.length < 3){
-      repos_sorted = repos.filter(repo => {return repo.language && repo.description && repo.forks > minFork})
+      repos_sorted = repos.filter(repo => {return repo.language && repo.description && repo.forks > minFork}).slice(0,13)
       minFork /= 2
     }
-    const mappedRepos = repos_sorted.length? repos_sorted.map(repo => <li><GithubResult repo={repo}/></li>)
+    const mappedRepos = repos_sorted.length? repos_sorted.map(repo => <div key={repo.git_url}><GithubResult repo={repo}/></div>)
         : <li>No results. Try a different search term.</li>
 
     const forumList = mappedForums.slice(0,10)
-    const videoRows = mappedVideos.slice(0,9)
+    const videoRows = mappedVideos.slice(0,5)
 
     return (
       <div class="container">
@@ -81,7 +80,7 @@ export default class AllSearch extends React.Component {
         <div class="row">
           <div class="col-md-4">
             <h3>Tutorials</h3>
-            <ul>{videoRows.map(video => <li>{video}</li>)}</ul>
+            <ul>{videoRows}</ul>
           </div>
           <div class="col-md-4 forumBox">
             <h3>Forums</h3>
