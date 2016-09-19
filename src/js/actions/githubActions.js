@@ -17,7 +17,7 @@ import axios from "axios";
 //   }
 // }
 
-export function fetchRepos(searchTerm, data = {items:[]}) {
+export function fetchRepos(searchTerm, currPage = 1, data = {items:[]}) {
   console.log("SearchTerm: '" + searchTerm +"'")
   if(searchTerm == ""){
     return function(dispatch) {
@@ -28,8 +28,8 @@ export function fetchRepos(searchTerm, data = {items:[]}) {
   let searchTerms = searchTerm.split("|")
   const currSearchTerm = searchTerms.shift()
   const restTerm = searchTerms.join("|")
-  const url = "https://api.github.com/search/repositories?sort=forks&q=" + currSearchTerm
-
+  const url = "https://api.github.com/search/repositories?sort=forks&q=" + currSearchTerm + "&page=" + currPage + "&per_page=15"
+  console.log(url)
   return function(dispatch) {
     dispatch({type: "FETCH_REPOS"});
     axios.get(url/*, {
@@ -42,12 +42,12 @@ export function fetchRepos(searchTerm, data = {items:[]}) {
           ... response.data,
           items: [...response.data.items, ...data.items],
         };
-        fetchRepos(restTerm, thisData)(dispatch)
+        fetchRepos(restTerm, currPage, thisData)(dispatch)
 
       })
       .catch((err) => {
         dispatch({type: "FETCH_REPOS_REJECTED", payload: err});
-        fetchRepos(restTerm, data)
+        fetchRepos(restTerm, currPage, data)
       })
 
 

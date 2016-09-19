@@ -1,5 +1,6 @@
 export default function reducer(state={
     content: null,
+    currPage: 1,
     repos:[],
     fetching: false,
     fetched: false,
@@ -7,6 +8,18 @@ export default function reducer(state={
   }, action) {
 
     switch (action.type) {
+      case "NEXT_PAGE_REPO": {
+        return {
+          ...state,
+          currPage: state.currPage + 1,
+        }
+      }
+      case "PREV_PAGE_REPO": {
+        return {
+          ...state,
+          currPage: state.currPage - 1,
+        }
+      }
       case "FETCH_REPO_CONTENT": {
         return {...state, fetching: true}
       }
