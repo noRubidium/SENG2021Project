@@ -40,7 +40,7 @@ export default class Github extends React.Component {
       <div>
           <a target="_blank" href = {repo.html_url}><h1>{repo.full_name}</h1></a>
           {/*<pre>{github.content}</pre>*/}
-          <ReactMarkdown source={github.content.content} />
+          <ReactMarkdown source={atob(github.content.content)} />
       </div>
     );
   }
