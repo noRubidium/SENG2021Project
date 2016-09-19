@@ -20,6 +20,27 @@ export default class HomePage extends React.Component {
 
     }
 
+    const videoRandom = ["Introduction to programming",
+                         "Python 3",
+                         "Developing iOS apps in Swift",
+                         "Binary search",
+                         "Web development"
+                        ]
+    const forumRandom = ["Should I become a Software Engineer?",
+                         "Is Google scared of Facebook?",
+                         "How do I code a hash table?",
+                         "Should I use C++ or Java in programming competitions?",
+                         "What is the hardest interview question?"
+                        ]
+    const githubRandom = ["Java",
+                          "Python",
+                          "React",
+                          "leon-ng9",
+                          "Linux"
+                         ]
+
+    const randIndex = Math.floor(Math.random() * 5)
+
     return (
       <div class="container">
 
@@ -40,9 +61,9 @@ export default class HomePage extends React.Component {
           <div class="text-center">
             <h4>Not sure where to begin? Select a topic.</h4>
             <div class="control-group">&nbsp;</div> {/*spacer*/}
-            <Link to='/video/programming'><button class="btn btn-primary" style={{marginLeft:"5px"}}>Learn Technologies</button></Link>
-            <Link to='/forum/programming%20language'><button class="btn btn-primary" style={{marginLeft:"5px"}}>Discuss Topics</button></Link>
-            <Link to='/github/programming'><button class="btn btn-primary" style={{marginLeft:"5px"}}>Explore Code</button></Link>
+            <Link to={'/video/'+videoRandom[randIndex]}><button class="btn btn-primary" style={{marginLeft:"5px"}}>Learn Technologies</button></Link>
+            <Link to={'/forum/'+forumRandom[randIndex]}><button class="btn btn-primary" style={{marginLeft:"5px"}}>Discuss Topics</button></Link>
+            <Link to={'/github/'+githubRandom[randIndex]}><button class="btn btn-primary" style={{marginLeft:"5px"}}>Explore Code</button></Link>
           </div>
         </div>
       </div>
