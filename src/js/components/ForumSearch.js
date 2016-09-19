@@ -2,6 +2,7 @@ import React from "react"
 import { connect } from "react-redux"
 import { Link } from "react-router"
 
+import Loading from "./Loading"
 import { fetchForums } from "../actions/forumActions"
 
 import NoResult from "../pages/NoResult"
@@ -26,7 +27,9 @@ export default class ForumSearch extends React.Component {
     const { forum } = this.props;
 
     if ((!forum) || forum.fetching || ! forum.fetched) {
-      return (<div>Loading...</div>)
+      return (
+        <Loading />
+      )
     }
     const { forum_threads } = forum;
     console.log(forum_threads)

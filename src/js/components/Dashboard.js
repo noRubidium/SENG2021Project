@@ -2,6 +2,7 @@ import React from "react"
 import { connect } from "react-redux"
 import { Link } from "react-router"
 
+import Loading from "./Loading"
 
 import { fetchForums } from "../actions/forumActions"
 import { fetchForumsAppend } from "../actions/forumActions"
@@ -58,7 +59,7 @@ export default class Dashboard extends React.Component {
     if ((forum_threads_json instanceof Array && !forum_threads_json.length)
         || (video_items_json instanceof Array && !video_items_json.length)
         || (github_repos_json instanceof Array && !github_repos_json.length)) {
-      return (<div>Loading</div>)
+      return (<Loading />)
     }
 
     const forums = forum_threads_json.items;
