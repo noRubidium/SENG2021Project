@@ -32,11 +32,11 @@ export function fetchRepos(searchTerm, data = {items:[]}) {
 
   return function(dispatch) {
     dispatch({type: "FETCH_REPOS"});
-    axios.get(url, {
+    axios.get(url/*, {
       headers: {
         'Authorization': 'token bff0e8d101c90760360066b75b4ac208ca6f75a0'
       }
-    })
+    }*/)
       .then((response) => {
         const thisData = {
           ... response.data,
