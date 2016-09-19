@@ -65,21 +65,18 @@ export default class Dashboard extends React.Component {
 
     var ReactMarkdown = require('react-markdown');
 
-    var forums_sorted = forums
-    forums_sorted.sort(function(a,b) {return (a.score > b.score) ? -1 : ((b.score > a.score) ? 1 : 0);} );
-    forums_sorted = forums_sorted.filter(function (forum) {return forum.body.length <= 500;});
+    const forums_sorted = forums.sort((a,b) => (b.score - a.score) ).filter( (forum) => forum.body.length <= 500);
     console.log(forums_sorted)
-    const mappedForums = forums_sorted.length ? forums_sorted.map(forum => <ForumItem key={forum.question_id} forum={forum}/>)
+    const forumList = forums_sorted.length ? forums_sorted.map(forum => <ForumItem key={forum.question_id} forum={forum}/>).slice(0,10)
         :[ <li>No results. Try a different search term.</li>]
-    const mappedVideos = videos.map(video => <VideoResult video={video} key={video.id.videoId}></VideoResult>)
-    var repos_sorted = repos
-    repos_sorted = repos_sorted.filter(repo => {return repo.language && repo.description && repo.forks > 100})
-    repos_sorted = repos_sorted.sort((a,b) => {return (a.watchers > b.watchers) ? -1 : ((b.watchers > a.watchers) ? 1 : 0);} )
+
+    const videoRows = videos.map(video => <VideoResult video={video} key={video.id.videoId}></VideoResult>).slice(0,5)
+
+    const repos_sorted = repos.filter(repo => {return repo.language && repo.description && repo.forks > 100}).sort((a,b) => b.watchers - a.watchers )
+
     const mappedRepos = repos_sorted.length? repos_sorted.map(repo => <li><GithubResult repo={repo}/></li>)
         : <li>No results. Try a different search term.</li>
 
-    const forumList = mappedForums.slice(0,10)
-    const videoRows = mappedVideos.slice(0,5)
 
     return (
       <div class="container">
