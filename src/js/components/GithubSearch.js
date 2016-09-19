@@ -1,6 +1,8 @@
 import React from "react"
 import { connect } from "react-redux"
 
+import Loading from "./Loading"
+
 import { fetchRepos } from "../actions/githubActions"
 import GithubResult from "./GithubResult"
 
@@ -23,14 +25,14 @@ export default class github extends React.Component {
   }
 
   render() {
+
     const { github } = this.props;
     const repos = github.repos.items;
 
     if ((!github) || github.fetching || (! repos) ) {
       return (
-      <div>
-        Loading...
-      </div>)
+        <Loading />
+      )
     }
 
     var repos_sorted = repos

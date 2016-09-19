@@ -3,6 +3,8 @@ import ReactMarkdown  from 'react-markdown'
 import { connect } from "react-redux"
 import { Link } from "react-router"
 
+import Loading from "./Loading"
+
 import { fetchForums } from "../actions/forumActions"
 import { fetchVideos } from "../actions/videoSearchActions"
 import { fetchRepos } from "../actions/githubActions"
@@ -37,7 +39,9 @@ export default class AllSearch extends React.Component {
     const { forum, videoSearch, github } = this.props
 
     if (!(forum.fetched && videoSearch.fetched && github.fetched)) {
-      return (<div>Loading...</div>)
+      return (
+        <Loading />
+      )
     }
 
     // console.log(forum_threads);

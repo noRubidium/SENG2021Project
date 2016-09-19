@@ -2,6 +2,8 @@ import React from "react"
 import { connect } from "react-redux"
 import { Link } from "react-router"
 
+import Loading from "./Loading"
+
 import { fetchVideos } from "../actions/videoSearchActions"
 import VideoResult from "./VideoResult"
 import NoResult from "../pages/NoResult"
@@ -39,9 +41,8 @@ export default class VideoSearch extends React.Component {
     console.log(videoSearch)
     if ((!videoSearch) || videoSearch.fetching || (!videos)) {
       return (
-      <div>
-        Loading...
-      </div>)
+        <Loading />
+      )
     }
     if(!videos.length){
       // console.log(this.props)
