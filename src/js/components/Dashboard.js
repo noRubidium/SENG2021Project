@@ -79,7 +79,7 @@ export default class Dashboard extends React.Component {
         : <li>No results. Try a different search term.</li>
 
     const forumList = mappedForums.slice(0,10)
-    const videoRows = mappedVideos.slice(0,9)
+    const videoRows = mappedVideos.slice(0,5)
 
     return (
       <div class="container">
