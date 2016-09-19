@@ -18,7 +18,7 @@ import axios from "axios";
 // }
 
 export function fetchRepos(searchTerm, data = {items:[]}) {
-  console.log("SearchTerm: '" + searchTerm +"'")
+  // console.log("SearchTerm: '" + searchTerm +"'")
   if(searchTerm == ""){
     return function(dispatch) {
       dispatch({type: "FETCH_REPOS_FULFILLED", payload: data});
