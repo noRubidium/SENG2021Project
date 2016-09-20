@@ -52,6 +52,9 @@ export default class Nav extends React.Component {
               <li>
                 <SearchBar formClass="navbar-form" dropDownShow="hidden" placeholderText="Search All"/>
               </li>
+              <li>
+                {/*<span onClick={this.props.history.goBack.bind(this)}>Go Back</span>*/}
+              </li>
             </ul>
           </div>
         </div>
