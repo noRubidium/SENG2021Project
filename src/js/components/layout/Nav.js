@@ -42,12 +42,12 @@ export default class Nav extends React.Component {
               <li>
                 <IndexLink to="/" onClick={this.toggleCollapse.bind(this)} style={{paddingTop:"10px", paddingBottom: "10px"}}><img src="logo/sauceDark.svg" class="nav-logo" style={{height:"40px"}}/></IndexLink>
               </li>
-              <li>
+              {/*<li>*/}
                 {/*<IndexLink to="/" onClick={this.toggleCollapse.bind(this)}class="navbar-left"><img src="/logo/sauceDark.svg" /></IndexLink>*/}
-                <IndexLink to="/" onClick={this.toggleCollapse.bind(this)}>Home</IndexLink>
-              </li>
+                {/*<IndexLink to="/" onClick={this.toggleCollapse.bind(this)}>Home</IndexLink>*/}
+              {/*</li>*/}
               <li>
-                <Link to="/Dashboard" onClick={this.toggleCollapse.bind(this)}>Dashboard (the homepage for non-first-time users)</Link>
+                <Link to="/Dashboard" onClick={this.toggleCollapse.bind(this)}>Dashboard {/*(the homepage for non-first-time users)*/ }</Link>
               </li>
               <li>
                 <SearchBar formClass="navbar-form" dropDownShow="hidden" placeholderText="Search All"/>
