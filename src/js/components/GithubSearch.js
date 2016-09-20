@@ -1,6 +1,8 @@
 import React from "react"
 import { connect } from "react-redux"
 
+import Loading from "./Loading"
+
 import { fetchRepos } from "../actions/githubActions"
 import GithubResult from "./GithubResult"
 
@@ -22,19 +24,31 @@ export default class github extends React.Component {
     }
   }
 
+  updateNextPage(){
+    this.props.dispatch({type: "NEXT_PAGE_REPO"})
+    this.props.dispatch(fetchRepos(this.props.routeParams.search, this.props.github.currPage + 1))
+  }
+
+  updatePrevPage(){
+    this.props.dispatch({type: "PREV_PAGE_REPO"})
+    this.props.dispatch(fetchRepos(this.props.routeParams.search, this.props.github.currPage - 1))
+  }
+
   render() {
+
     const { github } = this.props;
     const repos = github.repos.items;
 
     if ((!github) || github.fetching || (! repos) ) {
       return (
-      <div>
-        Loading...
-      </div>)
+        <Loading />
+      )
     }
 
+    const { currPage } = github
+    console.log(currPage)
     var repos_sorted = repos
-    repos_sorted = repos_sorted.filter(repo => {return repo.language && repo.description && repo.forks > 100})
+    repos_sorted = repos_sorted.filter(repo => {return repo.language && repo.description})
 
     console.log(repos_sorted)
 
@@ -51,6 +65,18 @@ export default class github extends React.Component {
       <div>
           <h1>Search results for: '{this.props.routeParams.search}'</h1>
           <ul>{mappedRepos}</ul>
+          {
+            currPage > 1?
+              <button class="btn btn-default" onClick={this.updatePrevPage.bind(this)}>&larr; Previous Page</button>
+              :
+              <button class="btn btn-default" disabled>&larr; Previous Page</button>
+          }
+          {
+            currPage < 10?
+              <button class="btn btn-default pull-right" onClick={this.updateNextPage.bind(this)}>Next Page &rarr;</button>
+              :
+              <button class="btn btn-default pull-right" disabled>Next Page &rarr;</button>
+          }
       </div>
     );
   }

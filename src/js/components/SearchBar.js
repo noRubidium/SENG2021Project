@@ -45,7 +45,7 @@ export default class SearchBar extends React.Component {
                 onChange={e => this.setState({term: e.target.value})}>
               </input>
               <span class="input-group-btn">
-                <Link to={this.state.getLink()}>
+                <Link to={this.state.term ? this.state.getLink(): "/"}>
                   <button type="submit" class="btn btn-default" disabled={this.state.term? "":"disabled"}>
                     <span class="glyphicon glyphicon-search"></span>
                   </button>

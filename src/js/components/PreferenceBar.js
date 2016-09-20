@@ -24,6 +24,7 @@ export default class PreferenceBar extends React.Component {
   handleSubmit(e) {
       e.preventDefault() // Crucial to stop page refreshing
       var preferences = this.state.preferencesRaw
+      if(! preferences){return;}
       preferences = preferences.replace(",","|")
       this.props.dispatch(updatePreferences(preferences))
   }
@@ -41,7 +42,7 @@ export default class PreferenceBar extends React.Component {
               />
 
             <span class="input-group-btn">
-              <button type="button" class="btn btn-default">
+              <button type="submit" class="btn btn-default">
                 <span class="glyphicon glyphicon-ok"></span>
               </button>
             </span>
