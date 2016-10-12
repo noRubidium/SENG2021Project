@@ -36,10 +36,11 @@ export default class Dashboard extends React.Component {
   componentWillMount() {
       {/*They may not have any preferences yet*/}
       // keeps this here until we have actual user login
+      const content_list = ["React", "Python", "Java", "Javascript", "Rust"]
       if (this.props.user.user.preferences == "initial_user_pref") {
-        this.props.dispatch(fetchForums("React"))
-        this.props.dispatch(fetchVideos("React"))
-        this.props.dispatch(fetchRepos("React"))
+        this.props.dispatch(fetchForums(content_list[Math.floor(Math.random()*content_list.length)]))
+        this.props.dispatch(fetchVideos(content_list[Math.floor(Math.random()*content_list.length)]))
+        this.props.dispatch(fetchRepos(content_list[Math.floor(Math.random()*content_list.length)]))
       }
   }
 
