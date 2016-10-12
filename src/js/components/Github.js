@@ -1,6 +1,7 @@
 import React from "react"
 import { connect } from "react-redux"
 
+import GithubRepo from "./GithubRepo"
 import { fetchRepoContent } from "../actions/githubActions"
 
 @connect((store) => {
@@ -31,17 +32,31 @@ export default class Github extends React.Component {
 
     const { repoId } = this.props.routeParams
     const repo = repos.filter(repo => { return repo.id == repoId })[0]
-    console.log("This is github:",github)
+
+
+    // get the sha of the latest commit
     if(!github.content){
       return <h1>Loading...</h1>
     }
+
+    const latest_commit_sha = github.content[0].sha
+
+    console.log(latest_commit_sha)
+
+    console.log("This is github:",github)
+
     var ReactMarkdown = require('react-markdown')
     return (
       <div>
-          <a target="_blank" href = {repo.html_url}><h1>{repo.full_name}</h1></a>
-          {/*<pre>{github.content}</pre>*/}
-          <ReactMarkdown source={atob(github.content.content)} />
+          <GithubRepo sha={latest_commit_sha} name={repo.full_name}/>
+
       </div>
     );
   }
 }
+
+/*
+<a target="_blank" href = {repo.html_url}><h1>{repo.full_name}</h1></a>
+{<pre>{github.content}</pre>}
+<ReactMarkdown source={atob(github.content.content)} />
+*/

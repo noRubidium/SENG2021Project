@@ -2,6 +2,7 @@ export default function reducer(state={
     content: null,
     currPage: 1,
     repos:[],
+    tree: null,
     fetching: false,
     fetched: false,
     error: null,
@@ -47,6 +48,21 @@ export default function reducer(state={
           fetched: true,
           repos: action.payload,
         }
+      }
+      case "FETCH_REPO_TREE_FULFILLED": {
+          return {
+            ...state,
+            fetching: false,
+            fetched: true,
+            tree: action.payload,
+          }
+      }
+      case "FETCH_REPO_TREE_REJECTED": {
+          return {
+            ...state,
+            fetching: false,
+            error: action.payload,
+          }
       }
     }
 
