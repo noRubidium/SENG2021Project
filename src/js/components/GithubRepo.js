@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from "react-redux"
 import { fetchRepoTree } from "../actions/githubActions"
+import ReactMarkdown  from 'react-markdown'
+import GithubContent from './GithubContent'
 
 @connect((store) => {
   return {
@@ -16,7 +18,12 @@ export default class GithubRepo extends React.Component {
     }
 
     render() {
-        console.log("hussein", this.props.github.tree)
-        return(<h1>Yes</h1>);
+        if (this.props.github.tree != null){
+            const current_tree = this.props.github.tree.tree
+            const mappedTrees = current_tree.map(tree => <li><GithubContent tree={tree}/></li>)
+            return(<ul>{mappedTrees}</ul>)
+        } else {
+            return(<h1>JNo</h1>);
+        }
     }
 }
