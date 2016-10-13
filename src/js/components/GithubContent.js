@@ -11,12 +11,41 @@ import ReactMarkdown  from 'react-markdown'
 
 export default class GithubContent extends React.Component {
 
+    constructor(){
+        super()
+        this.state = {expanded: false}
+    }
+    expandCode() {
+        this.setState({
+            expanded: true
+        })
+    }
+
+    getFileContents(){
+        if (this.state.expanded) {
+          return(<h1>workimng</h1>)
+        } else {
+          return null;
+        }
+    }
+
     render(){
         // this should change
         // if the type of tree is "blob"
         // we should return some sort link when clicked returns content
         // if the type of tree is tree
         // just return a link to a GithubComponent
-        return(<div>{this.props.tree.path}</div>);
+        if (this.props.tree.type == "blob"){
+            // link to display the file contents
+            const expand = this.getFileContents()
+            return(<div><a onClick={this.expandCode.bind(this)}>
+                {this.props.tree.path}
+                {expand}
+                </a></div>
+            );
+
+        } else {
+            return(<div>{this.props.tree.path}</div>)
+        }
     }
 }
