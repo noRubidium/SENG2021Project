@@ -4,7 +4,6 @@ import { Link } from "react-router"
 
 import Loading from "./Loading"
 import { fetchForums } from "../actions/forumActions"
-import { addFavourite } from "../actions/forumActions"
 
 import NoResult from "../pages/NoResult"
 import ForumItem from "./ForumItem"
@@ -19,8 +18,6 @@ export default class ForumSearch extends React.Component {
   componentWillMount() {
     this.props.dispatch(fetchForums(this.props.routeParams.search))
   }
-
-
 
   render() {
     const { forum } = this.props;
