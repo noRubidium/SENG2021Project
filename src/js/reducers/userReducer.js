@@ -3,6 +3,7 @@ export default function reducer(state={
       id: null,
       name: null,
       age: null,
+      favourite: [],
       preferences: "initial_user_pref",
     },
     fetching: false,
@@ -13,6 +14,19 @@ export default function reducer(state={
     switch (action.type) {
       case "UPDATE_USER_PREFERENCES": {
         return {...state, user:{...state.user, preferences: action.payload.preferences}}
+      }
+      case "ADD_USER_FAVOURITE": {
+        return {...state, user:{...state.user, favourite: [...state.user.favourite].concat(action.payload.favourite)}}
+      }
+      case "REMOVE_USER_FAVOURITE": {
+        var original = {...state, user:{...state.user, favourite: [...state.user.favourite].concat(action.payload.favourite)}}
+        for (var i = original.user.favourite.length - 1; i >= 0; i--) { // note: must be backwards since we are modifying the array and indexes change
+          if (original.user.favourite[i] === action.payload.favourite) {
+            original.user.favourite.splice(i, 1);
+          }
+        }
+        const newState = {...original};
+        return newState;
       }
       case "FETCH_USER": {
         return {...state, fetching: true}

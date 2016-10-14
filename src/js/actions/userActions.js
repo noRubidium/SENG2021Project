@@ -7,6 +7,24 @@ export function updatePreferences(preferences) {
   }
 }
 
+export function addFavourite(favourite) {
+  return {
+    type: 'ADD_USER_FAVOURITE',
+    payload: {
+      favourite,
+    },
+  }
+}
+
+export function removeFavourite(favourite) {
+  return {
+    type: 'REMOVE_USER_FAVOURITE',
+    payload: {
+      favourite,
+    },
+  }
+}
+
 export function fetchUser() {
   return {
     type: "FETCH_USER_FULFILLED",

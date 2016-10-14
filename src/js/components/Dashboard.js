@@ -53,6 +53,9 @@ export default class Dashboard extends React.Component {
   }
 
   render() {
+    console.log("LOGGING PROPS")
+    console.log(this.props)
+    console.log("DONE LOGGING PROPS")
     const forum_threads_json = this.props.forum.forum_threads
     const video_items_json = this.props.videoSearch.videos
     const github_repos_json = this.props.github.repos
@@ -73,7 +76,6 @@ export default class Dashboard extends React.Component {
     var forums_sorted = forums
     forums_sorted.sort(function(a,b) {return (a.score > b.score) ? -1 : ((b.score > a.score) ? 1 : 0);} );
     forums_sorted = forums_sorted.filter(function (forum) {return forum.body.length <= 500;});
-    console.log(forums_sorted)
     const mappedForums = forums_sorted.length ? forums_sorted.map(forum => <ForumItem key={forum.question_id} forum={forum}/>)
         :[ <li>No results. Try a different search term.</li>]
     const mappedVideos = videos.map(video => <VideoResult video={video} key={video.id.videoId}></VideoResult>)
