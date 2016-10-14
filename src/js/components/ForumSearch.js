@@ -19,10 +19,6 @@ export default class ForumSearch extends React.Component {
     this.props.dispatch(fetchForums(this.props.routeParams.search))
   }
 
-  fetchForums() {
-    this.props.dispatch(fetchForums(this.props.routeParams.search))
-  }
-
   render() {
     const { forum } = this.props;
 
@@ -32,7 +28,6 @@ export default class ForumSearch extends React.Component {
       )
     }
     const { forum_threads } = forum;
-    console.log(forum_threads)
     if( (! forum_threads.items) || ! forum_threads.items.length){
       return <NoResult term={this.props.routeParams.term} history={this.props.history}/>
     }

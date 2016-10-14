@@ -7,6 +7,60 @@ export function updatePreferences(preferences) {
   }
 }
 
+export function addVideoFav(favourite) {
+  return {
+    type: 'ADD_USER_VIDEO_FAVOURITE',
+    payload: {
+      favourite,
+    },
+  }
+}
+
+export function removeVideoFav(favourite) {
+  return {
+    type: 'REMOVE_USER_VIDEO_FAVOURITE',
+    payload: {
+      favourite,
+    },
+  }
+}
+
+export function addForumFav(favourite) {
+  return {
+    type: 'ADD_USER_FORUM_FAVOURITE',
+    payload: {
+      favourite,
+    },
+  }
+}
+
+export function removeForumFav(favourite) {
+  return {
+    type: 'REMOVE_USER_FORUM_FAVOURITE',
+    payload: {
+      favourite,
+    },
+  }
+}
+
+export function addRepoFav(favourite) {
+  return {
+    type: 'ADD_USER_REPO_FAVOURITE',
+    payload: {
+      favourite,
+    },
+  }
+}
+
+export function removeRepoFav(favourite) {
+  return {
+    type: 'REMOVE_USER_REPO_FAVOURITE',
+    payload: {
+      favourite,
+    },
+  }
+}
+
 export function fetchUser() {
   return {
     type: "FETCH_USER_FULFILLED",
