@@ -30,13 +30,13 @@ export default function reducer(state={
         return {...original};
       }
       case "ADD_USER_FORUM_FAVOURITE": {
-        return {...state, user:{...state.user, repoFavs: [...state.user.repoFavs].concat(action.payload.favourite)}}
+        return {...state, user:{...state.user, forumFavs: [...state.user.forumFavs].concat(action.payload.favourite)}}
       }
       case "REMOVE_USER_FORUM_FAVOURITE": {
-        var original = {...state, user:{...state.user, repoFavs: [...state.user.repoFavs].concat(action.payload.favourite)}}
-        for (var i = original.user.repoFavs.length - 1; i >= 0; i--) { // note: must be backwards since we are modifying the array and indexes change
-          if (original.user.repoFavs[i] === action.payload.favourite) {
-            original.user.repoFavs.splice(i, 1);
+        var original = {...state, user:{...state.user, forumFavs: [...state.user.forumFavs].concat(action.payload.favourite)}}
+        for (var i = original.user.forumFavs.length - 1; i >= 0; i--) { // note: must be backwards since we are modifying the array and indexes change
+          if (original.user.forumFavs[i] === action.payload.favourite) {
+            original.user.forumFavs.splice(i, 1);
           }
         }
         return {...original};
