@@ -29,14 +29,17 @@ export default class ForumItem extends React.Component {
             <a href="#" onClick={this.favourite.bind(this)}><span class="glyphicon glyphicon-heart"></span></a>
             : <a href="#" onClick={this.favourite.bind(this)}><span class="glyphicon glyphicon-heart-empty"></span></a>
 
+    console.log(forum.title)
+
     return (
       <div>
         <h3>
           <Link to={"/forum/display/"+forum.question_id} >
-            {forum.title}
+            <ReactMarkdown source={forum.title} containerTagName='span' containerProps={{id:"forumReactMarkdownTitle"}}/>
           </Link>
           {favourite}
         </h3>
+
         <ReactMarkdown source={forum.body} />
       </div>
     );
