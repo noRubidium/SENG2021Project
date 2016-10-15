@@ -53,7 +53,7 @@ export default class HomePage extends React.Component {
         </div>
 
         <div class="control-group">&nbsp;</div> {/*spacer*/}
-        <SearchBar searchBarStyle = {searchBarStyle} divStyle="col-md-8 col-md-offset-2 text-center" />
+        <SearchBar searchBarStyle = {searchBarStyle} options="show" />
         <div class="control-group">&nbsp;</div> {/*spacer*/}
         <div class="control-group">&nbsp;</div> {/*spacer*/}
 

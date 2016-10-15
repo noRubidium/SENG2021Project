@@ -50,7 +50,7 @@ export default class Nav extends React.Component {
                 <Link to="/Dashboard" onClick={this.toggleCollapse.bind(this)}>Dashboard {/*(the homepage for non-first-time users)*/ }</Link>
               </li>
               <li>
-                <SearchBar formClass="navbar-form" dropDownShow="hidden" placeholderText="Search All"/>
+                <SearchBar placeholderText="Search All" options="hidden"/>
               </li>
               <li>
                 {/*<span onClick={this.props.history.goBack.bind(this)}>Go Back</span>*/}
