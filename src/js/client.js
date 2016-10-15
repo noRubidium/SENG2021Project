@@ -29,10 +29,10 @@ ReactDOM.render(<Provider store={store}>
       <Route path="forum/display/:id" component={Forum}></Route>
       <Route path="github(/:search)" component={GithubSearch}></Route>
       <Route path="github/display/:repoId" component={Github}></Route>
-      <Route path="video/:term" component={VideoSearch}></Route>
+      <Route path="video(/:search)" component={VideoSearch}></Route>
       <Route path="video/display/:videoId" component={Video}></Route>
       <Route path="*" component={NotFound}></Route>
     </Route>
     <Route path="*" component={NotFound}></Route>
   </Router>
-</Provider>, app);
+</Provider>, app)

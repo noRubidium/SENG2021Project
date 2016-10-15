@@ -16,7 +16,6 @@ import NoResult from "../pages/NoResult"
 export default class Video extends React.Component {
 
   componentWillMount() {
-    const { video } = this.props;
     this.props.dispatch(fetchVideo(this.props.routeParams.videoId))
     this.props.dispatch(fetchRelatedVideos(this.props.routeParams.videoId))
   }
@@ -46,7 +45,7 @@ export default class Video extends React.Component {
     const pTag = video.video? video.video.localized.description.split(/\n/):[]
     const description = pTag.map(ptag => <p> {ptag}</p>)
 
-    const relatedItems = this.props.video.related.items;
+    const relatedItems = video.related ? video.related.items: '';
     const mappedRelated = relatedItems ? relatedItems.map(video => <div class="col-md-3" key={video.id.videoId}><VideoResult hideDescription="yes" titleSize="h5" video={video}></VideoResult></div>) : ''
 
     return (

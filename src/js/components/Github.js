@@ -24,22 +24,20 @@ export default class Github extends React.Component {
     const { github } = this.props
     const repos = github.repos.items
 
-    if (!repos) {
-      return (
-        <div>Cannot access</div>
-      )
+    if (repos instanceof Array && !repos.length) {
+      return (<div>Illegal access (must go through a link)</div>)
     }
 
     const { repoId } = this.props.routeParams
     const repo = repos.filter(repo => { return repo.id == repoId })[0]
-    console.log("This is github:",github)
-    if(!github.content){
+
+    if(!github.content) {
       return <h1>Loading...</h1>
     }
+
     return (
       <div>
           <a target="_blank" href = {repo.html_url}><h1>{repo.full_name}</h1></a>
-          {/*<pre>{github.content}</pre>*/}
           <ReactMarkdown source={github.content} />
       </div>
     );

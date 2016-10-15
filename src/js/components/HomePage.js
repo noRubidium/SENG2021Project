@@ -13,13 +13,7 @@ export default class HomePage extends React.Component {
     const options = types.map((item) => {
       return (<option value={item} >{item}</option>);
     })
-    const searchBarStyle = {
-      marginTop: "60px"
-    };
-    const searchBarClass = {
-
-    }
-
+    
     const videoRaffle = ["Introduction to programming",
                          "Python 3",
                          "Developing iOS apps in Swift",
