@@ -1,11 +1,24 @@
 export default function reducer(state={
     forum_threads: [],
+    currPage: 1,
     fetching: false,
     fetched: false,
     error: null,
   }, action) {
 
     switch (action.type) {
+      case "NEXT_PAGE_FORUM": {
+        return {
+          ...state,
+          currPage: state.currPage + 1,
+        }
+      }
+      case "PREV_PAGE_FORUM": {
+        return {
+          ...state,
+          currPage: state.currPage - 1,
+        }
+      }
       case "FETCH_FORUMS_INITIATED": {
         return {...state, fetching: true, fetched: false}
       }
