@@ -11,6 +11,9 @@ import { removeVideoFav } from "../actions/userActions"
   };
 })
 export default class VideoResult extends React.Component {
+  constructor(props){
+    super(props);
+  }
 
   favourite(e) {
     e.preventDefault()
@@ -28,19 +31,29 @@ export default class VideoResult extends React.Component {
             <a href="#" onClick={this.favourite.bind(this)}><span class="glyphicon glyphicon-heart"></span></a>
             : <a href="#" onClick={this.favourite.bind(this)}><span class="glyphicon glyphicon-heart-empty"></span></a>
 
-    console.log("next")
+    console.log("hiding descr")
     console.log(this.props)
+    const title = this.props.titleSize ?
+      <this.props.titleSize>
+        <Link to={"/video/display/"+video.id.videoId}>
+          {video.snippet.title}
+        </Link>
+        {favourite}
+      </this.props.titleSize>
+      :
+      <h3>
+        <Link to={"/video/display/"+video.id.videoId}>
+          {video.snippet.title}
+        </Link>
+        {favourite}
+      </h3>
+    const description = this.props.hideDescription ? '' : <p style={{wordWrap: "break-word"}}>{video.snippet.description}</p>
 
     return (
       <div>
-        <h3>
-          <Link to={"/video/display/"+video.id.videoId}>
-            {video.snippet.title}
-          </Link>
-          {favourite}
-        </h3>
+        {title}
         <Link to={"/video/display/"+video.id.videoId} class="thumbnails"><img src={video.snippet.thumbnails.medium.url} class="img-small" style={{width:"100%"}}/></Link>
-        <p style={{wordWrap: "break-word"}}>{video.snippet.description}</p>
+        {description}
       </div>
     )
   }
