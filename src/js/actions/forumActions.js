@@ -51,3 +51,18 @@ export function fetchForumsAppend(searchTerm) {
       })
   }
 }
+
+export function fetchRelatedForums(questionId) {
+  const url = "https://api.stackexchange.com/2.2/questions/"+questionId+"/related?pagesize=4&order=desc&sort=activity&site=stackoverflow&filter=!)EhwLl5mQ7U05E2REsN)vnfFYU(LzU*OhEX2x5POOu3IS89Si&key=X*Dl33mPzca8jXX)58SHiQ(("
+  return function(dispatch) {
+    dispatch({type: "FETCH_RELATED_FORUMS_INITIATED"});
+    axios.get(url)
+      .then((response) => {
+        console.log(response.data)
+        dispatch({type: "FETCH_RELATED_FORUMS_FULFILLED", payload: response.data})
+      })
+      .catch((err) => {
+        dispatch({type: "FETCH_RELATED_FORUMS_REJECTED", payload: err})
+      })
+  }
+}

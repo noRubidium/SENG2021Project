@@ -2,15 +2,21 @@ import React from "react"
 import ReactMarkdown from "react-markdown"
 import { connect } from "react-redux"
 
-import { fetchRepoContent } from "../actions/githubActions"
+import { fetchRelatedForums } from "../actions/forumActions"
 
 @connect((store) => {
   return {
     forum_threads_json: store.forum.forum_threads,
+    forum: store.forum
   };
 })
 
 export default class Forum extends React.Component {
+
+  componentWillMount() {
+    this.props.dispatch(fetchRelatedForums(this.props.routeParams.id))
+  }
+
   render() {
     const { forum_threads_json } = this.props
 
@@ -21,6 +27,9 @@ export default class Forum extends React.Component {
     const { id } = this.props.routeParams;
     const forum_threads = this.props.forum_threads_json.items;
     const target_thread = forum_threads.filter((question) => { return question.question_id == id })[0]
+
+    const relatedItems = this.props.forum.related ? this.props.forum.related.items: '';
+    const mappedRelated = relatedItems ? relatedItems.map(forum => <div class="col-md-3 text-centered"><a target="_blank" href={forum.link}><ReactMarkdown source={forum.title} /></a></div>) : ''
 
     var { answers } = target_thread
     answers.sort(function(a,b) {return (a.score > b.score) ? -1 : ((b.score > a.score) ? 1 : 0);} );
@@ -36,6 +45,10 @@ export default class Forum extends React.Component {
           <ReactMarkdown source={target_thread.body} />
           <hr/>
           {topAnswersMapped}
+          <hr/>
+          <h3>Related Threads</h3>
+          {mappedRelated}
+          <br/>
       </div>
     );
   }
