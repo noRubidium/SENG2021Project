@@ -12,9 +12,9 @@ ul {
   list-style-type: none;
   padding-left: 0;
 }
-/*.row li:not(:last-child) {
+.row li {
   border-bottom: solid #ccc 2px;
-}*/
+}
 #forumReactMarkdownTitle p {
   display: inline;
 }

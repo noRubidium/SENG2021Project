@@ -13,7 +13,7 @@ export default class HomePage extends React.Component {
     const options = types.map((item) => {
       return (<option value={item} >{item}</option>);
     })
-    
+
     const videoRaffle = ["Introduction to programming",
                          "Python 3",
                          "Developing iOS apps in Swift",
@@ -47,7 +47,7 @@ export default class HomePage extends React.Component {
         </div>
 
         <div class="control-group">&nbsp;</div> {/*spacer*/}
-        <SearchBar searchBarStyle = {searchBarStyle} options="show" />
+        <SearchBar options="show" />
         <div class="control-group">&nbsp;</div> {/*spacer*/}
         <div class="control-group">&nbsp;</div> {/*spacer*/}
 
