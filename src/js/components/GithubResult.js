@@ -25,8 +25,8 @@ export default class GithubResult extends React.Component {
     const { repo } = this.props
 
     const favourite = (this.props.user.user.repoFavs).indexOf(this.props.repo) >= 0 ?
-            <a href="#" onClick={this.favourite.bind(this)}><span class="glyphicon glyphicon-heart"></span></a>
-            : <a href="#" onClick={this.favourite.bind(this)}><span class="glyphicon glyphicon-heart-empty"></span></a>
+            <a href="#" onClick={this.favourite.bind(this)}><span class="glyphicon glyphicon-heart pull-right"></span></a>
+            : <a href="#" onClick={this.favourite.bind(this)}><span class="glyphicon glyphicon-heart-empty pull-right"></span></a>
 
 
     return (

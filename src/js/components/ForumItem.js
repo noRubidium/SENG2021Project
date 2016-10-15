@@ -26,8 +26,8 @@ export default class ForumItem extends React.Component {
     const { forum } = this.props;
 
     const favourite = (this.props.user.user.forumFavs).indexOf(this.props.forum) >= 0 ?
-            <a href="#" onClick={this.favourite.bind(this)}><span class="glyphicon glyphicon-heart"></span></a>
-            : <a href="#" onClick={this.favourite.bind(this)}><span class="glyphicon glyphicon-heart-empty"></span></a>
+            <a href="#" onClick={this.favourite.bind(this)}><span class="glyphicon glyphicon-heart pull-right"></span></a>
+            : <a href="#" onClick={this.favourite.bind(this)}><span class="glyphicon glyphicon-heart-empty pull-right"></span></a>
 
     console.log(forum.title)
 

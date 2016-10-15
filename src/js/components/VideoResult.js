@@ -28,8 +28,8 @@ export default class VideoResult extends React.Component {
     const video = this.props.video
 
     const favourite = (this.props.user.user.videoFavs).indexOf(this.props.video) >= 0 ?
-            <a href="#" onClick={this.favourite.bind(this)}><span class="glyphicon glyphicon-heart"></span></a>
-            : <a href="#" onClick={this.favourite.bind(this)}><span class="glyphicon glyphicon-heart-empty"></span></a>
+            <a href="#" onClick={this.favourite.bind(this)}><span class="glyphicon glyphicon-heart pull-right"></span></a>
+            : <a href="#" onClick={this.favourite.bind(this)}><span class="glyphicon glyphicon-heart-empty pull-right"></span></a>
 
     console.log("hiding descr")
     console.log(this.props)
