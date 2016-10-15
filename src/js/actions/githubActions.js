@@ -90,3 +90,16 @@ export function fetchRepoTree(sha, name){
         })
     }
 }
+
+export function fetchUrlContent(url){
+    console.log("something should go here",url)
+    return function(dispatch) {
+      axios.get(url
+        ).then((response) => {
+          dispatch({type: "FETCH_URL_CONTENT_SUCCESS", payload: response.data})
+        })
+        .catch((err) => {
+          dispatch({type: "FETCH_URL_CONTENT_REJECTED", payload: err})
+        })
+    }
+}

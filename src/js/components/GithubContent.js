@@ -1,15 +1,21 @@
 import React from "react";
 import { connect } from "react-redux"
-import { fetchRepoTree } from "../actions/githubActions"
+import { fetchUrlContent } from "../actions/githubActions"
 import ReactMarkdown  from 'react-markdown'
-/*
+
 @connect((store) => {
   return {
     github: store.github,
   };
-})*/
+})
 
 export default class GithubContent extends React.Component {
+
+    componentWillMount(){
+        if (this.props.tree != null){
+            this.props.dispatch(fetchUrlContent(this.props.tree.url))
+        }
+    }
 
     constructor(){
         super()
@@ -23,7 +29,7 @@ export default class GithubContent extends React.Component {
 
     getFileContents(){
         if (this.state.expanded) {
-          return(<h1>workimng</h1>)
+          return(<div><ReactMarkdown source={atob(this.props.github.something.content)} /></div>)
         } else {
           return null;
         }
@@ -37,11 +43,14 @@ export default class GithubContent extends React.Component {
         // just return a link to a GithubComponent
         if (this.props.tree.type == "blob"){
             // link to display the file contents
+        //    console.log(this.props.github.something)
             const expand = this.getFileContents()
             return(<div><a onClick={this.expandCode.bind(this)}>
                 {this.props.tree.path}
+                </a>
                 {expand}
-                </a></div>
+
+            </div>
             );
 
         } else {

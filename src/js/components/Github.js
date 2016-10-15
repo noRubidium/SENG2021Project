@@ -41,8 +41,6 @@ export default class Github extends React.Component {
 
     const latest_commit_sha = github.content[0].sha
 
-    console.log(latest_commit_sha)
-
     console.log("This is github:",github)
 
     var ReactMarkdown = require('react-markdown')

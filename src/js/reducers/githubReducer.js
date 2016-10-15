@@ -64,6 +64,21 @@ export default function reducer(state={
             error: action.payload,
           }
       }
+      case "FETCH_URL_CONTENT_SUCCESS": {
+          return {
+            ...state,
+            fetching: false,
+            fetched: true,
+            something: action.payload,
+          }
+      }
+      case "FETCH_URL_CONTENT_REJECTED": {
+          return {
+            ...state,
+            fetching: false,
+            error: action.payload,
+          }
+      }
     }
 
     return state
