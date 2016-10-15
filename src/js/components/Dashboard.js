@@ -53,9 +53,6 @@ export default class Dashboard extends React.Component {
   }
 
   render() {
-    console.log("LOGGING PROPS")
-    console.log(this.props)
-    console.log("DONE LOGGING PROPS")
     const forum_threads_json = this.props.forum.forum_threads
     const video_items_json = this.props.videoSearch.videos
     const github_repos_json = this.props.github.repos

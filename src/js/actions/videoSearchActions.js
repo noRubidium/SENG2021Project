@@ -21,7 +21,6 @@ export function fetchVideos(searchTerm, pageToken=null) {
 export function fetchVideo(videoId) {
   const url = "https://www.googleapis.com/youtube/v3/videos?part=snippet&key=AIzaSyDmsTbEA0uhRwaFmxfCM8w_jyaDoFdWM1o&id=" + videoId
   //https://www.googleapis.com/youtube/v3/search?part=snippet&q=python&type=video&key=AIzaSyDmsTbEA0uhRwaFmxfCM8w_jyaDoFdWM1o
-  console.log(url);
   return function(dispatch) {
     axios.get(url)
       .then((response) => {
@@ -30,6 +29,22 @@ export function fetchVideo(videoId) {
       })
       .catch((err) => {
         dispatch({type: "FETCH_VIDEO_REJECTED", payload: err})
+      })
+  }
+}
+
+export function fetchRelatedVideos(videoId) {
+  const url = "https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyDmsTbEA0uhRwaFmxfCM8w_jyaDoFdWM1o&type=video&maxResults=4&relatedToVideoId=" + videoId
+  return function(dispatch) {
+    axios.get(url)
+      .then((response) => {
+        // console.log("From url: " + url, "We get:", response.data )
+        console.log("this is the related")
+        console.log(response.data)
+        dispatch({type: "FETCH_RELATED_VIDEOS_FULFILLED", payload: response.data})
+      })
+      .catch((err) => {
+        dispatch({type: "FETCH_RELATED_VIDEO_REJECTED", payload: err})
       })
   }
 }
