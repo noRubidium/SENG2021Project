@@ -22,7 +22,14 @@ export default class Login extends React.Component {
     const token = this.props.user.user.token
     console.log("HI!!!", token)
     if(token){
-      return <a onClick={this.logout.bind(this)}>Logout</a>;
+      // if(this.props.user.user.profile){
+      //   console.log("MY FAULT")
+      console.log("HI!!! THIS IS MY FAULT!", this.props.user)
+        return (<a>
+          <span style={{paddingRight:"10px"}}>Welcome {this.props.user.user.profile["nickname"]}</span>
+          <a onClick={this.logout.bind(this)}>Logout</a>
+        </a>);
+      // }
     }
     return (
       <a onClick={this.login.bind(this)}>Login</a>

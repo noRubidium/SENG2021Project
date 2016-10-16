@@ -10,6 +10,6 @@ export default combineReducers({
   forum,
   user,
   videoSearch,
-  github,
+  github,  
   video,
 })

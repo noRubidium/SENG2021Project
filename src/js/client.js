@@ -23,7 +23,6 @@ const app = document.getElementById('app')
 const dispatch = store.dispatch
 const access = (route) => {
   const { params } = route;
-  // console.log(params)
   localStorage.setItem("access_token", params["accessToken"])
   localStorage.setItem("id_token", params["idToken"])
   dispatch({type:"LOGGEDIN",payload:params.idToken})

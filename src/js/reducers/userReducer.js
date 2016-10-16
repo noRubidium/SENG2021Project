@@ -9,6 +9,7 @@ export default function reducer(state={
       forumFavs: [],
       repoFavs: [],
       preferences: "initial_user_pref",
+      profile:{},
       token: localStorage.getItem('id_token'),
     },
     lock: new Auth0Lock('onXEJuNLYjyGYjusgwnVJCCxxmqQq8zJ', 'seng2021.auth0.com',{}),
