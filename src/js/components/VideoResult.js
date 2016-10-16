@@ -26,22 +26,21 @@ export default class VideoResult extends React.Component {
 
   render() {
     const { video } = this.props
-    
+
     const icon = (this.props.user.user.videoFavs).indexOf(this.props.video) >= 0 ? "glyphicon glyphicon-heart pull-right": "glyphicon glyphicon-heart-empty pull-right"
     const favourite = <a href="#" onClick={this.favourite.bind(this)}><span class={icon}></span></a>
 
-    const { titleSize } = this.props
-    const size = titleSize? titleSize: "h3"
+    var HeaderSize = this.props.titleSize? this.props.titleSize: "h3";
     const title = <div class="row">
                     <div class="col-md-10">
-                      <h3>
+                      <HeaderSize>
                         <Link to={"/video/display/"+video.id.videoId} >
                           {video.snippet.title}
                         </Link>
-                      </h3>
+                      </HeaderSize>
                     </div>
                     <div class="col-md-2">
-                      <h3>{favourite}</h3>
+                      <HeaderSize>{favourite}</HeaderSize>
                     </div>
                   </div>
     const description = this.props.hideDescription ? '' : <p style={{wordWrap: "break-word"}}>{video.snippet.description}</p>
