@@ -24,23 +24,30 @@ export default class GithubResult extends React.Component {
   render() {
     const { repo } = this.props
 
-    const favourite = (this.props.user.user.repoFavs).indexOf(this.props.repo) >= 0 ?
-            <a href="#" onClick={this.favourite.bind(this)}><span class="glyphicon glyphicon-heart"></span></a>
-            : <a href="#" onClick={this.favourite.bind(this)}><span class="glyphicon glyphicon-heart-empty"></span></a>
-
+    const icon = (this.props.user.user.repoFavs).indexOf(this.props.repo) >= 0 ?
+                "glyphicon glyphicon-heart pull-right": "glyphicon glyphicon-heart-empty pull-right"
+    const favourite = <a href="#" onClick={this.favourite.bind(this)}><span class={icon}></span></a>
 
     return (
       <div>
-        <h3>
-          <Link to={"/github/display/"+repo.id} class="thumbnails">
-            {repo.full_name}
-          </Link>
-          {favourite}
-        </h3>
-        <h5><span class="octicon octicon-star"></span>{repo.stargazers_count}
-        &emsp;<span class="octicon octicon-repo-forked"></span> {repo.forks} </h5>
-        <h5>Written in <i>{repo.language}</i></h5>
-        <h5>{repo.description}</h5>
+        <div class="row">
+          <div class="col-md-10">
+            <h3>
+              <Link to={"/github/display/"+repo.id} >
+                {repo.full_name}
+              </Link>
+            </h3>
+          </div>
+          <div class="col-md-2">
+            <h3>{favourite}</h3>
+          </div>
+        </div>
+        <div class="row col-md-12">
+          <h5><span class="octicon octicon-star"></span>{repo.stargazers_count}
+          &emsp;<span class="octicon octicon-repo-forked"></span> {repo.forks} </h5>
+          <h5>Written in <i>{repo.language}</i></h5>
+          <h5>{repo.description}</h5>
+        </div>
       </div>
     )
   }

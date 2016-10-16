@@ -1,4 +1,5 @@
 import React from "react"
+import ReactMarkdown from "react-markdown"
 import { connect } from "react-redux"
 
 import { fetchRepoContent } from "../actions/githubActions"
@@ -23,24 +24,21 @@ export default class Github extends React.Component {
     const { github } = this.props
     const repos = github.repos.items
 
-    if (!repos) {
-      return (
-        <div>Cannot access</div>
-      )
+    if (repos instanceof Array && !repos.length) {
+      return (<div>Illegal access (must go through a link)</div>)
     }
 
     const { repoId } = this.props.routeParams
     const repo = repos.filter(repo => { return repo.id == repoId })[0]
-    console.log("This is github:",github)
-    if(!github.content){
+
+    if(!github.content) {
       return <h1>Loading...</h1>
     }
-    var ReactMarkdown = require('react-markdown')
+
     return (
       <div>
           <a target="_blank" href = {repo.html_url}><h1>{repo.full_name}</h1></a>
-          {/*<pre>{github.content}</pre>*/}
-          <ReactMarkdown source={atob(github.content.content)} />
+          <ReactMarkdown source={github.content} />
       </div>
     );
   }

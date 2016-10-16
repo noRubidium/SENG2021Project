@@ -25,28 +25,25 @@ export default class VideoResult extends React.Component {
   }
 
   render() {
-    const video = this.props.video
+    const { video } = this.props
+    
+    const icon = (this.props.user.user.videoFavs).indexOf(this.props.video) >= 0 ? "glyphicon glyphicon-heart pull-right": "glyphicon glyphicon-heart-empty pull-right"
+    const favourite = <a href="#" onClick={this.favourite.bind(this)}><span class={icon}></span></a>
 
-    const favourite = (this.props.user.user.videoFavs).indexOf(this.props.video) >= 0 ?
-            <a href="#" onClick={this.favourite.bind(this)}><span class="glyphicon glyphicon-heart"></span></a>
-            : <a href="#" onClick={this.favourite.bind(this)}><span class="glyphicon glyphicon-heart-empty"></span></a>
-
-    console.log("hiding descr")
-    console.log(this.props)
-    const title = this.props.titleSize ?
-      <this.props.titleSize>
-        <Link to={"/video/display/"+video.id.videoId}>
-          {video.snippet.title}
-        </Link>
-        {favourite}
-      </this.props.titleSize>
-      :
-      <h3>
-        <Link to={"/video/display/"+video.id.videoId}>
-          {video.snippet.title}
-        </Link>
-        {favourite}
-      </h3>
+    const { titleSize } = this.props
+    const size = titleSize? titleSize: "h3"
+    const title = <div class="row">
+                    <div class="col-md-10">
+                      <h3>
+                        <Link to={"/video/display/"+video.id.videoId} >
+                          {video.snippet.title}
+                        </Link>
+                      </h3>
+                    </div>
+                    <div class="col-md-2">
+                      <h3>{favourite}</h3>
+                    </div>
+                  </div>
     const description = this.props.hideDescription ? '' : <p style={{wordWrap: "break-word"}}>{video.snippet.description}</p>
 
     return (

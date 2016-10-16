@@ -11,7 +11,7 @@ import { fetchRepos } from "../actions/githubActions"
 import VideoResult from "./VideoResult"
 import GithubResult from "./GithubResult"
 import NoResult from "../pages/NoResult"
-import ForumItem from "./ForumItem"
+import ForumResult from "./ForumResult"
 
 @connect((store) => {
   return {
@@ -60,7 +60,7 @@ export default class AllSearch extends React.Component {
     // var forums_sorted = forums
     const forums_sorted = forums.sort((a,b) => b.score - a.score ).filter( (forum) => forum.body.length <= 700);
     // forums_sorted = forums_sorted
-    const mappedForums = forums_sorted.length ? forums_sorted.map(forum =>  <ForumItem key={forum.question_id} forum={forum}/>)
+    const mappedForums = forums_sorted.length ? forums_sorted.map(forum =>  <ForumResult key={forum.question_id} forum={forum}/>)
         : [<li>No results. Try a different search term.</li>]
     const mappedVideos = videos.map(video => <VideoResult video={video} key={video.id.videoId}></VideoResult>)
 

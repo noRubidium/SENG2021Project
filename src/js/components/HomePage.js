@@ -13,12 +13,6 @@ export default class HomePage extends React.Component {
     const options = types.map((item) => {
       return (<option value={item} >{item}</option>);
     })
-    const searchBarStyle = {
-      marginTop: "60px"
-    };
-    const searchBarClass = {
-
-    }
 
     const videoRaffle = ["Introduction to programming",
                          "Python 3",
@@ -53,7 +47,7 @@ export default class HomePage extends React.Component {
         </div>
 
         <div class="control-group">&nbsp;</div> {/*spacer*/}
-        <SearchBar searchBarStyle = {searchBarStyle} divStyle="col-md-8 col-md-offset-2 text-center" />
+        <SearchBar options="show" />
         <div class="control-group">&nbsp;</div> {/*spacer*/}
         <div class="control-group">&nbsp;</div> {/*spacer*/}
 
