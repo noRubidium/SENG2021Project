@@ -2,6 +2,7 @@ import React from "react"
 import ReactDOM from "react-dom"
 import { Provider } from "react-redux"
 import { Router, Route, IndexRoute, hashHistory } from "react-router";
+import Auth0Lock from "auth0-lock"
 
 import Layout from "./pages/Layout"
 import NotFound from "./pages/NotFound"
@@ -16,9 +17,21 @@ import Github from "./components/Github"
 import VideoSearch from "./components/VideoSearch"
 import Search from "./components/HomePage"
 import store from "./store"
+import { loadProfile } from "./actions/userActions"
 
 const app = document.getElementById('app')
+const dispatch = store.dispatch
+const access = (route) => {
+  const { params } = route;
+  // console.log(params)
+  localStorage.setItem("access_token", params["accessToken"])
+  localStorage.setItem("id_token", params["idToken"])
+  dispatch({type:"LOGGEDIN",payload:params.idToken})
+  // load profile
+  const lock = new Auth0Lock('onXEJuNLYjyGYjusgwnVJCCxxmqQq8zJ', 'seng2021.auth0.com',{})
 
+  dispatch(loadProfile(lock, params.idToken))
+}
 ReactDOM.render(<Provider store={store}>
   <Router history={hashHistory}>
     <Route path="/" component={Layout}>
@@ -31,6 +44,7 @@ ReactDOM.render(<Provider store={store}>
       <Route path="github/display/:repoId" component={Github}></Route>
       <Route path="video(/:search)" component={VideoSearch}></Route>
       <Route path="video/display/:videoId" component={Video}></Route>
+      <Route path="access_token=:accessToken&id_token=:idToken&token_type=:tokenType" onEnter={access}/>
       <Route path="*" component={NotFound}></Route>
     </Route>
     <Route path="*" component={NotFound}></Route>

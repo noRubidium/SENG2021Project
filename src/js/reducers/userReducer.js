@@ -1,3 +1,5 @@
+import Auth0Lock from "auth0-lock"
+
 export default function reducer(state={
     user: {
       id: null,
@@ -7,12 +9,14 @@ export default function reducer(state={
       forumFavs: [],
       repoFavs: [],
       preferences: "initial_user_pref",
+      token: localStorage.getItem('id_token'),
     },
+    lock: new Auth0Lock('onXEJuNLYjyGYjusgwnVJCCxxmqQq8zJ', 'seng2021.auth0.com',{}),
     fetching: false,
     fetched: false,
     error: null,
   }, action) {
-
+    // console.log(localStorage, action)
     switch (action.type) {
       case "UPDATE_USER_PREFERENCES": {
         return {...state, user:{...state.user, preferences: action.payload.preferences}}
@@ -77,6 +81,31 @@ export default function reducer(state={
         return {
           ...state,
           user: {...state.user, age: action.payload},
+        }
+      }
+      case "LOGIN": {
+        return {
+          ...state,
+          user: {... state.user, token: action.payload}
+        }
+      }
+      case "LOGGEDIN": {
+        return {
+          ...state,
+          user: {... state.user, token: action.payload}
+        }
+      }
+      case "LOGOUT": {
+        console.log("HI!!!! TOKEN_UNDEF")
+        return {
+          ...state,
+          user:{...state.user, token: undefined}
+        }
+      }
+      case "LOAD_PROFILE_FINISH": {
+        return {
+          ...state,
+          user:{...state.user,profile:action.payload}
         }
       }
     }

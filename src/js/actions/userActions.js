@@ -84,3 +84,39 @@ export function setUserAge(age) {
     payload: age,
   }
 }
+
+export function login(auth){
+
+  return function(dispatch){
+    const callback = (result) => {
+      console.log("HI!!!!")
+      localStorage.setItem('id_token', result.token)
+      dispatch({
+        type:"LOGGEDIN",
+        payload:result.token
+      });
+    }
+    auth.on("authenticated",callback)
+    auth.show()
+  }
+}
+export function logout(){
+  localStorage.removeItem('id_token');
+  return {
+    type: "LOGOUT",
+  }
+}
+export function loadProfile(auth, idToken){
+  return function(dispatch){
+    console.log("HI!!!This is load profile")
+    const callback = function(err, profile){
+
+      console.log(profile, err)
+      dispatch({
+        type:"LOAD_PROFILE_FINISH",
+        payload: profile,
+      })
+    }
+    auth.getProfile(idToken, callback)
+  }
+}
