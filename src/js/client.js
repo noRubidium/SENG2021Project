@@ -32,9 +32,16 @@ const access = (route) => {
 
   dispatch(loadProfile(lock, params.idToken))
 }
+const loadProf = function(){
+  // load profile
+  const lock = new Auth0Lock('onXEJuNLYjyGYjusgwnVJCCxxmqQq8zJ', 'seng2021.auth0.com',{})
+  if(localStorage.getItem("id_token")){
+    dispatch(loadProfile(lock, localStorage.getItem("id_token")))
+  }
+}
 ReactDOM.render(<Provider store={store}>
   <Router history={hashHistory}>
-    <Route path="/" component={Layout}>
+    <Route path="/" component={Layout} onEnter={loadProf}>
       <IndexRoute component={Search}></IndexRoute>
       <Route path="all(/:search)" component={AllSearch}></Route>
       <Route path="dashboard" component={Dashboard}></Route>
