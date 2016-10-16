@@ -1,6 +1,7 @@
 import React from "react";
 import { IndexLink, Link } from "react-router";
 import SearchBar from "../SearchBar";
+import Login from "../Login";
 
 export default class Nav extends React.Component {
   constructor() {
@@ -53,6 +54,7 @@ export default class Nav extends React.Component {
                 <SearchBar placeholderText="Search All" options="hidden"/>
               </li>
               <li>
+                <Login/>
                 {/*<span onClick={this.props.history.goBack.bind(this)}>Go Back</span>*/}
               </li>
             </ul>
