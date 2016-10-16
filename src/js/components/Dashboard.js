@@ -222,13 +222,12 @@ export default class Dashboard extends React.Component {
             <h4>Explore New Topics</h4>
             <hr />
             <ul>
-              <li style={{borderStyle:"none"}}><Link to={"all/Workplace by Facebook"}>Workplace by Facebook</Link></li>
-              <li style={{borderStyle:"none"}}><Link to={"all/Django"}>Django</Link></li>
               <li style={{borderStyle:"none"}}><Link to={"all/Dijkstra's Algorithm"}>Dijkstra's Algorithm</Link></li>
-              <li style={{borderStyle:"none"}}><Link to={"all/Artificial Intelligence"}>Artificial Intelligence</Link></li>
               <li style={{borderStyle:"none"}}><Link to={"all/Cracking the Coding Interview"}>Cracking the Coding Interview</Link></li>
-              <li style={{borderStyle:"none"}}><Link to={"all/Coding Interview Tips"}>Coding Interview Tips</Link></li>
               <li style={{borderStyle:"none"}}><Link to={"all/Competitive Programming"}>Competitive Programming</Link></li>
+              <li style={{borderStyle:"none"}}><Link to={"all/Django"}>Django</Link></li>
+              <li style={{borderStyle:"none"}}><Link to={"all/Coding Interview Tips"}>Coding Interview Tips</Link></li>
+              <li style={{borderStyle:"none"}}><Link to={"all/Artificial Intelligence"}>Artificial Intelligence</Link></li>
             </ul>
           </div>
         </div>
