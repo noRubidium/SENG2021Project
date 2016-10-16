@@ -1,8 +1,19 @@
+// this one APPENDS does not set entirely new
 export function updatePreferences(preferences) {
   return {
     type: 'UPDATE_USER_PREFERENCES',
     payload: {
       preferences,
+    },
+  }
+}
+
+// this one deletes ONE preference
+export function deletePreference(preferenceIndex) {
+  return {
+    type: 'DELETE_USER_PREFERENCE',
+    payload: {
+      preferenceIndex,
     },
   }
 }

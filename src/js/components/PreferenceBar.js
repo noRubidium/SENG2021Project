@@ -25,7 +25,7 @@ export default class PreferenceBar extends React.Component {
       e.preventDefault() // Crucial to stop page refreshing
       var preferences = this.state.preferencesRaw
       if(! preferences){return;}
-      preferences = preferences.replace(",","|")
+      preferences = preferences.replace(/,/g,"|")
       this.props.dispatch(updatePreferences(preferences))
   }
 

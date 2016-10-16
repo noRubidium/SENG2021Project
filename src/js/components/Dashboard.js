@@ -4,6 +4,7 @@ import { Link } from "react-router"
 
 import Loading from "./Loading"
 
+import { deletePreference } from "../actions/userActions"
 import { fetchForums } from "../actions/forumActions"
 import { fetchForumsAppend } from "../actions/forumActions"
 import { fetchVideos } from "../actions/videoSearchActions"
@@ -34,7 +35,7 @@ export default class Dashboard extends React.Component {
   componentWillMount() {
       {/*They may not have any preferences yet*/}
       // keeps this here until we have actual user login
-      const content_list = ["IOS", "Python", "Java", "Javascript", "Dynamic Programming"]
+      const content_list = ["IOS programming", "Python", "Java", "Javascript", "Dynamic Programming"]
       if (this.props.user.user.preferences == "initial_user_pref") {
         this.props.dispatch(fetchForums(content_list[Math.floor(Math.random()*content_list.length)]))
         this.props.dispatch(fetchVideos(content_list[Math.floor(Math.random()*content_list.length)]))
@@ -57,10 +58,24 @@ export default class Dashboard extends React.Component {
     // 3: Forum Threads
     // 4: Code Repositories
     // 5: Favourites
+    // 6: Preferences
     console.log(e.currentTarget.dataset.id)
     this.setState({feed: parseInt(e.currentTarget.dataset.id)})
     this.forceUpdate()
     console.log(this.state)
+  }
+
+  handlePrefDelete(e) {
+    // e.currentTarget.dataset.id refers to the pseudo-index in this.props.user.user.preferences to delete:
+    this.props.dispatch(deletePreference(parseInt(e.currentTarget.dataset.id)))
+    this.forceUpdate()
+
+    console.log(this.state)
+  }
+
+  // just a helper function to pretty print
+  capitalizeFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
   render() {
@@ -89,7 +104,7 @@ export default class Dashboard extends React.Component {
     reposSorted = reposSorted.filter(repo => {return repo.language && repo.description && repo.forks > 100})
     reposSorted = reposSorted.sort((a,b) => {return (a.watchers > b.watchers) ? -1 : ((b.watchers > a.watchers) ? 1 : 0);} )
 
-    // convert to html
+    // form 'Tutorial Videos'/'Forum Threads'/'Code Repositories'
     const mappedForums = forumsSorted.length ? forumsSorted.map(forum => <ForumResult key={forum.question_id} forum={forum}/>)
         : <div>No results. Try a different search term.</div>
     const mappedVideos = videos.map(video => <VideoResult video={video} key={video.id.videoId}></VideoResult>)
@@ -113,7 +128,6 @@ export default class Dashboard extends React.Component {
     const mappedFavedRepos = favedRepos.map(repo => <GithubResult repo={repo}/>)
     const favedVideos = this.props.user.user.videoFavs;
     const mappedFavedVideos = favedVideos.map(video => <VideoResult video={video}></VideoResult>)
-
     var favourites = mappedFavedForums.concat(mappedFavedRepos).concat(mappedFavedVideos)
     for (var i = favourites.length; i; i--) {
         var j = Math.floor(Math.random() * i);
@@ -125,6 +139,25 @@ export default class Dashboard extends React.Component {
       favourites = ["You have no favourites yet. Start now by exploring some trending content!"]
     }
     const mappedFavourites = favourites.slice(0, 15);
+
+    // form 'Preferences'
+    console.log("this my props homie");
+    console.log(this.props);
+
+    var preferences = [];
+    if (this.props.user.user.preferences == "initial_user_pref") {
+      preferences = ["IOS", "Python", "Java", "Javascript", "Dynamic Programming"];
+    } else {
+      preferences = this.props.user.user.preferences.split(/\s*\|\s*/);
+    }
+
+    var mappedPreferences = preferences.map((pref,index) => <li style={{borderStyle:"none"}}><span>{this.capitalizeFirstLetter(pref)}  </span><span data-id={index} onClick={this.handlePrefDelete.bind(this)} class="glyphicon glyphicon-remove"></span></li>);
+    mappedPreferences = <div><h4>Your current preferences:</h4><ul>{mappedPreferences}</ul><br /><h4>Add new preference(s):</h4><PreferenceBar/></div>;
+
+    console.log(preferences);
+    console.log("mapped prefs are: ");
+    console.log(mappedPreferences);
+
 
     var feed;
     switch(this.state.feed) {
@@ -141,11 +174,24 @@ export default class Dashboard extends React.Component {
         feed = mappedRepos;
         break;
       case 5: // Favourites
-      feed = mappedFavourites;
+        feed = mappedFavourites;
+        break;
+      case 6: // Preferences
+        feed = mappedPreferences;
         break;
       default: // All
         feed = mappedAll;
     }
+
+    var middleColTitle;
+    if (feed === mappedFavourites) {
+      middleColTitle = <h4>Favourites</h4>;
+    } else if (feed === mappedPreferences) {
+      middleColTitle = <h4>Preferences</h4>;
+    } else {
+      middleColTitle = <h4>Top Content For You</h4>;
+    }
+
 
     return (
       <div>
@@ -157,32 +203,32 @@ export default class Dashboard extends React.Component {
           <div class="col-md-2">
             <h4>Feeds</h4>
             <hr />
-            <ul >
-              <a><li style={{borderStyle:"none"}} data-id="1" onClick={this.handleFeedChange.bind(this)}>All</li></a>
-              <a><li style={{borderStyle:"none"}} data-id="2" onClick={this.handleFeedChange.bind(this)}>Tutorial Videos</li></a>
-              <a><li style={{borderStyle:"none"}} data-id="3" onClick={this.handleFeedChange.bind(this)}>Forum Threads</li></a>
-              <a><li style={{borderStyle:"none"}} data-id="4" onClick={this.handleFeedChange.bind(this)}>Code Repositories</li></a>
+            <ul class="nav nav-pills nav-stacked">
+              <li style={{borderStyle:"none"}} data-id="1" onClick={this.handleFeedChange.bind(this)} class={this.state.feed === 1 ? "active" : ""} data-toggle="pill" ><a>All</a></li>
+              <li style={{borderStyle:"none"}} data-id="2" onClick={this.handleFeedChange.bind(this)} class={this.state.feed === 2 ? "active" : ""} data-toggle="pill" ><a>Tutorial Videos</a></li>
+              <li style={{borderStyle:"none"}} data-id="3" onClick={this.handleFeedChange.bind(this)} class={this.state.feed === 3 ? "active" : ""} data-toggle="pill" ><a>Forum Threads</a></li>
+              <li style={{borderStyle:"none"}} data-id="4" onClick={this.handleFeedChange.bind(this)} class={this.state.feed === 4 ? "active" : ""} data-toggle="pill" ><a>Code Repositories</a></li>
               <br />
-              <a><li style={{borderStyle:"none"}} data-id="5" onClick={this.handleFeedChange.bind(this)}>Favourites<span class="glyphicon glyphicon-heart"></span></li></a>
-              <a><li style={{borderStyle:"none"}} data-id="1" onClick={this.handleFeedChange.bind(this)}>Change Preferences<span class="glyphicon glyphicon-cog"></span></li></a>
+              <li style={{borderStyle:"none"}} data-id="5" onClick={this.handleFeedChange.bind(this)} class={this.state.feed === 5 ? "active" : ""} data-toggle="pill" ><a>Favourites<span class="glyphicon glyphicon-heart"></span></a></li>
+              <li style={{borderStyle:"none"}} data-id="6" onClick={this.handleFeedChange.bind(this)} class={this.state.feed === 6 ? "active" : ""} data-toggle="pill" ><a>Preferences<span class="glyphicon glyphicon-cog"></span></a></li>
             </ul>
           </div>
           <div class="col-md-7">
-            <h4>Top Content For You</h4>
+            {middleColTitle}
             <hr />
             {feed}
           </div>
           <div class="col-md-3">
             <h4>Explore New Topics</h4>
             <hr />
-            <ul >
-            <a><li style={{borderStyle:"none"}} data-id="2" onClick={this.handleFeedChange.bind(this)}>Google Pixel Smartphone</li></a>
-              <a><li style={{borderStyle:"none"}} data-id="3" onClick={this.handleFeedChange.bind(this)}>Workplace by Facebook</li></a>
-              <a><li style={{borderStyle:"none"}} data-id="4" onClick={this.handleFeedChange.bind(this)}>Artificial Intelligence</li></a>
-              <a><li style={{borderStyle:"none"}} data-id="5" onClick={this.handleFeedChange.bind(this)}>Cracking the Coding Interview</li></a>
-              <a><li style={{borderStyle:"none"}} data-id="5" onClick={this.handleFeedChange.bind(this)}>Should I become a Software Engineer?</li></a>
-              <a><li style={{borderStyle:"none"}} data-id="5" onClick={this.handleFeedChange.bind(this)}>Coding Interview Tips</li></a>
-              <a><li style={{borderStyle:"none"}} data-id="5" onClick={this.handleFeedChange.bind(this)}>Competitive Programming</li></a>
+            <ul>
+              <li style={{borderStyle:"none"}}><Link to={"all/Workplace by Facebook"}>Workplace by Facebook</Link></li>
+              <li style={{borderStyle:"none"}}><Link to={"all/Django"}>Django</Link></li>
+              <li style={{borderStyle:"none"}}><Link to={"all/Dijkstra's Algorithm"}>Dijkstra's Algorithm</Link></li>
+              <li style={{borderStyle:"none"}}><Link to={"all/Artificial Intelligence"}>Artificial Intelligence</Link></li>
+              <li style={{borderStyle:"none"}}><Link to={"all/Cracking the Coding Interview"}>Cracking the Coding Interview</Link></li>
+              <li style={{borderStyle:"none"}}><Link to={"all/Coding Interview Tips"}>Coding Interview Tips</Link></li>
+              <li style={{borderStyle:"none"}}><Link to={"all/Competitive Programming"}>Competitive Programming</Link></li>
             </ul>
           </div>
         </div>

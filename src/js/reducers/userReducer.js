@@ -15,7 +15,26 @@ export default function reducer(state={
 
     switch (action.type) {
       case "UPDATE_USER_PREFERENCES": {
-        return {...state, user:{...state.user, preferences: action.payload.preferences}}
+        var prefsArray = [];
+        if (state.user.preferences === "initial_user_pref") {
+          prefsArray = ["IOS", "Python", "Java", "Javascript", "Dynamic Programming"];
+        } else {
+          prefsArray = state.user.preferences.split(/\s*\|\s*/);
+        }
+        prefsArray = prefsArray.concat(action.payload.preferences.split(/\s*\|\s*/));
+        const prefsString = prefsArray.join("|");
+        return {...state, user:{...state.user, preferences: prefsString}}
+      }
+      case "DELETE_USER_PREFERENCE": {
+        var prefsArray = [];
+        if (state.user.preferences === "initial_user_pref") {
+          prefsArray = ["IOS", "Python", "Java", "Javascript", "Dynamic Programming"];
+        } else {
+          prefsArray = state.user.preferences.split(/\s*\|\s*/);
+        }
+        prefsArray.splice(action.payload.preferenceIndex, 1);
+        const prefsString = prefsArray.join("|");
+        return {...state, user:{...state.user, preferences: prefsString}}
       }
       case "ADD_USER_VIDEO_FAVOURITE": {
         return {...state, user:{...state.user, videoFavs: [...state.user.videoFavs].concat(action.payload.favourite)}}
