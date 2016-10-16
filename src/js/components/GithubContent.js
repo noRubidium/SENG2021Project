@@ -29,7 +29,10 @@ export default class GithubContent extends React.Component {
 
     getFileContents(){
         if (this.state.expanded) {
-          return(<div><ReactMarkdown source={atob(this.props.github.something.content)} /></div>)
+            const current_tree = this.props.github.something.tree
+            const mappedTrees = current_tree.map(tree => <li><GithubContent tree={tree}/></li>)
+            return(<ul>{mappedTrees}</ul>)
+    //        console.log(this.props.tree)
         } else {
           return null;
         }
@@ -43,18 +46,19 @@ export default class GithubContent extends React.Component {
         // just return a link to a GithubComponent
         if (this.props.tree.type == "blob"){
             // link to display the file contents
-        //    console.log(this.props.github.something)
+            console.log(this.props.github.something)
+            const expand = this.getFileContents()
+            return(<div>
+                {this.props.tree.path}
+                </div>
+            );
+        } else {
+            console.log(this.props.github.something)
             const expand = this.getFileContents()
             return(<div><a onClick={this.expandCode.bind(this)}>
                 {this.props.tree.path}
-                </a>
                 {expand}
-
-            </div>
-            );
-
-        } else {
-            return(<div>{this.props.tree.path}</div>)
+                </a></div>)
         }
     }
 }
