@@ -34,7 +34,7 @@ export function fetchRepos(searchTerm, currPage = 1, data = {items:[]}) {
 }
 
 export function fetchRepoContent(name) {
-  const path = "https://api.github.com/repos/" + name + "/readme/"
+  const path = "https://api.github.com/repos/" + name + "/commits"
   console.log(path)
   return function(dispatch) {
     axios.get(path, {
@@ -49,4 +49,36 @@ export function fetchRepoContent(name) {
         dispatch({type: "FETCH_REPO_CONTENT_REJECTED", payload: err})
       })
   }
+}
+
+export function fetchRepoTree(sha, name){
+    console.log(sha, name, "hussein is cool")
+    const path = "https://api.github.com/repos/" + name +"/git/trees/" + sha
+    return function(dispatch) {
+      axios.get(path
+        ).then((response) => {
+          dispatch({type: "FETCH_REPO_TREE_FULFILLED", payload: response.data})
+        })
+        .catch((err) => {
+          dispatch({type: "FETCH_REPO_TREE_REJECTED", payload: err})
+        })
+    }
+}
+
+export function fetchReadme(name){
+    console.log("this is the name", name)
+    const path = "https://api.github.com/repos/" + name + "/readme/"
+    return function(dispatch) {
+      axios.get(path, {
+        headers: {
+          'Accept': 'application/vnd.github.VERSION.raw'
+        }
+      })
+        .then((response) => {
+          dispatch({type: "FETCH_README_FULFILLED", payload: response.data})
+        })
+        .catch((err) => {
+          dispatch({type: "FETCH_README_REJECTED", payload: err})
+        })
+    }
 }
