@@ -48,32 +48,15 @@ export default class GithubContent extends React.Component {
         // if the type of tree is tree
         // just return a link to a GithubComponent
         if (this.props.tree.type == "blob"){
-            // link to display the file contents
-// <<<<<<< HEAD
-// =======
-            console.log(this.props.github.something)
-            const expand = this.getFileContents()
-// >>>>>>> master
-//             return(<div>
-//                 {this.props.tree.path}
-//                 </div>
-//             );
-//         } else {
-// <<<<<<< HEAD
-        //    console.log(this.props.github.something)
-        //    const expand = this.getFileContents()
-            return(<div><a>
+            return(<div>
                 {this.props.tree.path}
-                </a>
-            </div>)
-// =======
-//             console.log(this.props.github.something)
-//             const expand = this.getFileContents()
-//             return(<div><a onClick={this.expandCode.bind(this)}>
-//                 {this.props.tree.path}
-//                 {expand}
-//                 </a></div>)
-// >>>>>>> master
-        }
+                    </div>
+                );
+            } else {
+                return(<div><a>
+                    {this.props.tree.path}
+                    </a>
+                </div>)
+            }
     }
 }
