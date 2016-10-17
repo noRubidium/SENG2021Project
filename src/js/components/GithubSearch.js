@@ -1,18 +1,20 @@
 import React from "react"
 import { connect } from "react-redux"
+import { Link } from "react-router"
 
 import Loading from "./Loading"
-
 import { fetchRepos } from "../actions/githubActions"
-import GithubResult from "./GithubResult"
 
 import NoResult from "../pages/NoResult"
+import GithubResult from "./GithubResult"
+import PaginationButton from "./Pagination"
 
 @connect((store) => {
   return {
-    github: store.github,
-  };
+    github: store.github
+  }
 })
+
 export default class github extends React.Component {
   componentWillMount() {
     this.props.dispatch(fetchRepos(this.props.routeParams.search))
@@ -35,48 +37,30 @@ export default class github extends React.Component {
   }
 
   render() {
+    const { github } = this.props
 
-    const { github } = this.props;
-    const repos = github.repos.items;
-
-    if ((!github) || github.fetching || (! repos) ) {
-      return (
-        <Loading />
-      )
+    if ((!github) || github.fetching || !github.fetched) {
+      return <Loading />
     }
 
     const { currPage } = github
-    console.log(currPage)
-    var repos_sorted = repos
-    repos_sorted = repos_sorted.filter(repo => {return repo.language && repo.description})
+    const repos = github.repos.items
+    const search = this.props.routeParams.search
 
-    console.log(repos_sorted)
+    const filtered_repos = repos.filter(repo => {return repo.language && repo.description})
 
-    if(!repos.length || !repos_sorted.length){
-      // console.log(this.props)
-      return (
-        <NoResult term={this.props.routeParams.search} history={this.props.history}/>
-      )
+    if (!repos || !repos.length || !filtered_repos.length){
+      return <NoResult term={search} history={this.props.history}/>
     }
 
-    const mappedRepos = repos_sorted.map(repo => <li><GithubResult repo={repo}/></li>)
+    const mappedRepos = filtered_repos.map(repo => <li><GithubResult repo={repo} key={repo.id}/></li>)
 
     return (
       <div>
-          <h1>Search results for: '{this.props.routeParams.search}'</h1>
-          <ul>{mappedRepos}</ul>
-          {
-            currPage > 1?
-              <button class="btn btn-default" onClick={this.updatePrevPage.bind(this)}>&larr; Previous Page</button>
-              :
-              <button class="btn btn-default" disabled>&larr; Previous Page</button>
-          }
-          {
-            currPage < 10?
-              <button class="btn btn-default pull-right" onClick={this.updateNextPage.bind(this)}>Next Page &rarr;</button>
-              :
-              <button class="btn btn-default pull-right" disabled>Next Page &rarr;</button>
-          }
+        <h1>Search results for: '{search}'</h1>
+        <ul>{mappedRepos}</ul>
+        <PaginationButton currPage={currPage} prevPage={this.updatePrevPage.bind(this)}
+          nextPage={this.updateNextPage.bind(this)}/>
       </div>
     );
   }

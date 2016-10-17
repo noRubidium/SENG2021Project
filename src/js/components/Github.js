@@ -1,4 +1,5 @@
 import React from "react"
+import ReactMarkdown from "react-markdown"
 import { connect } from "react-redux"
 
 import GithubRepo from "./GithubRepo"
@@ -26,15 +27,14 @@ export default class Github extends React.Component {
     const { github } = this.props
     const repos = github.repos.items
 
-    if (!repos) {
-      return (
-        <div>Cannot access</div>
-      )
+    if (repos instanceof Array && !repos.length) {
+      return (<div>Illegal access (must go through a link)</div>)
     }
 
     const { repoId } = this.props.routeParams
     const repo = repos.filter(repo => { return repo.id == repoId })[0]
 
+//<<<<<<< HEAD
 
     // get the sha of the latest commit
     if(!github.content){
@@ -52,9 +52,19 @@ export default class Github extends React.Component {
           <ReactMarkdown source={github.readme}/>
           </div>
           <div class="col-md-4">
-            <div><h1>SourceTree</h1></div>     
+            <div><h1>SourceTree</h1></div>
           <GithubRepo sha={latest_commit_sha} name={repo.full_name}/>
           </div>
+{/*=======
+    if(!github.content) {
+      return <h1>Loading...</h1>
+    }
+
+    return (
+      <div>
+          <a target="_blank" href = {repo.html_url}><h1>{repo.full_name}</h1></a>
+          <ReactMarkdown source={github.content} />
+>>>>>>> master*/}
       </div>
     );
   }

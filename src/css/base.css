@@ -1,0 +1,20 @@
+/*  Fix the word wrapping problem*/
+* {
+  word-wrap: break-word;
+}
+.forumBox img{
+  width: 30%;
+}
+body {
+  background: #f5f5f5;
+}
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+.row li {
+  border-bottom: solid #ccc 2px;
+}
+#forumReactMarkdownTitle p {
+  display: inline;
+}

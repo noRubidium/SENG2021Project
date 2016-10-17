@@ -6,46 +6,60 @@ import Loading from "./Loading"
 import { fetchForums } from "../actions/forumActions"
 
 import NoResult from "../pages/NoResult"
-import ForumItem from "./ForumItem"
-
+import ForumResult from "./ForumResult"
+import PaginationButton from "./Pagination"
 
 @connect((store) => {
   return {
-    forum: store.forum,
-  };
+    forum: store.forum
+  }
 })
+
 export default class ForumSearch extends React.Component {
   componentWillMount() {
     this.props.dispatch(fetchForums(this.props.routeParams.search))
   }
 
-  fetchForums() {
-    this.props.dispatch(fetchForums(this.props.routeParams.search))
+  componentWillUpdate(nextProps, nextState) {
+    if (nextProps.routeParams.search !== this.props.routeParams.search) {
+      nextProps.dispatch(fetchForums(nextProps.routeParams.search))
+    }
+  }
+
+  updateNextPage(){
+    this.props.dispatch({type: "NEXT_PAGE_FORUM"})
+    this.props.dispatch(fetchForums(this.props.routeParams.search, this.props.forum.currPage + 1))
+  }
+
+  updatePrevPage(){
+    this.props.dispatch({type: "PREV_PAGE_FORUM"})
+    this.props.dispatch(fetchForums(this.props.routeParams.search, this.props.forum.currPage - 1))
   }
 
   render() {
     const { forum } = this.props;
 
-    if ((!forum) || forum.fetching || ! forum.fetched) {
-      return (
-        <Loading />
-      )
+    if (!forum || forum.fetching || !forum.fetched) {
+      return <Loading />
     }
-    const { forum_threads } = forum;
-    console.log(forum_threads)
-    if( (! forum_threads.items) || ! forum_threads.items.length){
-      return <NoResult term={this.props.routeParams.term} history={this.props.history}/>
+
+    const { currPage } = forum
+    const threads = forum.forum_threads.items
+    const search = this.props.routeParams.search
+
+    if (!threads || !threads.length){
+      return <NoResult term={search} history={this.props.history}/>
     }
-    const forum_threads_items = forum_threads.items;
-    const mappedForums = forum_threads_items.length ?
-      forum_threads_items.map(forum => <ForumItem key={forum.question_id} forum={forum}/>)
-      : <li>No results. Try a different search term.</li>
+
+    const mappedForums = threads.map(forum => <ForumResult key={forum.question_id} forum={forum}/>)
 
     return (
       <div className="forumBox">
-          <h1>Search results for: '{this.props.routeParams.search}'</h1>
-          <ul>{mappedForums}</ul>
+        <h1>Search results for: '{search}'</h1>
+        <ul>{mappedForums}</ul>
+        <PaginationButton currPage={currPage} prevPage={this.updatePrevPage.bind(this)}
+          nextPage={this.updateNextPage.bind(this)}/>
       </div>
-    );
+    )
   }
 }

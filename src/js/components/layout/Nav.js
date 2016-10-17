@@ -1,6 +1,7 @@
 import React from "react";
 import { IndexLink, Link } from "react-router";
 import SearchBar from "../SearchBar";
+import Login from "../Login";
 
 export default class Nav extends React.Component {
   constructor() {
@@ -50,9 +51,10 @@ export default class Nav extends React.Component {
                 <Link to="/Dashboard" onClick={this.toggleCollapse.bind(this)}>Dashboard {/*(the homepage for non-first-time users)*/ }</Link>
               </li>
               <li>
-                <SearchBar formClass="navbar-form" dropDownShow="hidden" placeholderText="Search All"/>
+                <SearchBar placeholderText="Search All" options="hidden"/>
               </li>
               <li>
+                <Login/>
                 {/*<span onClick={this.props.history.goBack.bind(this)}>Go Back</span>*/}
               </li>
             </ul>
