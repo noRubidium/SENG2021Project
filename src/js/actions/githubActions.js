@@ -91,15 +91,20 @@ export function fetchRepoTree(sha, name){
     }
 }
 
-export function fetchUrlContent(url){
-    console.log("something should go here",url)
+export function fetchReadme(name){
+    console.log("this is the name", name)
+    const path = "https://api.github.com/repos/" + name + "/readme/"
     return function(dispatch) {
-      axios.get(url
-        ).then((response) => {
-          dispatch({type: "FETCH_URL_CONTENT_SUCCESS", payload: response.data})
+      axios.get(path, {
+        headers: {
+          'Accept': 'application/vnd.github.VERSION.raw'
+        }
+      })
+        .then((response) => {
+          dispatch({type: "FETCH_README_FULFILLED", payload: response.data})
         })
         .catch((err) => {
-          dispatch({type: "FETCH_URL_CONTENT_REJECTED", payload: err})
+          dispatch({type: "FETCH_README_REJECTED", payload: err})
         })
     }
 }

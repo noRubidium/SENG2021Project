@@ -3,6 +3,7 @@ import { connect } from "react-redux"
 
 import GithubRepo from "./GithubRepo"
 import { fetchRepoContent } from "../actions/githubActions"
+import { fetchReadme } from "../actions/githubActions"
 
 @connect((store) => {
   return {
@@ -17,6 +18,7 @@ export default class Github extends React.Component {
     if (repos instanceof Array && repos.length) {
       const repo = repos.filter(repo => { return repo.id == repoId })[0]
       this.props.dispatch(fetchRepoContent(repo.full_name))
+      this.props.dispatch(fetchReadme(repo.full_name))
     }
   }
 
@@ -42,12 +44,17 @@ export default class Github extends React.Component {
     const latest_commit_sha = github.content[0].sha
 
     console.log("This is github:",github)
-
     var ReactMarkdown = require('react-markdown')
     return (
       <div>
+          <a target="_blank" href = {repo.html_url}><h1>{repo.full_name}</h1></a>
+          <div class="col-md-8">
+          <ReactMarkdown source={github.readme}/>
+          </div>
+          <div class="col-md-4">
+            <div><h1>SourceTree</h1></div>     
           <GithubRepo sha={latest_commit_sha} name={repo.full_name}/>
-
+          </div>
       </div>
     );
   }

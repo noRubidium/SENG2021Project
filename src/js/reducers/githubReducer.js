@@ -64,15 +64,15 @@ export default function reducer(state={
             error: action.payload,
           }
       }
-      case "FETCH_URL_CONTENT_SUCCESS": {
+      case "FETCH_README_FULFILLED": {
           return {
             ...state,
             fetching: false,
             fetched: true,
-            something: action.payload,
+            readme: action.payload,
           }
       }
-      case "FETCH_URL_CONTENT_REJECTED": {
+      case "FETCH_README_REJECTED": {
           return {
             ...state,
             fetching: false,
