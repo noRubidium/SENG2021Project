@@ -10,12 +10,14 @@ import { login, logout } from "../actions/userActions"
 })
 
 export default class Login extends React.Component {
-  login(){
+  login(e){
     const { lock } = this.props.user
+    e.preventDefault()
     this.props.dispatch(login(lock))
   }
-  logout(){
+  logout(e){
     console.log("HI!!!")
+    e.preventDefault()
     this.props.dispatch(logout())
   }
   render(){
@@ -25,14 +27,14 @@ export default class Login extends React.Component {
       // if(this.props.user.user.profile){
       //   console.log("MY FAULT")
       console.log("HI!!! THIS IS MY FAULT!", this.props.user)
-        return (<a>
-          <span style={{paddingRight:"10px"}}>Welcome {this.props.user.user.profile["nickname"]}</span>
-          <a onClick={this.logout.bind(this)}>Logout</a>
-        </a>);
+        return (<ul class="nav navbar-nav navbar-right">
+          <li style={{marginTop:"20px"}}><span style={{paddingRight:"10px", color:"white"}}>Welcome {this.props.user.user.profile["nickname"]}</span></li>
+          <li><a href='#' onClick={this.logout.bind(this)}>Logout</a></li>
+        </ul>);
       // }
     }
     return (
-      <a onClick={this.login.bind(this)}>Login</a>
+      <ul class="nav navbar-nav navbar-right"><li><a href='#' onClick={this.login.bind(this)}>Login</a></li></ul>
     )
   }
 }

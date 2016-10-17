@@ -53,11 +53,9 @@ export default class Nav extends React.Component {
               <li>
                 <SearchBar placeholderText="Search All" options="hidden"/>
               </li>
-              <li>
-                <Login/>
-                {/*<span onClick={this.props.history.goBack.bind(this)}>Go Back</span>*/}
-              </li>
+
             </ul>
+            <Login />
           </div>
         </div>
       </nav>
