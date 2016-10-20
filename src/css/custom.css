@@ -1,0 +1,31 @@
+.navbar-links {
+	font-family: 'Montserrat', sans-serif;
+	color: white;
+}
+
+.navbar-right {
+  margin-right: 2px;
+}
+
+.navbar-default .navbar-nav > li > a {
+	color: rgba(255,255,255,0.5);
+	transition: 0.3s;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+	color: #FFF;
+}
+
+.navbar-default {
+	background-color: transparent;
+	border: 0;
+	border-radius: 0;
+	border-bottom: 1px solid rgba(255,255,255,0.5);
+}
+
+body {
+	background-image: url("../../home-wallpaper.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+}

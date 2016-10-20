@@ -40,7 +40,6 @@ export default class HomePage extends React.Component {
 
         <div class="row" style={{marginTop:"12em"}}>
           <div class="text-center">
-            <h1>Sauce</h1>
             {/*<img class="" src="/logo/sauceWhite.svg" />*/}
             <h4>Search for any programming related topic</h4>
           </div>

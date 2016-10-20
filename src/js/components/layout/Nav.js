@@ -28,36 +28,13 @@ export default class Nav extends React.Component {
     const navClass = collapsed ? "collapse" : "";
 
     return (
-      <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-        <div class="container">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle" onClick={this.toggleCollapse.bind(this)} >
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-          </div>
-          <div class={"navbar-collapse " + navClass} id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-              <li>
-                <IndexLink to="/" onClick={this.toggleCollapse.bind(this)} style={{paddingTop:"10px", paddingBottom: "10px"}}><img src="logo/sauceDark.svg" class="nav-logo" style={{height:"40px"}}/></IndexLink>
-              </li>
-              {/*<li>*/}
-                {/*<IndexLink to="/" onClick={this.toggleCollapse.bind(this)}class="navbar-left"><img src="/logo/sauceDark.svg" /></IndexLink>*/}
-                {/*<IndexLink to="/" onClick={this.toggleCollapse.bind(this)}>Home</IndexLink>*/}
-              {/*</li>*/}
-              <li>
-                <Link to="/Dashboard" onClick={this.toggleCollapse.bind(this)}>Dashboard {/*(the homepage for non-first-time users)*/ }</Link>
-              </li>
-              <li>
-                <SearchBar placeholderText="Search All" options="hidden"/>
-              </li>
-
-            </ul>
-            <Login />
-          </div>
-        </div>
+      <nav class="navbar navbar-default">
+        <ul class="nav navbar-nav navbar-left">
+            <li><a href="#" class="navbar-links">SAUCE</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="#" class="navbar-links">DASHBOARD</a></li>
+        </ul>
       </nav>
     );
   }
