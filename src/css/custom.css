@@ -3,13 +3,8 @@
 	color: white;
 }
 
-.navbar-right {
-  margin-right: 2px;
-}
-
 .navbar-default .navbar-nav > li > a {
 	color: rgba(255,255,255,0.5);
-	transition: 0.3s;
 }
 
 .navbar-default .navbar-nav > li > a:hover {
@@ -23,9 +18,60 @@
 	border-bottom: 1px solid rgba(255,255,255,0.5);
 }
 
+.navbar-right {
+	margin-right: 2px;
+}
+
 body {
 	background-image: url("../../home-wallpaper.jpg");
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center center;
+}
+
+.logo-image {
+	margin-top: 40px;
+	margin-bottom: 20px;
+	width: 300px;
+}
+
+
+.btn {
+	font-family: 'Montserrat', sans-serif;
+	border: none;
+	border-radius: 5px;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+.options {
+	padding: 10px 20px;
+	margin: 0 10px;
+}
+
+.btn-default {
+	color: #FFF;
+  background-color: #3DACF6;
+}
+
+
+.btn-default:hover {
+	color: #FFF;
+	background-color: #22313F;
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 30px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+
+.homepage {
+	color: white;
 }

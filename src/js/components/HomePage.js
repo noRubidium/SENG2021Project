@@ -36,30 +36,15 @@ export default class HomePage extends React.Component {
     const raffleIndex = Math.floor(Math.random() * 5)
 
     return (
-      <div class="container">
-
-        <div class="row" style={{marginTop:"12em"}}>
-          <div class="text-center">
-            {/*<img class="" src="/logo/sauceWhite.svg" />*/}
-            <h4>Search for any programming related topic</h4>
-          </div>
-        </div>
-
-        <div class="control-group">&nbsp;</div> {/*spacer*/}
-        <SearchBar options="show" />
-        <div class="control-group">&nbsp;</div> {/*spacer*/}
-        <div class="control-group">&nbsp;</div> {/*spacer*/}
-
+      <div class="container text-center">
+      <img src="sauceLogoHome.png" class="logo-image"></img>
         <div class="row">
-          <div class="text-center">
-            <h4>Not sure where to begin? Select a topic.</h4>
-            <div class="control-group">&nbsp;</div> {/*spacer*/}
-            <Link to={'/video/'+videoRaffle[raffleIndex]}><button class="btn btn-primary" style={{marginLeft:"5px"}}>Learn Technologies</button></Link>
-            <Link to={'/forum/'+forumRaffle[raffleIndex]}><button class="btn btn-primary" style={{marginLeft:"5px"}}>Discuss Topics</button></Link>
-            <Link to={'/github/'+githubRaffle[raffleIndex]}><button class="btn btn-primary" style={{marginLeft:"5px"}}>Explore Code</button></Link>
-          </div>
+          <h4 class="homepage">Not sure where to begin? Select a topic.</h4>
+          <button class="btn btn-default options">Learn Technologies</button>
+          <button class="btn btn-default options">Discuss Topics</button>
+          <button class="btn btn-default options">Explore Code</button>
         </div>
-      </div>
+    </div>
     )
   }
 }
