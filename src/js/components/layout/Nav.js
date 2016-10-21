@@ -26,13 +26,16 @@ export default class Nav extends React.Component {
     const { location } = this.props;
     console.log(location)
     const navClass = location.pathname === "/"? "navbar-invisible": "navbar-blue"
-    const showSearch = location.pathname === "/"? "show": ""
 
     return (
       <nav class={"navbar navbar-default " + navClass}>
         <ul class="nav navbar-nav navbar-left">
             <li><IndexLink to="/" class="navbar-links">SAUCE</IndexLink></li>
         </ul>
+        {
+          location.pathname !== "/"? <SearchBar formClass="navbar-form navbar-left"/>:
+          <div></div>
+        }
         <ul class="nav navbar-nav navbar-right">
             <li><Link to="/dashboard" class="navbar-links">DASHBOARD</Link></li>
             <li><a href="#" class="navbar-links">LOGIN</a></li>

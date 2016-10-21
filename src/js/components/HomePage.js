@@ -42,7 +42,7 @@ export default class HomePage extends React.Component {
         <img src="sauceLogoHome.png" class="logo-image"></img>
         <div class="row">
           <h4 class="homepage">Not sure where to begin? Select a topic.</h4>
-          <SearchBar/>
+          <SearchBar formClass="row search-bar-homepage text-center"/>
           <Link to={videoLink}><button class="btn btn-default options">Learn Technologies</button></Link>
           <Link to={forumLink}><button class="btn btn-default options">Discuss Topics</button></Link>
           <Link to={githubLink}><button class="btn btn-default options">Explore Code</button></Link>

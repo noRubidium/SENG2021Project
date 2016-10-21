@@ -17,9 +17,11 @@ export default class SearchBar extends React.Component {
   }
 
   render(){
+    const { formClass } = this.props;
+
     return (
-      <form class="row" role="search">
-        <div class="input-group search-bar-homepage text-center">
+      <form class={formClass} role="search">
+        <div class="input-group">
           <input
             type="text"
             class="form-control"
