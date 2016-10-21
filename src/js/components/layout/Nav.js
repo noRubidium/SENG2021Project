@@ -24,16 +24,18 @@ export default class Nav extends React.Component {
 
   render() {
     const { location } = this.props;
-    const { collapsed } = this.state;
-    const navClass = collapsed ? "collapse" : "";
+    console.log(location)
+    const navClass = location.pathname === "/"? "navbar-invisible": "navbar-blue"
+    const showSearch = location.pathname === "/"? "show": ""
 
     return (
-      <nav class="navbar navbar-default">
+      <nav class={"navbar navbar-default " + navClass}>
         <ul class="nav navbar-nav navbar-left">
             <li><IndexLink to="/" class="navbar-links">SAUCE</IndexLink></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li><Link to="/dashboard" class="navbar-links">DASHBOARD</Link></li>
+            <li><a href="#" class="navbar-links">LOGIN</a></li>
         </ul>
       </nav>
     );

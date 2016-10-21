@@ -7,6 +7,11 @@ import SearchBar from "./SearchBar"
 
 
 export default class HomePage extends React.Component {
+
+  componentWillMount() {
+    document.body.style.backgroundImage = 'url("../../home-wallpaper.jpg")';
+  }
+
   render(){
     const videoRaffle = ["Introduction to programming",
                          "Python 3",
@@ -33,8 +38,8 @@ export default class HomePage extends React.Component {
     const githubLink = '/github/'+githubRaffle[raffleIndex]
 
     return (
-      <div class="container text-center">
-      <img src="sauceLogoHome.png" class="logo-image"></img>
+      <div class="text-center homepage-container">
+        <img src="sauceLogoHome.png" class="logo-image"></img>
         <div class="row">
           <h4 class="homepage">Not sure where to begin? Select a topic.</h4>
           <SearchBar/>

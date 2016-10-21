@@ -13,11 +13,17 @@
 	color: #FFF;
 }
 
-.navbar-default {
+.navbar-default.navbar-invisible {
 	background-color: transparent;
 	border: 0;
 	border-radius: 0;
-	border-bottom: 1px solid rgba(255,255,255,0.5);
+	/*border-bottom: 1px solid rgba(255,255,255,0.5);*/
+}
+
+.navbar-default.navbar-blue{
+	background-color: #253651;
+	border: 0;
+	border-radius: 0;
 }
 
 .navbar-right {
@@ -25,7 +31,6 @@
 }
 
 body {
-	background-image: url("../../home-wallpaper.jpg");
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center center;
@@ -75,7 +80,6 @@ h6 {
   font-family: 'Open Sans', sans-serif;
 }
 
-
 .homepage {
 	color: white;
 }
@@ -84,4 +88,59 @@ h6 {
 	width: 50%;
 	margin: 0 auto;
 	margin-bottom: 30px;
+}
+
+ul.search-result {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+#forumReactMarkdownTitle p {
+  display: inline;
+}
+
+.btn-primary {
+	color: #000;
+	background-color: transparent;
+	-webkit-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus, .btn-primary.active{
+	color: #FFF;
+	background-color: #000;
+}
+
+.search-result-banner {
+	margin-top: -20px;
+	position: absolute;
+  width: 100%;
+	left: 0;
+	background-color: #3DACF6;
+	color: white;
+}
+
+.search-result-banner > h4 {
+	margin: 12px;
+}
+
+.forum-body {
+	padding-bottom: 20px;
+	margin-bottom: 10px;
+	border-bottom: 2px solid #DADADA;
+}
+
+.forum-box a {
+  color: #0099CC !important;
+	-webkit-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+.forum-box a:hover {
+  color: #004D66 !important;
+  text-decoration: none !important;
+}
+
+.pagination-button {
+	margin-bottom: 20px;
 }

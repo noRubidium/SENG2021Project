@@ -9,6 +9,9 @@ import NoResult from "../pages/NoResult"
 import ForumResult from "./ForumResult"
 import PaginationButton from "./Pagination"
 
+import SearchOptions from "./SearchOptions"
+import SearchResult from "./SearchResult"
+
 @connect((store) => {
   return {
     forum: store.forum
@@ -17,6 +20,7 @@ import PaginationButton from "./Pagination"
 
 export default class ForumSearch extends React.Component {
   componentWillMount() {
+    document.body.style.backgroundImage = "none";
     this.props.dispatch(fetchForums(this.props.routeParams.search))
   }
 
@@ -51,12 +55,13 @@ export default class ForumSearch extends React.Component {
       return <NoResult term={search} history={this.props.history}/>
     }
 
-    const mappedForums = threads.map(forum => <ForumResult key={forum.question_id} forum={forum}/>)
+    const mappedForums = threads.map(forum => <li class="search-result"><ForumResult key={forum.question_id} forum={forum}/></li>)
 
     return (
-      <div className="forumBox">
-        <h1>Search results for: '{search}'</h1>
-        <ul>{mappedForums}</ul>
+      <div class="container forum-box">
+        <SearchOptions search={search} active="forum"/>
+        <ul class="search-result">{mappedForums}</ul>
+        <div><br/><br/></div>
         <PaginationButton currPage={currPage} prevPage={this.updatePrevPage.bind(this)}
           nextPage={this.updateNextPage.bind(this)}/>
       </div>

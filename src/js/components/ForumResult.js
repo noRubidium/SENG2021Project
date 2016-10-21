@@ -34,7 +34,7 @@ export default class ForumResult extends React.Component {
         <div class="row">
           <div class="col-md-10">
             <h3>
-              <Link to={"/forum/display/"+forum.question_id} >
+              <Link to={"/forum/display/"+forum.question_id}>
                 <ReactMarkdown source={forum.title} containerTagName='span' containerProps={{id:"forumReactMarkdownTitle"}}/>
               </Link>
             </h3>
@@ -43,7 +43,7 @@ export default class ForumResult extends React.Component {
             <h3>{favourite}</h3>
           </div>
         </div>
-        <div class="row col-md-12">
+        <div class="row col-md-12 forum-body">
           <ReactMarkdown source={forum.body} />
         </div>
       </div>

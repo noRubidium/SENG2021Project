@@ -22,6 +22,7 @@ import ForumResult from "./ForumResult"
 })
 export default class AllSearch extends React.Component {
   componentWillMount() {
+      document.body.style.backgroundImage = "none";
       this.props.dispatch(fetchForums(this.props.routeParams.search))
       this.props.dispatch(fetchVideos(this.props.routeParams.search))
       this.props.dispatch(fetchRepos(this.props.routeParams.search))
@@ -77,7 +78,7 @@ export default class AllSearch extends React.Component {
     const videoRows = mappedVideos.slice(0,5)
 
     return (
-      <div class="container">
+      <div>
         <div class="row center-text">
           <h1>Search results for: '{this.props.routeParams.search}'</h1>
         </div>

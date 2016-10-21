@@ -13,26 +13,28 @@ export default class SearchBar extends React.Component {
   }
 
   getLink() {
-     return "all/"+ this.state.term;
+     return this.state.term? "all/"+ this.state.term: "";
   }
 
   render(){
     return (
-      <div class="input-group search-bar-homepage text-center">
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Search"
-          onChange={e => this.setState({term: e.target.value})}>
-        </input>
-        <span class="input-group-btn">
-          <Link to={this.getLink()}>
-            <button type="submit" class="btn btn-default" disabled={this.state.term? "":"disabled"}>
-              <span class="glyphicon glyphicon-search"></span>
-            </button>
-          </Link>
-        </span>
-      </div>
+      <form class="row" role="search">
+        <div class="input-group search-bar-homepage text-center">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Search"
+            onChange={e => this.setState({term: e.target.value})}>
+          </input>
+          <span class="input-group-btn">
+            <Link to={this.getLink()}>
+              <button type="submit" class="btn btn-default" disabled={this.state.term? "":"disabled"}>
+                <i class="glyphicon glyphicon-search"></i>
+              </button>
+            </Link>
+          </span>
+        </div>
+      </form>
     )
   }
 }
