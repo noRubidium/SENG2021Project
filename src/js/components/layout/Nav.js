@@ -30,10 +30,10 @@ export default class Nav extends React.Component {
     return (
       <nav class="navbar navbar-default">
         <ul class="nav navbar-nav navbar-left">
-            <li><a href="#" class="navbar-links">SAUCE</a></li>
+            <li><IndexLink to="/" class="navbar-links">SAUCE</IndexLink></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="#" class="navbar-links">DASHBOARD</a></li>
+            <li><Link to="/dashboard" class="navbar-links">DASHBOARD</Link></li>
         </ul>
       </nav>
     );

@@ -5,6 +5,8 @@
 
 .navbar-default .navbar-nav > li > a {
 	color: rgba(255,255,255,0.5);
+	-webkit-transition: all 0.3s;
+	transition: all 0.3s;
 }
 
 .navbar-default .navbar-nav > li > a:hover {
@@ -52,6 +54,8 @@ body {
 .btn-default {
 	color: #FFF;
   background-color: #3DACF6;
+	-webkit-transition: all 0.3s;
+	transition: all 0.3s;
 }
 
 
@@ -74,4 +78,10 @@ h6 {
 
 .homepage {
 	color: white;
+}
+
+.search-bar-homepage {
+	width: 50%;
+	margin: 0 auto;
+	margin-bottom: 30px;
 }
