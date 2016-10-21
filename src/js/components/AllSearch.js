@@ -13,6 +13,8 @@ import GithubResult from "./GithubResult"
 import NoResult from "../pages/NoResult"
 import ForumResult from "./ForumResult"
 
+import SearchOptions from "./SearchOptions"
+
 @connect((store) => {
   return {
     forum: store.forum,
@@ -63,37 +65,37 @@ export default class AllSearch extends React.Component {
     // forums_sorted = forums_sorted
     const mappedForums = forums_sorted.length ? forums_sorted.map(forum =>  <ForumResult key={forum.question_id} forum={forum}/>)
         : [<li>No results. Try a different search term.</li>]
-    const mappedVideos = videos.map(video => <VideoResult video={video} key={video.id.videoId}></VideoResult>)
+    const mappedVideos = videos.map(video => <div><VideoResult video={video} key={video.id.videoId}></VideoResult><hr/></div>)
 
     var repos_sorted = []
     var minFork = 64
     while(minFork > 0 && repos_sorted.length < 3){
-      repos_sorted = repos.filter(repo => {return repo.language && repo.description && repo.forks > minFork}).slice(0,13)
+      repos_sorted = repos.filter(repo => {return repo.language && repo.description && repo.forks > minFork}).slice(0,10)
       minFork /= 2
     }
     const mappedRepos = repos_sorted.length? repos_sorted.map(repo => <div key={repo.git_url}><GithubResult repo={repo}/></div>)
         : <li>No results. Try a different search term.</li>
 
-    const forumList = mappedForums.slice(0,10)
+    const forumList = mappedForums.slice(0,5)
     const videoRows = mappedVideos.slice(0,5)
 
+    const { search } = this.props.routeParams
+
     return (
-      <div>
-        <div class="row center-text">
-          <h1>Search results for: '{this.props.routeParams.search}'</h1>
-        </div>
+      <div class="container">
+        <SearchOptions search={search} active="all"/>
         <div class="row">
           <div class="col-md-4">
             <h3>Tutorials</h3>
-            <ul>{videoRows}</ul>
+            <ul class="search-result">{videoRows}</ul>
           </div>
           <div class="col-md-4 forumBox">
             <h3>Forums</h3>
-            <ul>{forumList}</ul>
+            <ul class="search-result">{forumList}</ul>
           </div>
           <div class="col-md-4">
             <h3>Github Repositories</h3>
-            <ul>{mappedRepos}</ul>
+            <ul class="search-result">{mappedRepos}</ul>
           </div>
         </div>
       </div>

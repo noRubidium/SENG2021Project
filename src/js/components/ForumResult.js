@@ -45,6 +45,7 @@ export default class ForumResult extends React.Component {
         </div>
         <div class="row col-md-12 forum-body">
           <ReactMarkdown source={forum.body} />
+          <hr/>
         </div>
       </div>
     );

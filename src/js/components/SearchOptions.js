@@ -23,7 +23,7 @@ export default class SearchOptions extends React.Component {
     return (
       <div class="container-fluid">
         <div class="search-result-banner text-center">
-  	      <h4> Search Result for: `{search}` </h4>
+  	      <h4> Search Result for: `<b>{search}</b>` </h4>
         </div>
         <br/>
         <br/>

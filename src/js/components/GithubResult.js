@@ -42,11 +42,12 @@ export default class GithubResult extends React.Component {
             <h3>{favourite}</h3>
           </div>
         </div>
-        <div class="row col-md-12">
+        <div class="row col-md-12 github-result">
           <h5><span class="octicon octicon-star"></span>{repo.stargazers_count}
           &emsp;<span class="octicon octicon-repo-forked"></span> {repo.forks} </h5>
           <h5>Written in <i>{repo.language}</i></h5>
           <h5>{repo.description}</h5>
+          <hr/>
         </div>
       </div>
     )

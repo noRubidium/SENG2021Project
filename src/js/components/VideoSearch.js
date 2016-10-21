@@ -9,6 +9,8 @@ import NoResult from "../pages/NoResult"
 import VideoResult from "./VideoResult"
 import PaginationButton from "./Pagination"
 
+import SearchOptions from "./SearchOptions"
+
 @connect((store) => {
   return {
     videoSearch: store.videoSearch,
@@ -18,6 +20,7 @@ import PaginationButton from "./Pagination"
 
 export default class VideoSearch extends React.Component {
   componentWillMount() {
+    document.body.style.backgroundImage = "none";
     this.props.dispatch(fetchVideos(this.props.routeParams.search, this.props.currPage))
   }
 
@@ -61,9 +64,10 @@ export default class VideoSearch extends React.Component {
       rows.push(<div class="row" key={"video-result-row-" + i}>{mappedVideos.slice(i, i+3)}</div>)
     }
     return (
-      <div>
-        <h1>Search results for: '{search}'</h1>
+      <div class="container video-search">
+        <SearchOptions search={search} active="tutorial"/>
         {rows}
+        <div class="pagination-button">
         {
           this.props.videoSearch.prevPage?
             <button class="btn btn-default" onClick={this.updatePrevPage.bind(this)}>&larr; Previous Page</button>
@@ -76,6 +80,7 @@ export default class VideoSearch extends React.Component {
             :
             <button class="btn btn-default pull-right" disabled>Next Page &rarr;</button>
         }
+        </div>
       </div>
     )
   }

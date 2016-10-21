@@ -9,6 +9,8 @@ import NoResult from "../pages/NoResult"
 import GithubResult from "./GithubResult"
 import PaginationButton from "./Pagination"
 
+import SearchOptions from "./SearchOptions"
+
 @connect((store) => {
   return {
     github: store.github
@@ -17,6 +19,7 @@ import PaginationButton from "./Pagination"
 
 export default class github extends React.Component {
   componentWillMount() {
+    document.body.style.backgroundImage = "none";
     this.props.dispatch(fetchRepos(this.props.routeParams.search))
   }
 
@@ -53,12 +56,12 @@ export default class github extends React.Component {
       return <NoResult term={search} history={this.props.history}/>
     }
 
-    const mappedRepos = filtered_repos.map(repo => <li><GithubResult repo={repo} key={repo.id}/></li>)
+    const mappedRepos = filtered_repos.map(repo => <li class="search-result"><GithubResult repo={repo} key={repo.id}/></li>)
 
     return (
-      <div>
-        <h1>Search results for: '{search}'</h1>
-        <ul>{mappedRepos}</ul>
+      <div class="container github-search">
+        <SearchOptions search={search} active="repo"/>
+        <ul class="search-result">{mappedRepos}</ul>
         <PaginationButton currPage={currPage} prevPage={this.updatePrevPage.bind(this)}
           nextPage={this.updateNextPage.bind(this)}/>
       </div>

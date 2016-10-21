@@ -21,7 +21,7 @@
 }
 
 .navbar-default.navbar-blue{
-	background-color: #253651;
+	background-color: #446CB3;
 	border: 0;
 	border-radius: 0;
 }
@@ -51,22 +51,25 @@ body {
 	text-transform: uppercase;
 }
 
-.options {
-	padding: 10px 20px;
-	margin: 0 10px;
+.search-options {
+	margin-bottom: 15px;
 }
 
 .btn-default {
 	color: #FFF;
-  background-color: #3DACF6;
+  background-color: #446CB3;
 	-webkit-transition: all 0.3s;
 	transition: all 0.3s;
 }
 
-
 .btn-default:hover {
 	color: #FFF;
 	background-color: #22313F;
+}
+
+.options {
+	padding: 12px 20px;
+	margin: 0 10px 0 10px;
 }
 
 
@@ -76,7 +79,6 @@ h3,
 h4,
 h5,
 h6 {
-  margin-bottom: 30px;
   font-family: 'Open Sans', sans-serif;
 }
 
@@ -87,7 +89,7 @@ h6 {
 .search-bar-homepage {
 	width: 50%;
 	margin: 0 auto;
-	margin-bottom: 30px;
+	margin-bottom: 20px;
 }
 
 ul.search-result {
@@ -116,31 +118,35 @@ ul.search-result {
 	position: absolute;
   width: 100%;
 	left: 0;
-	background-color: #3DACF6;
-	color: white;
+	background-color:#ECF0F7;
+	color: black;
 }
 
 .search-result-banner > h4 {
-	margin: 12px;
+	margin: 14px;
 }
 
-.forum-body {
-	padding-bottom: 20px;
+/*.forum-body .github-result {
+	padding-bottom: 10px;
 	margin-bottom: 10px;
 	border-bottom: 2px solid #DADADA;
-}
+}*/
 
-.forum-box a {
-  color: #0099CC !important;
+.forum-search a, .forum-page a, .github-search a, .video-search a{
+  color: #446CB3 !important;
 	-webkit-transition: all 0.3s;
 	transition: all 0.3s;
 }
 
-.forum-box a:hover {
+.forum-search a:hover, .forum-page a:hover, .github-search a:hover, .video-search a:hover {
   color: #004D66 !important;
   text-decoration: none !important;
 }
 
 .pagination-button {
 	margin-bottom: 20px;
+}
+
+.container {
+	width: 80%;
 }

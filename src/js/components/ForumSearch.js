@@ -10,7 +10,6 @@ import ForumResult from "./ForumResult"
 import PaginationButton from "./Pagination"
 
 import SearchOptions from "./SearchOptions"
-import SearchResult from "./SearchResult"
 
 @connect((store) => {
   return {
@@ -58,10 +57,9 @@ export default class ForumSearch extends React.Component {
     const mappedForums = threads.map(forum => <li class="search-result"><ForumResult key={forum.question_id} forum={forum}/></li>)
 
     return (
-      <div class="container forum-box">
+      <div class="container forum-search">
         <SearchOptions search={search} active="forum"/>
         <ul class="search-result">{mappedForums}</ul>
-        <div><br/><br/></div>
         <PaginationButton currPage={currPage} prevPage={this.updatePrevPage.bind(this)}
           nextPage={this.updateNextPage.bind(this)}/>
       </div>
