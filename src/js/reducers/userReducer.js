@@ -28,7 +28,13 @@ export default function reducer(state={
       tree: tree,
       oTree: oTree
     },
-    lock: new Auth0Lock('onXEJuNLYjyGYjusgwnVJCCxxmqQq8zJ', 'seng2021.auth0.com',{}),
+    lock: new Auth0Lock('onXEJuNLYjyGYjusgwnVJCCxxmqQq8zJ', 'seng2021.auth0.com',{
+      theme: {
+        logo: '/logo/Sauce.png',
+        primaryColor: '#446CB3',
+        title: "Log in",
+      }
+    }),
     fetching: false,
     fetched: false,
     error: null,
