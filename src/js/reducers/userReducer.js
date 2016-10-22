@@ -1,4 +1,5 @@
 import Auth0Lock from "auth0-lock"
+import flare from "../../flare.json"
 
 export default function reducer(state={
     user: {
@@ -11,6 +12,7 @@ export default function reducer(state={
       preferences: "initial_user_pref",
       profile:{},
       token: localStorage.getItem('id_token'),
+      tree: flare
     },
     lock: new Auth0Lock('onXEJuNLYjyGYjusgwnVJCCxxmqQq8zJ', 'seng2021.auth0.com',{}),
     fetching: false,

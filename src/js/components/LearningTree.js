@@ -4,11 +4,15 @@ import { connect } from "react-redux"
 import TreeData from "../data/learningTree"
 import Tree from "../util/Tree"
 
-
+@connect((store) => {
+  return {
+    tree: store.user.user.tree,
+  };
+})
 export default class LearningTree extends React.Component {
   drawGraph(e1){
     //console.log(e1)
-    Tree.create(e1,this.redirect.bind(this))
+    Tree.create(e1,this.redirect.bind(this), this.props.tree)
   }
   redirect(target){
     console.log(target);

@@ -1,32 +1,33 @@
 import * as d3 from "d3"
-import flare from "../../flare.json"
+
 let Tree = {}
-Tree.create = function(e1, routeFun){
-  var margin = {top: 20, right: 120, bottom: 20, left: 120},
-      width = 2000 - margin.right - margin.left,
+Tree.create = function(e1, routeFun, data){
+  const margin = {top: 20, right: 120, bottom: 20, left: 120},
+      width = 1200 - margin.right - margin.left,
       height = 800 - margin.top - margin.bottom;
 
-  var i = 0,
+  let i = 0,
       duration = 750,
       root;
+  const struct = this;
 
-  var tree = d3.layout.tree()
+  const tree = d3.layout.tree()
       .size([height, width]);
 
-  var diagonal = d3.svg.diagonal()
+  const diagonal = d3.svg.diagonal()
       .projection(function(d) { return [d.y, d.x]; });
 
-  var svg = d3.select(e1).append("svg")
+  const svg = d3.select(e1).append("svg")
       .attr("width", width + margin.right + margin.left)
       .attr("height", height + margin.top + margin.bottom)
-    .append("g")
+      .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-
-
-    root = flare[0];
+    root = data[0];
     root.x0 = height / 2;
     root.y0 = 0;
+    this._root = root;
+    this.root = root;
 
     function collapse(d) {
       if (d.children) {
@@ -35,27 +36,46 @@ Tree.create = function(e1, routeFun){
         d.children = null;
       }
     }
-    console.log(root);
+    const MAX_DEPTH = 4;
+    // Truncate down to 3 layers:
+    function truncate(d){
+      console.log("Truncate",d);
+      let max = 0,
+        myResult = {
+          root: d,
+          depth: 1,
+        };
+      if(d.children){
+        for (const child of d.children) {
+          const result = truncate(child);
+          console.log("This is result:",result.depth, result.root);
+          if(result.depth === MAX_DEPTH){
+            return result;
+          }
+          if(result.depth > max){
+            max = result.depth;
+            myResult = {depth: max+1, root: d};
+          }
+        }
+      }
+      return myResult;
+    }
     root.children.forEach(collapse);
-    update(root);
+    update(this.root, this);
 
   d3.select(self.frameElement).style("height", "800px");
 
-  function update(source) {
+  function update(source, element) {
 
-    // Compute the new tree layout.
-    var nodes = tree.nodes(root).reverse(),
+    var nodes = tree.nodes(element.root).reverse(),
         links = tree.links(nodes);
 
-    // Normalize for fixed-depth.
     nodes.forEach(function(d) { d.y = d.depth * 180; });
 
-    // Update the nodes…
-    var node = svg.selectAll("g.node")
+    const node = svg.selectAll("g.node")
         .data(nodes, function(d) { return d.id || (d.id = ++i); });
 
-    // Enter any new nodes at the parent's previous position.
-    var nodeEnter = node.enter().append("g")
+    const nodeEnter = node.enter().append("g")
         .attr("class", "node")
         .attr("transform", function(d) { return "translate(" + source.y0 + "," + source.x0 + ")"; })
         .on("click", click);
@@ -76,8 +96,7 @@ Tree.create = function(e1, routeFun){
           }
         });
 
-    // Transition nodes to their new position.
-    var nodeUpdate = node.transition()
+    const nodeUpdate = node.transition()
         .duration(duration)
         .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
 
@@ -88,8 +107,7 @@ Tree.create = function(e1, routeFun){
     nodeUpdate.select("text")
         .style("fill-opacity", 1);
 
-    // Transition exiting nodes to the parent's new position.
-    var nodeExit = node.exit().transition()
+    const nodeExit = node.exit().transition()
         .duration(duration)
         .attr("transform", function(d) { return "translate(" + source.y + "," + source.x + ")"; })
         .remove();
@@ -100,11 +118,9 @@ Tree.create = function(e1, routeFun){
     nodeExit.select("text")
         .style("fill-opacity", 1e-6);
 
-    // Update the links…
-    var link = svg.selectAll("path.link")
+    const link = svg.selectAll("path.link")
         .data(links, function(d) { return d.target.id; });
 
-    // Enter any new links at the parent's previous position.
     link.enter().insert("path", "g")
         .attr("class", "link")
         .attr("d", function(d) {
@@ -112,12 +128,10 @@ Tree.create = function(e1, routeFun){
           return diagonal({source: o, target: o});
         });
 
-    // Transition links to their new position.
     link.transition()
         .duration(duration)
         .attr("d", diagonal);
 
-    // Transition exiting nodes to the parent's new position.
     link.exit().transition()
         .duration(duration)
         .attr("d", function(d) {
@@ -126,23 +140,27 @@ Tree.create = function(e1, routeFun){
         })
         .remove();
 
-    // Stash the old positions for transition.
     nodes.forEach(function(d) {
       d.x0 = d.x;
       d.y0 = d.y;
     });
   }
 
-  // Toggle children on click.
   function click(d) {
+    //hide
     if (d.children) {
       d._children = d.children;
       d.children = null;
     } else {
+      //show
       d.children = d._children;
       d._children = null;
     }
-    update(d);
+    update(d, struct);
+    const result = truncate(struct._root);
+    console.log(result);
+    struct.root = result.root;
+    setTimeout(()=>{update(struct.root, struct)}, 800);
   }
 }
 Tree.update=function(root){
