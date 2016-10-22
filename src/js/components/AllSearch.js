@@ -47,10 +47,6 @@ export default class AllSearch extends React.Component {
       )
     }
 
-    // console.log(forum_threads);
-    // if(! (forum_threads.length || video_items.length || github_repos.length)){
-    //   return <NoResult term={this.props.routeParams.search} history={this.props.history}/>
-    // }
     const forums = forum.forum_threads.items;
     const videos = videoSearch.videos.items;
     const repos = github.repos.items;
@@ -70,7 +66,7 @@ export default class AllSearch extends React.Component {
     var repos_sorted = []
     var minFork = 64
     while(minFork > 0 && repos_sorted.length < 3){
-      repos_sorted = repos.filter(repo => {return repo.language && repo.description && repo.forks > minFork}).slice(0,10)
+      repos_sorted = repos.filter(repo => {return repo.language && repo.description && repo.forks > minFork}).slice(0,5)
       minFork /= 2
     }
     const mappedRepos = repos_sorted.length? repos_sorted.map(repo => <div key={repo.git_url}><GithubResult repo={repo}/></div>)

@@ -145,7 +145,7 @@ ul.search-result {
 	margin: 14px;
 }
 
-.title-links a, .title-links a:visited, .title-links a:focus{
+/*.title-links a, .title-links a:visited, .title-links a:focus{
   color: #446CB3 !important;
 	-webkit-transition: all 0.3s;
 	transition: all 0.3s;
@@ -155,7 +155,7 @@ ul.search-result {
 .title-links a:hover {
   color: #004D66 !important;
   text-decoration: none !important;
-}
+}*/
 
 .pagination-button {
 	margin-bottom: 20px;

@@ -33,6 +33,7 @@ export default class Dashboard extends React.Component {
   }
 
   componentWillMount() {
+      document.body.style.backgroundImage = "none";
       {/*They may not have any preferences yet*/}
       // keeps this here until we have actual user login
       const content_list = ["IOS programming", "Python", "Java", "Javascript", "Dynamic Programming"]

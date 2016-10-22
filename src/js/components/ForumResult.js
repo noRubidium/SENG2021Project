@@ -23,7 +23,12 @@ export default class ForumResult extends React.Component {
   }
 
   render(){
-    const { forum } = this.props;
+    const { forum } = this.props
+    const { body } = forum
+
+    const arrayWords = body.split(" ")
+    const showMore = arrayWords.length < 100? "": "show"
+    const slicedBody = arrayWords.splice(0,100).join(" ")
 
     const icon = (this.props.user.user.forumFavs).indexOf(this.props.forum) >= 0 ?
                 "glyphicon glyphicon-heart pull-right": "glyphicon glyphicon-heart-empty pull-right"
@@ -44,7 +49,10 @@ export default class ForumResult extends React.Component {
           </div>
         </div>
         <div class="row col-md-12 forum-body">
-          <ReactMarkdown source={forum.body} />
+          <ReactMarkdown source={slicedBody} />
+          { showMore?
+            <div> ... <Link to={"/forum/display/"+forum.question_id}> (more) </Link></div>:""
+          }
           <hr/>
         </div>
       </div>

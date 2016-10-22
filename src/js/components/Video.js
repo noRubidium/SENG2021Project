@@ -50,7 +50,7 @@ export default class Video extends React.Component {
 
     return (
     <div class="row col-md-10 col-md-offset-1 title-links">
-      <div style={{textAlign:"center",}}>
+      <div class="text-center">
         <h1>{video.video? video.video.title : "Loading..."}</h1>
         <YouTube videoId={this.props.routeParams.videoId} opts={opts} onReady={this._onReady} />
 
