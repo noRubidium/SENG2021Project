@@ -1,7 +1,27 @@
 import * as d3 from "d3"
 
+
+function findRoot(newOrigin, target){
+  if(newOrigin){
+    if(newOrigin.name === target){
+      return newOrigin;
+    }
+    if(newOrigin.children){
+      for (const child of newOrigin.children) {
+        console.log("HI!!!", child)
+        const result = findRoot(child, target)
+        if(result){
+          return result;
+        }
+      }
+    }
+  }
+  return null;
+}
+
 let Tree = {}
 Tree.create = function(e1, routeFun, data, oRoot, updateRoot){
+
   const margin = {top: 0, right: 120, bottom: 20, left: 120},
       width = 1200 - margin.right - margin.left,
       height = 780 - margin.top - margin.bottom;
@@ -23,11 +43,11 @@ Tree.create = function(e1, routeFun, data, oRoot, updateRoot){
       .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    root = data;
-    root.x0 = height / 2;
-    root.y0 = 0;
+    oRoot.x0 =  height / 2;
+    oRoot.y0 = 0;
     this._root = oRoot;
-    this.root = root;
+
+
 
 
     const MAX_DEPTH = 3;
@@ -53,7 +73,16 @@ Tree.create = function(e1, routeFun, data, oRoot, updateRoot){
       return myResult;
     }
 
+    console.log(this._root);
+    this.root = findRoot(oRoot, data);
+    console.log(findRoot(oRoot, data));
+    update(this._root, this);
+
+
+    console.log(this._root, findRoot(oRoot, data));
     update(this.root, this);
+    console.log("THISIS DRAWING");
+
 
   d3.select(self.frameElement).style("height", "800px");
 
@@ -152,15 +181,35 @@ Tree.create = function(e1, routeFun, data, oRoot, updateRoot){
     update(d, struct);
     const result = truncate(struct._root);
     struct.root = result.root;
-    //localStorage.setItem("oRoot",JSON.stringify(struct._root));
-    //localStorage.setItem("currRoot",JSON.stringify(struct.root));
 
     setTimeout(()=>{update(struct.root, struct)}, 800);
+    console.log("ROOT CLICK",struct.root)
   }
 }
-Tree.update=function(root){
-  this.updateRoot(this.root);
+Tree.update=function(){
+  const newOrigin = this.cleanOther(this._root);
+  console.log("FOOT UPDATE", this.root)
+  this.updateRoot(this.root.name, newOrigin);
 },
+Tree.cleanOther = function(d){
+  let resultD = {};
+  if(d.children){
+    resultD.children = [];
+    for (const child of d.children) {
+      resultD.children.push(this.cleanOther(child));
+    }
+  }
+  if(d._children){
+    resultD._children = [];
+    for (const child of d._children) {
+      resultD._children.push(this.cleanOther(child));
+    }
+  }
+  if(d.name){
+    resultD.name = d.name;
+  }
+  return resultD;
+}
 Tree.destroy = function(e1){
 
 }

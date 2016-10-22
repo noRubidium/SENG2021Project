@@ -132,9 +132,12 @@ export function loadProfile(auth, idToken){
   }
 }
 
-export function updateRoot(newRoot){
+export function updateRoot(newRoot, originalRoot){
   return {
     type: "UPDATE_ROOT",
-    payload: newRoot,
+    payload: {
+      root:newRoot,
+      _root:originalRoot,
+    }
   }
 }

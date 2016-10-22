@@ -16,8 +16,8 @@ export default class LearningTree extends React.Component {
 
     Tree.create(e1,this.redirect.bind(this), this.props.tree, this.props.oTree, this.updateRoot.bind(this))
   }
-  updateRoot(root){
-    this.props.dispatch(updateRoot(root))
+  updateRoot(root, oRoot){
+    this.props.dispatch(updateRoot(root,oRoot))
   }
   componentWillUnmount(){
     Tree.update();
@@ -30,7 +30,7 @@ export default class LearningTree extends React.Component {
     console.log(this)
     return (
       <div>
-        <h1>Exploring {this.props.tree.name.replace(/Dev$/i,"") + " Development"} </h1>
+        <h1>Exploring {this.props.tree.replace(/Dev$/i,"") + " Development"} </h1>
         <div
           ref={this.drawGraph.bind(this)}
           >

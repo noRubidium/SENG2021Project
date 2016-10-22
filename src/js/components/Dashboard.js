@@ -60,10 +60,10 @@ export default class Dashboard extends React.Component {
     // 4: Code Repositories
     // 5: Favourites
     // 6: Preferences
-    console.log(e.currentTarget.dataset.id)
+    //console.log(e.currentTarget.dataset.id)
     this.setState({feed: parseInt(e.currentTarget.dataset.id)})
     this.forceUpdate()
-    console.log(this.state)
+    // console.log(this.state)
   }
 
   handlePrefDelete(e) {
@@ -71,7 +71,7 @@ export default class Dashboard extends React.Component {
     this.props.dispatch(deletePreference(parseInt(e.currentTarget.dataset.id)))
     this.forceUpdate()
 
-    console.log(this.state)
+    // console.log(this.state)
   }
 
   // just a helper function to pretty print
@@ -80,7 +80,7 @@ export default class Dashboard extends React.Component {
   }
 
   render() {
-    console.log("rendering dashboard")
+    // console.log("rendering dashboard")
     const forum_threads_json = this.props.forum.forum_threads
     const video_items_json = this.props.videoSearch.videos
     const github_repos_json = this.props.github.repos
@@ -142,8 +142,8 @@ export default class Dashboard extends React.Component {
     const mappedFavourites = favourites.slice(0, 15);
 
     // form 'Preferences'
-    console.log("this my props homie");
-    console.log(this.props);
+    // console.log("this my props homie");
+    // console.log(this.props);
 
     var preferences = [];
     if (this.props.user.user.preferences == "initial_user_pref") {

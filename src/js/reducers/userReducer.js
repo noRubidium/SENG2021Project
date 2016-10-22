@@ -11,7 +11,7 @@ function collapse(d) {
 }
 flare[0].children.forEach(collapse);
 
-const tree = flare[0];
+const tree = flare[0].name;
 const oTree = flare[0];
 
 export default function reducer(state={
@@ -148,7 +148,11 @@ export default function reducer(state={
         localStorage.setItem("currRoot", action.payload)
         return {
           ...state,
-          user: {...state.user, tree: action.payload}
+          user: {
+            ...state.user,
+            tree: action.payload.root,
+            oTree: action.payload._root
+          }
         }
       }
     }
