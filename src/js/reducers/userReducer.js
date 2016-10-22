@@ -9,6 +9,7 @@ export default function reducer(state={
       forumFavs: [],
       repoFavs: [],
       preferences: "initial_user_pref",
+      customCategories: [],
       profile:{},
       token: localStorage.getItem('id_token'),
     },
@@ -22,7 +23,7 @@ export default function reducer(state={
       case "UPDATE_USER_PREFERENCES": {
         var prefsArray = [];
         if (state.user.preferences === "initial_user_pref") {
-          prefsArray = ["IOS", "Python", "Java", "Javascript", "Dynamic Programming"];
+          prefsArray = ["IOS", "Python", "Javascript", "Dynamic Programming", "React"];
         } else {
           prefsArray = state.user.preferences.split(/\s*\|\s*/);
         }
@@ -125,6 +126,12 @@ export default function reducer(state={
         return {
           ...state,
           user:{...state.user,profile:action.payload}
+        }
+      }
+      case "ADD_CATEGORY": {
+        return {
+          ..state,
+          customCategories: [..state.user.customCategories].concat(action.payload.category)
         }
       }
     }

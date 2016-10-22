@@ -56,7 +56,7 @@ export default class github extends React.Component {
       return <NoResult term={search} history={this.props.history}/>
     }
 
-    const mappedRepos = filtered_repos.map(repo => <li class="search-result"><GithubResult repo={repo} key={repo.id}/></li>)
+    const mappedRepos = filtered_repos.map(repo => <GithubResult repo={repo} key={repo.id}/>)
 
     return (
       <div class="container title-links">
