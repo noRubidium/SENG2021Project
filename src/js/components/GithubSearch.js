@@ -59,7 +59,7 @@ export default class github extends React.Component {
     const mappedRepos = filtered_repos.map(repo => <li class="search-result"><GithubResult repo={repo} key={repo.id}/></li>)
 
     return (
-      <div class="container github-search">
+      <div class="container title-links">
         <SearchOptions search={search} active="repo"/>
         <ul class="search-result">{mappedRepos}</ul>
         <PaginationButton currPage={currPage} prevPage={this.updatePrevPage.bind(this)}

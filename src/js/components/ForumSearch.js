@@ -57,7 +57,7 @@ export default class ForumSearch extends React.Component {
     const mappedForums = threads.map(forum => <li class="search-result"><ForumResult key={forum.question_id} forum={forum}/></li>)
 
     return (
-      <div class="container forum-search">
+      <div class="container title-links">
         <SearchOptions search={search} active="forum"/>
         <ul class="search-result">{mappedForums}</ul>
         <PaginationButton currPage={currPage} prevPage={this.updatePrevPage.bind(this)}

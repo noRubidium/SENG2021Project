@@ -46,32 +46,16 @@ export default class Github extends React.Component {
     console.log("This is github:",github)
     var ReactMarkdown = require('react-markdown')
     return (
-      <div>
+      <div class="container title-links">
           <a target="_blank" href = {repo.html_url}><h1>{repo.full_name}</h1></a>
-          <div class="col-md-8">
-          <ReactMarkdown source={github.readme}/>
+          <div class="col-md-9">
+            <ReactMarkdown source={github.readme}/>
           </div>
-          <div class="col-md-4">
-            <div><h1>SourceTree</h1></div>
-          <GithubRepo sha={latest_commit_sha} name={repo.full_name}/>
+          <div class="col-md-3">
+            <h3>Source Tree</h3>
+            <GithubRepo sha={latest_commit_sha} name={repo.full_name}/>
           </div>
-{/*=======
-    if(!github.content) {
-      return <h1>Loading...</h1>
-    }
-
-    return (
-      <div>
-          <a target="_blank" href = {repo.html_url}><h1>{repo.full_name}</h1></a>
-          <ReactMarkdown source={github.content} />
->>>>>>> master*/}
       </div>
     );
   }
 }
-
-/*
-<a target="_blank" href = {repo.html_url}><h1>{repo.full_name}</h1></a>
-{<pre>{github.content}</pre>}
-<ReactMarkdown source={atob(github.content.content)} />
-*/

@@ -1,12 +1,26 @@
+.navbar-form input.form-control {
+	width: 400px !important;
+}
+
 .navbar-links {
 	font-family: 'Montserrat', sans-serif;
 	color: white;
+	text-transform: uppercase;
+}
+
+.navbar-text {
+	color: rgba(255,255,255,0.5) !important;
+	font-size: 14px;
+	font-family: 'Montserrat', sans-serif;
+	text-transform: uppercase;
+	cursor: default;
 }
 
 .navbar-default .navbar-nav > li > a {
 	color: rgba(255,255,255,0.5);
 	-webkit-transition: all 0.3s;
 	transition: all 0.3s;
+	font-size: 16px;
 }
 
 .navbar-default .navbar-nav > li > a:hover {
@@ -60,6 +74,11 @@ body {
   background-color: #446CB3;
 	-webkit-transition: all 0.3s;
 	transition: all 0.3s;
+}
+
+.btn-default.disabled {
+	color: #FFF;
+	background-color: #446CB3 !important;
 }
 
 .btn-default:hover {
@@ -126,19 +145,14 @@ ul.search-result {
 	margin: 14px;
 }
 
-/*.forum-body .github-result {
-	padding-bottom: 10px;
-	margin-bottom: 10px;
-	border-bottom: 2px solid #DADADA;
-}*/
-
-.forum-search a, .forum-page a, .github-search a, .video-search a{
+.title-links a, .title-links a:visited, .title-links a:focus{
   color: #446CB3 !important;
 	-webkit-transition: all 0.3s;
 	transition: all 0.3s;
+	text-decoration: none !important;
 }
 
-.forum-search a:hover, .forum-page a:hover, .github-search a:hover, .video-search a:hover {
+.title-links a:hover {
   color: #004D66 !important;
   text-decoration: none !important;
 }
@@ -148,5 +162,13 @@ ul.search-result {
 }
 
 .container {
+	width: 60%;
+}
+
+.all-search-container {
 	width: 80%;
+}
+
+body #a0-lock.a0-theme-default .a0-panel * {
+    font-family: 'Open Sans' !important;
 }

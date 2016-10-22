@@ -65,7 +65,7 @@ export default class AllSearch extends React.Component {
     // forums_sorted = forums_sorted
     const mappedForums = forums_sorted.length ? forums_sorted.map(forum =>  <ForumResult key={forum.question_id} forum={forum}/>)
         : [<li>No results. Try a different search term.</li>]
-    const mappedVideos = videos.map(video => <div><VideoResult video={video} key={video.id.videoId}></VideoResult><hr/></div>)
+    const mappedVideos = videos.map(video => <VideoResult video={video} key={video.id.videoId}></VideoResult>)
 
     var repos_sorted = []
     var minFork = 64
@@ -82,7 +82,7 @@ export default class AllSearch extends React.Component {
     const { search } = this.props.routeParams
 
     return (
-      <div class="container">
+      <div class="container all-search-container">
         <SearchOptions search={search} active="all"/>
         <div class="row">
           <div class="col-md-4">

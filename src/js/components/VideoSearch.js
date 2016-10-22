@@ -58,27 +58,23 @@ export default class VideoSearch extends React.Component {
       return <NoResult search={search} history={this.props.history}/>
     }
 
-    const mappedVideos = videos.map(video => <div class="col-md-4" key={video.id.videoId}><VideoResult video={video}></VideoResult></div>)
-    const rows = []
-    for(let i = 0; i < 9; i+= 3){
-      rows.push(<div class="row" key={"video-result-row-" + i}>{mappedVideos.slice(i, i+3)}</div>)
-    }
+    const mappedVideos = videos.map(video => <li class="search-result"><VideoResult video={video}></VideoResult></li>)
     return (
-      <div class="container video-search">
+      <div class="container title-links">
         <SearchOptions search={search} active="tutorial"/>
-        {rows}
+        <ul class="search-result">{mappedVideos}</ul>
         <div class="pagination-button">
         {
           this.props.videoSearch.prevPage?
             <button class="btn btn-default" onClick={this.updatePrevPage.bind(this)}>&larr; Previous Page</button>
             :
-            <button class="btn btn-default" disabled>&larr; Previous Page</button>
+            <button class="btn btn-default disabled">&larr; Previous Page</button>
         }
         {
           this.props.videoSearch.nextPage?
             <button class="btn btn-default pull-right" onClick={this.updateNextPage.bind(this)}>Next Page &rarr;</button>
             :
-            <button class="btn btn-default pull-right" disabled>Next Page &rarr;</button>
+            <button class="btn btn-default pull-right disabled">Next Page &rarr;</button>
         }
         </div>
       </div>

@@ -48,8 +48,29 @@ export default class VideoResult extends React.Component {
     return (
       <div>
         {title}
-        <Link to={"/video/display/"+video.id.videoId} class="thumbnails"><img src={video.snippet.thumbnails.medium.url} class="img-small" style={{width:"100%"}}/></Link>
-        {description}
+        { description?
+          <div>
+            <div class="row">
+              <div class="col-md-4">
+                <Link to={"/video/display/"+video.id.videoId} class="thumbnails">
+                  <img src={video.snippet.thumbnails.medium.url} class="img-small" style={{width:"100%"}}/>
+                </Link>
+              </div>
+              <div class="col-md-8">
+                {description}
+              </div>
+            </div>
+            <div class="row">
+              <hr/>
+            </div>
+          </div>
+        :
+          <div class="row col-md-10 col-md-offset-1">
+            <Link to={"/video/display/"+video.id.videoId} class="thumbnails">
+              <img src={video.snippet.thumbnails.medium.url} class="img-small" style={{width:"100%"}}/>
+            </Link>
+          </div>
+        }
       </div>
     )
   }

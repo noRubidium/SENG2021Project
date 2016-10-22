@@ -49,7 +49,7 @@ export default class Video extends React.Component {
     const mappedRelated = relatedItems ? relatedItems.map(video => <div class="col-md-3" key={video.id.videoId}><VideoResult hideDescription="yes" titleSize="h5" video={video}></VideoResult></div>) : ''
 
     return (
-    <div class="row col-md-10 col-md-offset-1">
+    <div class="row col-md-10 col-md-offset-1 title-links">
       <div style={{textAlign:"center",}}>
         <h1>{video.video? video.video.title : "Loading..."}</h1>
         <YouTube videoId={this.props.routeParams.videoId} opts={opts} onReady={this._onReady} />
