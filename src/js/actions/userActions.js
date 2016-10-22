@@ -131,3 +131,10 @@ export function loadProfile(auth, idToken){
     auth.getProfile(idToken, callback)
   }
 }
+
+export function updateRoot(newRoot){
+  return {
+    type: "UPDATE_ROOT",
+    payload: newRoot,
+  }
+}

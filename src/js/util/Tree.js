@@ -1,7 +1,7 @@
 import * as d3 from "d3"
 
 let Tree = {}
-Tree.create = function(e1, routeFun, data){
+Tree.create = function(e1, routeFun, data, oRoot, updateRoot){
   const margin = {top: 20, right: 120, bottom: 20, left: 120},
       width = 1200 - margin.right - margin.left,
       height = 800 - margin.top - margin.bottom;
@@ -23,23 +23,16 @@ Tree.create = function(e1, routeFun, data){
       .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    root = data[0];
+    root = data;
     root.x0 = height / 2;
     root.y0 = 0;
-    this._root = root;
+    this._root = oRoot;
     this.root = root;
 
-    function collapse(d) {
-      if (d.children) {
-        d._children = d.children;
-        d._children.forEach(collapse);
-        d.children = null;
-      }
-    }
+    
     const MAX_DEPTH = 4;
     // Truncate down to 3 layers:
     function truncate(d){
-      console.log("Truncate",d);
       let max = 0,
         myResult = {
           root: d,
@@ -48,7 +41,6 @@ Tree.create = function(e1, routeFun, data){
       if(d.children){
         for (const child of d.children) {
           const result = truncate(child);
-          console.log("This is result:",result.depth, result.root);
           if(result.depth === MAX_DEPTH){
             return result;
           }
@@ -60,7 +52,7 @@ Tree.create = function(e1, routeFun, data){
       }
       return myResult;
     }
-    root.children.forEach(collapse);
+
     update(this.root, this);
 
   d3.select(self.frameElement).style("height", "800px");
@@ -70,7 +62,7 @@ Tree.create = function(e1, routeFun, data){
     var nodes = tree.nodes(element.root).reverse(),
         links = tree.links(nodes);
 
-    nodes.forEach(function(d) { d.y = d.depth * 180; });
+    nodes.forEach(function(d) { d.y = d.depth * 250; });
 
     const node = svg.selectAll("g.node")
         .data(nodes, function(d) { return d.id || (d.id = ++i); });
@@ -158,8 +150,8 @@ Tree.create = function(e1, routeFun, data){
     }
     update(d, struct);
     const result = truncate(struct._root);
-    console.log(result);
     struct.root = result.root;
+    updateRoot(struct.root);
     setTimeout(()=>{update(struct.root, struct)}, 800);
   }
 }

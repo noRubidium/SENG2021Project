@@ -1,5 +1,15 @@
 import Auth0Lock from "auth0-lock"
 import flare from "../../flare.json"
+import * as d3 from "d3"
+
+function collapse(d) {
+  if (d.children) {
+    d._children = d.children;
+    d._children.forEach(collapse);
+    d.children = null;
+  }
+}
+flare[0].children.forEach(collapse);
 
 export default function reducer(state={
     user: {
@@ -12,7 +22,8 @@ export default function reducer(state={
       preferences: "initial_user_pref",
       profile:{},
       token: localStorage.getItem('id_token'),
-      tree: flare
+      tree: flare[0],
+      oTree: flare[0]
     },
     lock: new Auth0Lock('onXEJuNLYjyGYjusgwnVJCCxxmqQq8zJ', 'seng2021.auth0.com',{}),
     fetching: false,
@@ -128,6 +139,12 @@ export default function reducer(state={
         return {
           ...state,
           user:{...state.user,profile:action.payload}
+        }
+      }
+      case "UPDATE_ROOT": {
+        return {
+          ...state,
+          user: {...state.user, tree: action.payload}
         }
       }
     }
