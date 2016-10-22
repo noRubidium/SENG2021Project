@@ -6,6 +6,8 @@ import GithubRepo from "./GithubRepo"
 import { fetchRepoContent } from "../actions/githubActions"
 import { fetchReadme } from "../actions/githubActions"
 
+import { Loading } from "./Loading"
+
 @connect((store) => {
   return {
     github: store.github,
@@ -38,7 +40,12 @@ export default class Github extends React.Component {
 
     // get the sha of the latest commit
     if(!github.content){
-      return <h1>Loading...</h1>
+      // can't put Loading somehow
+      return (
+          <div>
+            <center><h3> Loading Results <img src="../../rolling.svg" style={{verticalAlign: "top"}}/></h3></center>
+          </div>
+        )
     }
 
     const latest_commit_sha = github.content[0].sha
@@ -47,7 +54,7 @@ export default class Github extends React.Component {
     var ReactMarkdown = require('react-markdown')
     return (
       <div class="container title-links">
-          <a target="_blank" href = {repo.html_url}><h1>{repo.full_name}</h1></a>
+          <h3><a target="_blank" href = {repo.html_url}>{repo.full_name}</a></h3>
           <div class="col-md-9">
             <ReactMarkdown source={github.readme}/>
           </div>

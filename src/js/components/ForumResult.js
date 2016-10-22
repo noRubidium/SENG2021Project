@@ -33,11 +33,11 @@ export default class ForumResult extends React.Component {
     const icon = (this.props.user.user.forumFavs).indexOf(this.props.forum) >= 0 ?
                 "glyphicon glyphicon-heart pull-right": "glyphicon glyphicon-heart-empty pull-right"
     const favourite = <a href="#" onClick={this.favourite.bind(this)}><span class={icon}></span></a>
-
+    
     return (
       <div>
         <div class="row">
-          <div class="col-md-10">
+          <div class="col-md-10 title-links" style={{wordWrap: "break-word"}}>
             <h3>
               <Link to={"/forum/display/"+forum.question_id}>
                 <ReactMarkdown source={forum.title} containerTagName='span' containerProps={{id:"forumReactMarkdownTitle"}}/>

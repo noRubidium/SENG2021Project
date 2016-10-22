@@ -32,7 +32,7 @@ export default class VideoResult extends React.Component {
 
     var HeaderSize = this.props.titleSize? this.props.titleSize: "h3";
     const title = <div class="row">
-                    <div class="col-md-10">
+                    <div class="col-md-10 title-links" style={{wordWrap: "break-word"}}>
                       <HeaderSize>
                         <Link to={"/video/display/"+video.id.videoId} >
                           {video.snippet.title}

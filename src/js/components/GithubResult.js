@@ -31,7 +31,7 @@ export default class GithubResult extends React.Component {
     return (
       <div>
         <div class="row">
-          <div class="col-md-10">
+          <div class="col-md-10 title-links" style={{wordWrap: "break-word"}}>
             <h3>
               <Link to={"/github/display/"+repo.id} >
                 {repo.full_name}

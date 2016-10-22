@@ -172,3 +172,7 @@ ul.search-result {
 body #a0-lock.a0-theme-default .a0-panel * {
     font-family: 'Open Sans' !important;
 }
+
+.title-links {
+	word-wrap: "break-word" !important;
+}
