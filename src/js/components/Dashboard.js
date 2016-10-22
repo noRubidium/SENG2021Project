@@ -214,7 +214,7 @@ export default class Dashboard extends React.Component {
               <br />
               <li style={{borderStyle:"none"}} data-id="5" onClick={this.handleFeedChange.bind(this)} class={this.state.feed === 5 ? "active" : ""} data-toggle="pill" ><a><span class="glyphicon glyphicon-heart" />Favourites </a></li>
               <li style={{borderStyle:"none"}} data-id="6" onClick={this.handleFeedChange.bind(this)} class={this.state.feed === 6 ? "active" : ""} data-toggle="pill" ><a><span class="glyphicon glyphicon-cog"/>Preferences </a></li>
-              <li style={{borderStyle:"none"}} data-id="7" onClick={this.handleFeedChange.bind(this)} class={this.state.feed === 7 ? "active" : ""} data-toggle="pill" ><a><span class="glyphicon glyphicon-road"/>LearningTree </a></li>
+              <li style={{borderStyle:"none"}} data-id="7" onClick={this.handleFeedChange.bind(this)} class={this.state.feed === 7 ? "active" : ""} data-toggle="pill" ><a><span class="glyphicon glyphicon-road"/>Learning Roadmap </a></li>
             </ul>
           </div>
           <div class="col-md-7">
