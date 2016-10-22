@@ -29,7 +29,7 @@ Tree.create = function(e1, routeFun, data, oRoot, updateRoot){
     this._root = oRoot;
     this.root = root;
 
-    
+
     const MAX_DEPTH = 4;
     // Truncate down to 3 layers:
     function truncate(d){
@@ -151,6 +151,8 @@ Tree.create = function(e1, routeFun, data, oRoot, updateRoot){
     update(d, struct);
     const result = truncate(struct._root);
     struct.root = result.root;
+    //localStorage.setItem("oRoot",JSON.stringify(struct._root));
+    //localStorage.setItem("currRoot",JSON.stringify(struct.root));
     updateRoot(struct.root);
     setTimeout(()=>{update(struct.root, struct)}, 800);
   }

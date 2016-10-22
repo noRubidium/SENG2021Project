@@ -2,6 +2,14 @@ import React from "react";
 import { IndexLink, Link } from "react-router";
 import SearchBar from "../SearchBar";
 import Login from "../Login";
+import { connect } from "react-redux";
+
+@connect((store) => {
+  return {
+    user: store.user
+  };
+})
+
 
 export default class Nav extends React.Component {
   constructor() {
@@ -27,6 +35,8 @@ export default class Nav extends React.Component {
     const { collapsed } = this.state;
     const navClass = collapsed ? "collapse" : "";
 
+    const token = this.props.user.user.token
+
     return (
       <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
@@ -48,7 +58,7 @@ export default class Nav extends React.Component {
                 {/*<IndexLink to="/" onClick={this.toggleCollapse.bind(this)}>Home</IndexLink>*/}
               {/*</li>*/}
               <li>
-                <Link to="/Dashboard" onClick={this.toggleCollapse.bind(this)}>Dashboard {/*(the homepage for non-first-time users)*/ }</Link>
+                {token? <Link to="/Dashboard" onClick={this.toggleCollapse.bind(this)}>Dashboard {/*(the homepage for non-first-time users)*/ }</Link>:""}
               </li>
               <li>
                 <SearchBar placeholderText="Search All" options="hidden"/>

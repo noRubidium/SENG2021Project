@@ -11,6 +11,9 @@ function collapse(d) {
 }
 flare[0].children.forEach(collapse);
 
+const tree = localStorage.getItem("currRoot")? JSON.parse(localStorage.getItem("currRoot")) :flare[0];
+const oTree = localStorage.getItem("oRoot")? JSON.parse(localStorage.getItem("oRoot")) :flare[0];
+
 export default function reducer(state={
     user: {
       id: null,
@@ -22,8 +25,8 @@ export default function reducer(state={
       preferences: "initial_user_pref",
       profile:{},
       token: localStorage.getItem('id_token'),
-      tree: flare[0],
-      oTree: flare[0]
+      tree: tree,
+      oTree: oTree
     },
     lock: new Auth0Lock('onXEJuNLYjyGYjusgwnVJCCxxmqQq8zJ', 'seng2021.auth0.com',{}),
     fetching: false,
@@ -142,6 +145,7 @@ export default function reducer(state={
         }
       }
       case "UPDATE_ROOT": {
+        localStorage.setItem("currRoot", action.payload)
         return {
           ...state,
           user: {...state.user, tree: action.payload}
