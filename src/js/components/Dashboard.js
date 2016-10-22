@@ -15,6 +15,7 @@ import ForumResult from "./ForumResult"
 import GithubResult from "./GithubResult"
 import SearchBar from "./SearchBar"
 import PreferenceBar from "./PreferenceBar"
+import LearningTree from "./LearningTree"
 
 @connect((store) => {
   return {
@@ -154,10 +155,9 @@ export default class Dashboard extends React.Component {
     var mappedPreferences = preferences.map((pref,index) => <li style={{borderStyle:"none"}}><span>{this.capitalizeFirstLetter(pref)}  </span><span data-id={index} onClick={this.handlePrefDelete.bind(this)} class="glyphicon glyphicon-remove"></span></li>);
     mappedPreferences = <div><h4>Your current preferences:</h4><ul>{mappedPreferences}</ul><br /><h4>Add new preference(s):</h4><PreferenceBar/></div>;
 
-    console.log(preferences);
-    console.log("mapped prefs are: ");
-    console.log(mappedPreferences);
 
+
+    const mappedTree = <LearningTree history={this.props.history}/>;
 
     var feed;
     switch(this.state.feed) {
@@ -178,6 +178,9 @@ export default class Dashboard extends React.Component {
         break;
       case 6: // Preferences
         feed = mappedPreferences;
+        break;
+      case 7:
+        feed = mappedTree;
         break;
       default: // All
         feed = mappedAll;
@@ -209,8 +212,9 @@ export default class Dashboard extends React.Component {
               <li style={{borderStyle:"none"}} data-id="3" onClick={this.handleFeedChange.bind(this)} class={this.state.feed === 3 ? "active" : ""} data-toggle="pill" ><a>Forum Threads</a></li>
               <li style={{borderStyle:"none"}} data-id="4" onClick={this.handleFeedChange.bind(this)} class={this.state.feed === 4 ? "active" : ""} data-toggle="pill" ><a>Code Repositories</a></li>
               <br />
-              <li style={{borderStyle:"none"}} data-id="5" onClick={this.handleFeedChange.bind(this)} class={this.state.feed === 5 ? "active" : ""} data-toggle="pill" ><a>Favourites<span class="glyphicon glyphicon-heart"></span></a></li>
-              <li style={{borderStyle:"none"}} data-id="6" onClick={this.handleFeedChange.bind(this)} class={this.state.feed === 6 ? "active" : ""} data-toggle="pill" ><a>Preferences<span class="glyphicon glyphicon-cog"></span></a></li>
+              <li style={{borderStyle:"none"}} data-id="5" onClick={this.handleFeedChange.bind(this)} class={this.state.feed === 5 ? "active" : ""} data-toggle="pill" ><a><span class="glyphicon glyphicon-heart" />Favourites </a></li>
+              <li style={{borderStyle:"none"}} data-id="6" onClick={this.handleFeedChange.bind(this)} class={this.state.feed === 6 ? "active" : ""} data-toggle="pill" ><a><span class="glyphicon glyphicon-cog"/>Preferences </a></li>
+              <li style={{borderStyle:"none"}} data-id="7" onClick={this.handleFeedChange.bind(this)} class={this.state.feed === 7 ? "active" : ""} data-toggle="pill" ><a><span class="glyphicon glyphicon-road"/>LearningTree </a></li>
             </ul>
           </div>
           <div class="col-md-7">

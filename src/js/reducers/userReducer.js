@@ -11,8 +11,8 @@ function collapse(d) {
 }
 flare[0].children.forEach(collapse);
 
-const tree = localStorage.getItem("currRoot")? JSON.parse(localStorage.getItem("currRoot")) :flare[0];
-const oTree = localStorage.getItem("oRoot")? JSON.parse(localStorage.getItem("oRoot")) :flare[0];
+const tree = flare[0];
+const oTree = flare[0];
 
 export default function reducer(state={
     user: {

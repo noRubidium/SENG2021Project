@@ -2,10 +2,10 @@ import * as d3 from "d3"
 
 let Tree = {}
 Tree.create = function(e1, routeFun, data, oRoot, updateRoot){
-  const margin = {top: 20, right: 120, bottom: 20, left: 120},
+  const margin = {top: 0, right: 120, bottom: 20, left: 120},
       width = 1200 - margin.right - margin.left,
-      height = 800 - margin.top - margin.bottom;
-
+      height = 780 - margin.top - margin.bottom;
+  this.updateRoot = updateRoot
   let i = 0,
       duration = 750,
       root;
@@ -30,7 +30,7 @@ Tree.create = function(e1, routeFun, data, oRoot, updateRoot){
     this.root = root;
 
 
-    const MAX_DEPTH = 4;
+    const MAX_DEPTH = 3;
     // Truncate down to 3 layers:
     function truncate(d){
       let max = 0,
@@ -62,7 +62,7 @@ Tree.create = function(e1, routeFun, data, oRoot, updateRoot){
     var nodes = tree.nodes(element.root).reverse(),
         links = tree.links(nodes);
 
-    nodes.forEach(function(d) { d.y = d.depth * 250; });
+    nodes.forEach(function(d) { d.y = d.depth * 180; });
 
     const node = svg.selectAll("g.node")
         .data(nodes, function(d) { return d.id || (d.id = ++i); });
@@ -82,6 +82,7 @@ Tree.create = function(e1, routeFun, data, oRoot, updateRoot){
         .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
         .text(function(d) { return d.name; })
         .style("fill-opacity", 1e-6)
+        .style("font-family", '"Lato","Helvetica Neue",Helvetica,Arial,sans-serif')
         .on("click", function(d){
           if(d["url"] === 1){
             routeFun(d.name);
@@ -153,12 +154,12 @@ Tree.create = function(e1, routeFun, data, oRoot, updateRoot){
     struct.root = result.root;
     //localStorage.setItem("oRoot",JSON.stringify(struct._root));
     //localStorage.setItem("currRoot",JSON.stringify(struct.root));
-    updateRoot(struct.root);
+
     setTimeout(()=>{update(struct.root, struct)}, 800);
   }
 }
 Tree.update=function(root){
-
+  this.updateRoot(this.root);
 },
 Tree.destroy = function(e1){
 

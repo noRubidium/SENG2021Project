@@ -19,17 +19,23 @@ export default class LearningTree extends React.Component {
   updateRoot(root){
     this.props.dispatch(updateRoot(root))
   }
+  componentWillUnmount(){
+    Tree.update();
+  }
   redirect(target){
-    console.log(target);
+    console.log(this);
     this.props.history.push("/all/"+target)
   }
   render(){
     console.log(this)
     return (
-      <div
-        ref={this.drawGraph.bind(this)}
-        >
-        {/* <svg width="1280" height="2000"></svg> */}
+      <div>
+        <h1>Exploring {this.props.tree.name.replace(/Dev$/i,"") + " Development"} </h1>
+        <div
+          ref={this.drawGraph.bind(this)}
+          >
+          {/* <svg width="1280" height="2000"></svg> */}
+        </div>
       </div>
     )
   }
