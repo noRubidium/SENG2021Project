@@ -41,7 +41,7 @@ export default class Forum extends React.Component {
     const topAnswersMapped = top_answers.map((answer,index) => <div><h3>Answer {index+1} - Score: {answer.score}
                             {answer.is_accepted ? '(Accepted)': ''}</h3><ReactMarkdown source={answer.body} /></div>)
     return (
-      <div>
+      <div class="container title-links">
         <h3><a target="_blank" href={target_thread.link}>
           <ReactMarkdown source={target_thread.title} /></a></h3>
           <ReactMarkdown source={target_thread.body} />
