@@ -30,7 +30,7 @@ export default function reducer(state={
     },
     lock: new Auth0Lock('onXEJuNLYjyGYjusgwnVJCCxxmqQq8zJ', 'seng2021.auth0.com',{
       theme: {
-        logo: '/logo/Sauce.png',
+        logo: 'logo/Sauce.png',
         primaryColor: '#446CB3',
         title: "Log in",
       }

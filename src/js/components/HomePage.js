@@ -9,7 +9,7 @@ import SearchBar from "./SearchBar"
 export default class HomePage extends React.Component {
 
   componentWillMount() {
-    document.body.style.backgroundImage = 'url("../../home-wallpaper.jpg")';
+    document.body.style.backgroundImage = 'url("home-wallpaper.jpg")';
   }
 
   render(){
