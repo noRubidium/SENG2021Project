@@ -15,7 +15,7 @@ const tree = flare[0].name;
 const oTree = flare[0];
 
 export default function reducer(state={
-    user: {
+    user: localStorage.getItem("userInfo")? JSON.parse(localStorage.getItem("userInfo")) : {
       id: null,
       name: null,
       age: null,
@@ -50,7 +50,10 @@ export default function reducer(state={
         }
         prefsArray = prefsArray.concat(action.payload.preferences.split(/\s*\|\s*/));
         const prefsString = prefsArray.join("|");
-        return {...state, user:{...state.user, preferences: prefsString}}
+        const user = {...state.user, preferences: prefsString};
+        localStorage.setItem("userInfo", JSON.stringify(user))
+
+        return {...state, user}
       }
       case "DELETE_USER_PREFERENCE": {
         var prefsArray = [];
@@ -61,7 +64,9 @@ export default function reducer(state={
         }
         prefsArray.splice(action.payload.preferenceIndex, 1);
         const prefsString = prefsArray.join("|");
-        return {...state, user:{...state.user, preferences: prefsString}}
+        const user = {...state.user, preferences: prefsString};
+        localStorage.setItem("userInfo", JSON.stringify(user))
+        return {...state, user}
       }
       case "ADD_USER_VIDEO_FAVOURITE": {
         return {...state, user:{...state.user, videoFavs: [...state.user.videoFavs].concat(action.payload.favourite)}}
@@ -73,10 +78,13 @@ export default function reducer(state={
             original.user.videoFavs.splice(i, 1);
           }
         }
+        localStorage.setItem("userInfo", JSON.stringify(original.user))
         return {...original};
       }
       case "ADD_USER_FORUM_FAVOURITE": {
-        return {...state, user:{...state.user, forumFavs: [...state.user.forumFavs].concat(action.payload.favourite)}}
+        const user = {...state.user, forumFavs: [...state.user.forumFavs].concat(action.payload.favourite)};
+        localStorage.setItem("userInfo", JSON.stringify(user))
+        return {...state, user}
       }
       case "REMOVE_USER_FORUM_FAVOURITE": {
         var original = {...state, user:{...state.user, forumFavs: [...state.user.forumFavs].concat(action.payload.favourite)}}
@@ -85,10 +93,13 @@ export default function reducer(state={
             original.user.forumFavs.splice(i, 1);
           }
         }
+        localStorage.setItem("userInfo", JSON.stringify(original.user))
         return {...original};
       }
       case "ADD_USER_REPO_FAVOURITE": {
-        return {...state, user:{...state.user, repoFavs: [...state.user.repoFavs].concat(action.payload.favourite)}}
+        const user = {...state.user, repoFavs: [...state.user.repoFavs].concat(action.payload.favourite)};
+        localStorage.setItem("userInfo", JSON.stringify(user))
+        return {...state, user}
       }
       case "REMOVE_USER_REPO_FAVOURITE": {
         var original = {...state, user:{...state.user, repoFavs: [...state.user.repoFavs].concat(action.payload.favourite)}}
@@ -97,6 +108,7 @@ export default function reducer(state={
             original.user.repoFavs.splice(i, 1);
           }
         }
+        localStorage.setItem("userInfo", JSON.stringify(original.user))
         return {...original};
       }
       case "FETCH_USER": {
@@ -151,13 +163,16 @@ export default function reducer(state={
       }
       case "UPDATE_ROOT": {
         localStorage.setItem("currRoot", action.payload)
+        const user ={
+          ...state.user,
+          tree: action.payload.root,
+          oTree: action.payload._root
+        }
+        localStorage.setItem("userInfo", JSON.stringify(user))
+
         return {
           ...state,
-          user: {
-            ...state.user,
-            tree: action.payload.root,
-            oTree: action.payload._root
-          }
+          user,
         }
       }
     }
