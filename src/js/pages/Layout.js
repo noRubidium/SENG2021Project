@@ -10,10 +10,11 @@ export default class Layout extends React.Component {
     const containerStyle = {
       marginTop: "60px"
     };
+    console.log(this.props)
     return (
       <div>
         <Nav location={location} />
-        <div class="container" style={containerStyle}>
+        <div class="container-fluid">
           <div class="row">
             <div class="col-lg-12">
               {this.props.children}

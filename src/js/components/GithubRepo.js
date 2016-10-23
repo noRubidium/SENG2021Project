@@ -22,7 +22,7 @@ export default class GithubRepo extends React.Component {
             const mappedTrees = current_tree.map(tree => <li><GithubContent tree={tree}/></li>)
             return(<ul>{mappedTrees}</ul>)
         } else {
-            return(<h1>Loading</h1>);
+            return(<h4>Loading</h4>);
         }
     }
 }

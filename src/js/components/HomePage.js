@@ -7,13 +7,12 @@ import SearchBar from "./SearchBar"
 
 
 export default class HomePage extends React.Component {
+
+  componentWillMount() {
+    document.body.style.backgroundImage = 'url("../../home-wallpaper.jpg")';
+  }
+
   render(){
-
-    const types = ["all", "video", "forum", "github"]
-    const options = types.map((item) => {
-      return (<option value={item} >{item}</option>);
-    })
-
     const videoRaffle = ["Introduction to programming",
                          "Python 3",
                          "Developing iOS apps in Swift",
@@ -21,10 +20,10 @@ export default class HomePage extends React.Component {
                          "Web development"
                         ]
     const forumRaffle = ["Should I become a Software Engineer?",
-                         "Is Google scared of Facebook?",
                          "How do I code a hash table?",
                          "Should I use C++ or Java in programming competitions?",
-                         "What is the hardest interview question?"
+                         "What is the hardest interview question?",
+                         "How to start learning programming"
                         ]
     const githubRaffle = ["Java",
                           "Python",
@@ -34,33 +33,21 @@ export default class HomePage extends React.Component {
                          ]
 
     const raffleIndex = Math.floor(Math.random() * 5)
+    const videoLink = '/video/'+videoRaffle[raffleIndex]
+    const forumLink = '/forum/'+forumRaffle[raffleIndex]
+    const githubLink = '/github/'+githubRaffle[raffleIndex]
 
     return (
-      <div class="container">
-
-        <div class="row" style={{marginTop:"12em"}}>
-          <div class="text-center">
-            <h1>Sauce</h1>
-            {/*<img class="" src="/logo/sauceWhite.svg" />*/}
-            <h4>Search for any programming related topic</h4>
-          </div>
-        </div>
-
-        <div class="control-group">&nbsp;</div> {/*spacer*/}
-        <SearchBar options="show" />
-        <div class="control-group">&nbsp;</div> {/*spacer*/}
-        <div class="control-group">&nbsp;</div> {/*spacer*/}
-
+      <div class="text-center homepage-container">
+        <img src="sauceLogoHome.png" class="logo-image"></img>
         <div class="row">
-          <div class="text-center">
-            <h4>Not sure where to begin? Select a topic.</h4>
-            <div class="control-group">&nbsp;</div> {/*spacer*/}
-            <Link to={'/video/'+videoRaffle[raffleIndex]}><button class="btn btn-primary" style={{marginLeft:"5px"}}>Learn Technologies</button></Link>
-            <Link to={'/forum/'+forumRaffle[raffleIndex]}><button class="btn btn-primary" style={{marginLeft:"5px"}}>Discuss Topics</button></Link>
-            <Link to={'/github/'+githubRaffle[raffleIndex]}><button class="btn btn-primary" style={{marginLeft:"5px"}}>Explore Code</button></Link>
-          </div>
+          <h4 class="homepage">Not sure where to begin? Select a topic.</h4>
+          <SearchBar formClass="row search-bar-homepage text-center"/>
+          <Link to={videoLink}><button class="btn btn-default options">Learn Technologies</button></Link>
+          <Link to={forumLink}><button class="btn btn-default options">Discuss Topics</button></Link>
+          <Link to={githubLink}><button class="btn btn-default options">Explore Code</button></Link>
         </div>
-      </div>
+    </div>
     )
   }
 }

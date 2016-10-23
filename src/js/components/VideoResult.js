@@ -32,7 +32,7 @@ export default class VideoResult extends React.Component {
 
     var HeaderSize = this.props.titleSize? this.props.titleSize: "h3";
     const title = <div class="row">
-                    <div class="col-md-10">
+                    <div class="col-md-10 title-links" style={{wordWrap: "break-word"}}>
                       <HeaderSize>
                         <Link to={"/video/display/"+video.id.videoId} >
                           {video.snippet.title}
@@ -48,8 +48,29 @@ export default class VideoResult extends React.Component {
     return (
       <div>
         {title}
-        <Link to={"/video/display/"+video.id.videoId} class="thumbnails"><img src={video.snippet.thumbnails.medium.url} class="img-small" style={{width:"100%"}}/></Link>
-        {description}
+        { description?
+          <div>
+            <div class="row">
+              <div class="col-md-4">
+                <Link to={"/video/display/"+video.id.videoId} class="thumbnails">
+                  <img src={video.snippet.thumbnails.medium.url} class="img-small" style={{width:"100%"}}/>
+                </Link>
+              </div>
+              <div class="col-md-8">
+                {description}
+              </div>
+            </div>
+            <div class="row">
+              <hr/>
+            </div>
+          </div>
+        :
+          <div class="row col-md-10 col-md-offset-1">
+            <Link to={"/video/display/"+video.id.videoId} class="thumbnails">
+              <img src={video.snippet.thumbnails.medium.url} class="img-small" style={{width:"100%"}}/>
+            </Link>
+          </div>
+        }
       </div>
     )
   }

@@ -9,6 +9,8 @@ import NoResult from "../pages/NoResult"
 import VideoResult from "./VideoResult"
 import PaginationButton from "./Pagination"
 
+import SearchOptions from "./SearchOptions"
+
 @connect((store) => {
   return {
     videoSearch: store.videoSearch,
@@ -18,6 +20,7 @@ import PaginationButton from "./Pagination"
 
 export default class VideoSearch extends React.Component {
   componentWillMount() {
+    document.body.style.backgroundImage = "none";
     this.props.dispatch(fetchVideos(this.props.routeParams.search, this.props.currPage))
   }
 
@@ -55,27 +58,25 @@ export default class VideoSearch extends React.Component {
       return <NoResult search={search} history={this.props.history}/>
     }
 
-    const mappedVideos = videos.map(video => <div class="col-md-4" key={video.id.videoId}><VideoResult video={video}></VideoResult></div>)
-    const rows = []
-    for(let i = 0; i < 9; i+= 3){
-      rows.push(<div class="row" key={"video-result-row-" + i}>{mappedVideos.slice(i, i+3)}</div>)
-    }
+    const mappedVideos = videos.map(video => <li class="search-result"><VideoResult video={video}></VideoResult></li>)
     return (
-      <div>
-        <h1>Search results for: '{search}'</h1>
-        {rows}
+      <div class="container title-links">
+        <SearchOptions search={search} active="tutorial"/>
+        <ul class="search-result">{mappedVideos}</ul>
+        <div class="pagination-button">
         {
           this.props.videoSearch.prevPage?
             <button class="btn btn-default" onClick={this.updatePrevPage.bind(this)}>&larr; Previous Page</button>
             :
-            <button class="btn btn-default" disabled>&larr; Previous Page</button>
+            <button class="btn btn-default disabled">&larr; Previous Page</button>
         }
         {
           this.props.videoSearch.nextPage?
             <button class="btn btn-default pull-right" onClick={this.updateNextPage.bind(this)}>Next Page &rarr;</button>
             :
-            <button class="btn btn-default pull-right" disabled>Next Page &rarr;</button>
+            <button class="btn btn-default pull-right disabled">Next Page &rarr;</button>
         }
+        </div>
       </div>
     )
   }

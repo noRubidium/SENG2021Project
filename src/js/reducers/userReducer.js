@@ -138,7 +138,6 @@ export default function reducer(state={
         }
       }
       case "LOGOUT": {
-        console.log("HI!!!! TOKEN_UNDEF")
         return {
           ...state,
           user:{...state.user, token: undefined}

@@ -11,36 +11,6 @@ import ReactMarkdown  from 'react-markdown'
 
 export default class GithubContent extends React.Component {
 
-// <<<<<<< HEAD
-// =======
-//     componentWillMount(){
-//         if (this.props.tree != null){
-//             this.props.dispatch(fetchUrlContent(this.props.tree.url))
-//         }
-//     }
-//
-//     constructor(){
-//         super()
-//         this.state = {expanded: false}
-//     }
-//     expandCode() {
-//         this.setState({
-//             expanded: true
-//         })
-//     }
-//
-//     getFileContents(){
-//         if (this.state.expanded) {
-//             const current_tree = this.props.github.something.tree
-//             const mappedTrees = current_tree.map(tree => <li><GithubContent tree={tree}/></li>)
-//             return(<ul>{mappedTrees}</ul>)
-//     //        console.log(this.props.tree)
-//         } else {
-//           return null;
-//         }
-//     }
-//
-// >>>>>>> master
     render(){
         // this should change
         // if the type of tree is "blob"
