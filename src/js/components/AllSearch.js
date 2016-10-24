@@ -43,7 +43,11 @@ export default class AllSearch extends React.Component {
 
     if (!(forum.fetched && videoSearch.fetched && github.fetched)) {
       return (
-        <Loading />
+        <div class="container all-search-container">
+          <SearchOptions search={search} active="all"/>
+
+          <Loading />
+        </div>
       )
     }
 

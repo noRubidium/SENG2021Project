@@ -43,7 +43,12 @@ export default class ForumSearch extends React.Component {
     const { forum } = this.props;
 
     if (!forum || forum.fetching || !forum.fetched) {
-      return <Loading />
+      return (
+        <div class="container title-links">
+          <SearchOptions search={search} active="forum"/>
+          <Loading />
+        </div>
+      )
     }
 
     const { currPage } = forum

@@ -43,7 +43,12 @@ export default class github extends React.Component {
     const { github } = this.props
 
     if ((!github) || github.fetching || !github.fetched) {
-      return <Loading />
+      return (
+        <div class="container title-links">
+          <SearchOptions search={search} active="repo"/>
+          <Loading />
+        </div>
+      )
     }
 
     const { currPage } = github

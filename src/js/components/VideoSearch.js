@@ -46,13 +46,18 @@ export default class VideoSearch extends React.Component {
 
   render() {
     const { videoSearch } = this.props;
+    const search = this.props.routeParams.search
 
     if (!videoSearch || videoSearch.fetching || !videoSearch.fetched) {
-      return <Loading />
+      return (
+        <div class="container title-links">
+          <SearchOptions search={search} active="tutorial"/>
+          <Loading />
+        </div>
+      )
     }
 
     const videos = videoSearch.videos.items
-    const search = this.props.routeParams.search
 
     if (!videos || !videos.length){
       return <NoResult search={search} history={this.props.history}/>
