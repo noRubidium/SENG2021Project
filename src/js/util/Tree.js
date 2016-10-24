@@ -91,7 +91,7 @@ Tree.create = function(e1, routeFun, data, oRoot, updateRoot){
     var nodes = tree.nodes(element.root).reverse(),
         links = tree.links(nodes);
 
-    nodes.forEach(function(d) { d.y = d.depth * 180; });
+    nodes.forEach(function(d) { d.y = d.depth * 240; });
 
     const node = svg.selectAll("g.node")
         .data(nodes, function(d) { return d.id || (d.id = ++i); });
@@ -106,13 +106,14 @@ Tree.create = function(e1, routeFun, data, oRoot, updateRoot){
         .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
 
     nodeEnter.append("text")
-        .attr("x", function(d) { return d.children || d._children ? -10 : 10; })
+        .attr("x", function(d) { return d.children || d._children ? -15 : 15; })
         .attr("dy", ".35em")
         .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
         .text(function(d) { return d.name; })
         .style("fill-opacity", 1e-6)
         .style("font-family", '"Lato","Helvetica Neue",Helvetica,Arial,sans-serif')
         .on("click", function(d){
+          console.log("HI!!!!", d)
           if(d["url"] === 1){
             routeFun(d.name);
           }
@@ -123,7 +124,7 @@ Tree.create = function(e1, routeFun, data, oRoot, updateRoot){
         .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
 
     nodeUpdate.select("circle")
-        .attr("r", 4.5)
+        .attr("r",10)
         .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
 
     nodeUpdate.select("text")
@@ -183,12 +184,12 @@ Tree.create = function(e1, routeFun, data, oRoot, updateRoot){
     struct.root = result.root;
 
     setTimeout(()=>{update(struct.root, struct)}, 800);
-    console.log("ROOT CLICK",struct.root)
+    // console.log("ROOT CLICK",struct.root)
   }
 }
 Tree.update=function(){
   const newOrigin = this.cleanOther(this._root);
-  console.log("FOOT UPDATE", this.root)
+  // console.log("FOOT UPDATE", this.root)
   this.updateRoot(this.root.name, newOrigin);
 },
 Tree.cleanOther = function(d){
@@ -207,6 +208,9 @@ Tree.cleanOther = function(d){
   }
   if(d.name){
     resultD.name = d.name;
+  }
+  if(d.url){
+    resultD.url = d.url;
   }
   return resultD;
 }
