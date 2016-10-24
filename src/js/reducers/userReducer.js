@@ -1,4 +1,18 @@
 import Auth0Lock from "auth0-lock"
+import flare from "../../flare.json"
+import * as d3 from "d3"
+
+function collapse(d) {
+  if (d.children) {
+    d._children = d.children;
+    d._children.forEach(collapse);
+    d.children = null;
+  }
+}
+flare[0].children.forEach(collapse);
+
+const tree = flare[0].name;
+const oTree = flare[0];
 
 export default function reducer(state={
     user: {
@@ -9,11 +23,18 @@ export default function reducer(state={
       forumFavs: [],
       repoFavs: [],
       preferences: "initial_user_pref",
-      customCategories: [],
       profile:{},
       token: localStorage.getItem('id_token'),
+      tree: tree,
+      oTree: oTree
     },
-    lock: new Auth0Lock('onXEJuNLYjyGYjusgwnVJCCxxmqQq8zJ', 'seng2021.auth0.com',{}),
+    lock: new Auth0Lock('onXEJuNLYjyGYjusgwnVJCCxxmqQq8zJ', 'seng2021.auth0.com',{
+      theme: {
+        logo: 'logo/Sauce.png',
+        primaryColor: '#446CB3',
+        title: "Log in",
+      }
+    }),
     fetching: false,
     fetched: false,
     error: null,
@@ -128,10 +149,15 @@ export default function reducer(state={
           user:{...state.user,profile:action.payload}
         }
       }
-      case "ADD_CATEGORY": {
+      case "UPDATE_ROOT": {
+        localStorage.setItem("currRoot", action.payload)
         return {
-          ..state,
-          customCategories: [..state.user.customCategories].concat(action.payload.category)
+          ...state,
+          user: {
+            ...state.user,
+            tree: action.payload.root,
+            oTree: action.payload._root
+          }
         }
       }
     }

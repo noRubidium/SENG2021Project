@@ -16,6 +16,7 @@ import ForumResult from "./ForumResult"
 import GithubResult from "./GithubResult"
 import SearchBar from "./SearchBar"
 import PreferenceBar from "./PreferenceBar"
+import LearningTree from "./LearningTree"
 
 @connect((store) => {
   return {
@@ -61,10 +62,10 @@ export default class Dashboard extends React.Component {
     // 4: Code Repositories
     // 5: Favourites
     // 6: Preferences
-    console.log(e.currentTarget.dataset.id)
+    //console.log(e.currentTarget.dataset.id)
     this.setState({feed: parseInt(e.currentTarget.dataset.id)})
     this.forceUpdate()
-    console.log(this.state)
+    // console.log(this.state)
   }
 
   handlePrefDelete(e) {
@@ -72,7 +73,7 @@ export default class Dashboard extends React.Component {
     this.props.dispatch(deletePreference(parseInt(e.currentTarget.dataset.id)))
     this.forceUpdate()
 
-    console.log(this.state)
+    // console.log(this.state)
   }
 
   // just a helper function to pretty print
@@ -81,15 +82,20 @@ export default class Dashboard extends React.Component {
   }
 
   render() {
-    const { forum, videoSearch, github } = this.props
-    if (!(forum.fetched && videoSearch.fetched && github.fetched)) {
-      return (
-        <Loading />
-      )
+    // console.log("rendering dashboard")
+    const forum_threads_json = this.props.forum.forum_threads
+    const video_items_json = this.props.videoSearch.videos
+    const github_repos_json = this.props.github.repos
+
+    if ((forum_threads_json instanceof Array && !forum_threads_json.length)
+        || (video_items_json instanceof Array && !video_items_json.length)
+        || (github_repos_json instanceof Array && !github_repos_json.length)) {
+      return (<Loading />)
     }
-    const forums = forum.forum_threads.items;
-    const videos = videoSearch.videos.items;
-    const repos = github.repos.items;
+
+    const forums = forum_threads_json.items;
+    const videos = video_items_json.items;
+    const repos = github_repos_json.items;
 
     // sort forums and repos
     var forumsSorted = forums;
@@ -139,8 +145,8 @@ export default class Dashboard extends React.Component {
     const mappedFavourites = favourites.slice(0, 15);
 
     // form 'Preferences'
-    console.log("this my props homie");
-    console.log(this.props);
+    // console.log("this my props homie");
+    // console.log(this.props);
 
     var preferences = [];
     if (this.props.user.user.preferences == "initial_user_pref") {
@@ -153,10 +159,9 @@ export default class Dashboard extends React.Component {
                             <span data-id={index} onClick={this.handlePrefDelete.bind(this)} class="glyphicon glyphicon-remove"></span></li>);
     mappedPreferences = <div><h4>Your current preferences:</h4><ul>{mappedPreferences}</ul><br /><h4>Add new preference(s):</h4><PreferenceBar/></div>;
 
-    console.log(preferences);
-    console.log("mapped prefs are: ");
-    console.log(mappedPreferences);
 
+
+    const mappedTree = <LearningTree history={this.props.history}/>;
 
     var feed;
     switch(this.state.feed) {
@@ -177,6 +182,9 @@ export default class Dashboard extends React.Component {
         break;
       case 6: // Preferences
         feed = mappedPreferences;
+        break;
+      case 7:
+        feed = mappedTree;
         break;
       default: // All
         feed = mappedAll;
@@ -208,8 +216,9 @@ export default class Dashboard extends React.Component {
               <li style={{borderStyle:"none"}} data-id="3" onClick={this.handleFeedChange.bind(this)} class={this.state.feed === 3 ? "active" : ""} data-toggle="pill" ><a>Forum Threads</a></li>
               <li style={{borderStyle:"none"}} data-id="4" onClick={this.handleFeedChange.bind(this)} class={this.state.feed === 4 ? "active" : ""} data-toggle="pill" ><a>Code Repositories</a></li>
               <br />
-              <li style={{borderStyle:"none"}} data-id="5" onClick={this.handleFeedChange.bind(this)} class={this.state.feed === 5 ? "active" : ""} data-toggle="pill" ><a>Favourites  <span class="glyphicon glyphicon-heart"></span></a></li>
-              <li style={{borderStyle:"none"}} data-id="6" onClick={this.handleFeedChange.bind(this)} class={this.state.feed === 6 ? "active" : ""} data-toggle="pill" ><a>Preferences  <span class="glyphicon glyphicon-cog"></span></a></li>
+              <li style={{borderStyle:"none"}} data-id="5" onClick={this.handleFeedChange.bind(this)} class={this.state.feed === 5 ? "active" : ""} data-toggle="pill" ><a><span class="glyphicon glyphicon-heart" />Favourites </a></li>
+              <li style={{borderStyle:"none"}} data-id="6" onClick={this.handleFeedChange.bind(this)} class={this.state.feed === 6 ? "active" : ""} data-toggle="pill" ><a><span class="glyphicon glyphicon-cog"/>Preferences </a></li>
+              <li style={{borderStyle:"none"}} data-id="7" onClick={this.handleFeedChange.bind(this)} class={this.state.feed === 7 ? "active" : ""} data-toggle="pill" ><a><span class="glyphicon glyphicon-road"/>Learning Roadmap </a></li>
             </ul>
           </div>
           <div class="col-md-7">

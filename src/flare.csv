@@ -1,0 +1,131 @@
+id,value
+Web Development,0
+Web Development|No Matter Which Route You Take,0
+Web Development|No Matter Which Route You Take|FTP,1
+Web Development|No Matter Which Route You Take|Web Host Setup,1
+Web Development|No Matter Which Route You Take|How to use Terminal,1
+Web Development|No Matter Which Route You Take|Github Basics,1
+Web Development|No Matter Which Route You Take|RESTful Web service,1
+Web Development|Front End,0
+Web Development|Front End|Text Editors,0
+Web Development|Front End|Text Editors|atom.io,1
+Web Development|Front End|Text Editors|sublime text,1
+Web Development|Front End|Text Editors|brackets.io,1
+Web Development|Front End|HTML,1
+Web Development|Front End|CSS,1
+Web Development|Front End|CSS|SASS,1
+Web Development|Front End|CSS|SCSS,1
+Web Development|Front End|CSS|bootstrap,1
+Web Development|Front End|CSS|Foundationjs,1
+Web Development|Front End|CSS|responsive design with css,1
+Web Development|Front End|Javascript Basics,1
+Web Development|Front End|Javascript Basics|Modular JS,1
+Web Development|Front End|Javascript Basics|Modular JS|ES2015,1
+Web Development|Front End|Javascript Basics|Modular JS|npm,1
+Web Development|Front End|Javascript Basics|Modular JS|npm|JS build tools,1
+Web Development|Front End|Javascript Basics|Modular JS|npm|JS build tools|Task Runner,0
+Web Development|Front End|Javascript Basics|Modular JS|npm|JS build tools|Task Runner|Gulp,1
+Web Development|Front End|Javascript Basics|Modular JS|npm|JS build tools|Task Runner|Grunt,1
+Web Development|Front End|Javascript Basics|Modular JS|npm|JS build tools|Dependency Management,0
+Web Development|Front End|Javascript Basics|Modular JS|npm|JS build tools|Dependency Management|browserify,1
+Web Development|Front End|Javascript Basics|Modular JS|npm|JS build tools|Dependency Management|webpack,1
+Web Development|Front End|Javascript Basics|Modular JS|npm|JS build tools|bower,1
+Web Development|Front End|Javascript Basics|Modular JS|npm|JS build tools|Yeoman.io,1
+Web Development|Front End|Javascript Basics|Modular JS|npm|MV Javascript Frameworks,1
+Web Development|Front End|Javascript Basics|Modular JS|npm|MV Javascript Frameworks|React.js,1
+Web Development|Front End|Javascript Basics|Modular JS|npm|MV Javascript Frameworks|React.js|Mobx,1
+Web Development|Front End|Javascript Basics|Modular JS|npm|MV Javascript Frameworks|React.js|Flux,1
+Web Development|Front End|Javascript Basics|Modular JS|npm|MV Javascript Frameworks|React.js|Redux,1
+Web Development|Front End|Javascript Basics|Modular JS|npm|MV Javascript Frameworks|React.js|Relay,1
+Web Development|Front End|Javascript Basics|Modular JS|npm|MV Javascript Frameworks|React.js|GraphQL,1
+Web Development|Front End|Javascript Basics|Modular JS|npm|MV Javascript Frameworks|React.js|create-react-app,1
+Web Development|Front End|Javascript Basics|Modular JS|npm|MV Javascript Frameworks|Angular.js,1
+Web Development|Front End|Javascript Basics|Modular JS|npm|MV Javascript Frameworks|Ember.js,1
+Web Development|Front End|Javascript Basics|Modular JS|npm|MV Javascript Frameworks|Vue.js,1
+Web Development|Front End|Javascript Basics|Modular JS|npm|MV Javascript Frameworks|Closurescript,1
+Web Development|Front End|Javascript Basics|Modular JS|npm|MV Javascript Frameworks|Elm,1
+Web Development|Front End|Javascript Basics|Modular JS|npm|MV Javascript Frameworks|Unit Testing,0
+Web Development|Front End|Javascript Basics|Modular JS|npm|MV Javascript Frameworks|Unit Testing|Mocha,1
+Web Development|Front End|Javascript Basics|Modular JS|npm|MV Javascript Frameworks|Unit Testing|Jasmine,1
+Web Development|Front End|Javascript Basics|Modular JS|npm|MV Javascript Frameworks|Unit Testing|Kaema,1
+Web Development|Front End|Javascript Basics|Modular JS|npm|MV Javascript Frameworks|Unit Testing|enzyme,1
+Web Development|Front End|Javascript Basics|jQuery,1
+Web Development|Back End,0
+Web Development|Back End|Scripting Language,0
+Web Development|Back End|Scripting Language|Nodejs,1
+Web Development|Back End|Scripting Language|Nodejs|express,1
+Web Development|Back End|Scripting Language|Nodejs|hapi,1
+Web Development|Back End|Scripting Language|Python,1
+Web Development|Back End|Scripting Language|Python|Django,1
+Web Development|Back End|Scripting Language|Python|flask,1
+Web Development|Back End|Scripting Language|Ruby,1
+Web Development|Back End|Scripting Language|Ruby|Ruby on Rails,1
+Web Development|Back End|Scripting Language|Ruby|Sinatra,1
+Web Development|Back End|Scripting Language|PHP,1
+Web Development|Back End|Scripting Language|PHP|Laravel,1
+Web Development|Back End|Scripting Language|PHP|Symfony2,1
+Web Development|Back End|Scripting Language|PHP|Lumen,1
+Web Development|Back End|Functional Languages,0
+Web Development|Back End|Functional Languages|Elixir,1
+Web Development|Back End|Functional Languages|Scala,1
+Web Development|Back End|Functional Languages|Clojure,1
+Web Development|Back End|Functional Languages|Haskell,1
+Web Development|Back End|HighPerformance/Compiled Language,0
+Web Development|Back End|HighPerformance/Compiled Language|GoLang,1
+Web Development|Back End|HighPerformance/Compiled Language|Rust,1
+Web Development|Back End|HighPerformance/Compiled Language|Java,1
+Web Development|Back End|HighPerformance/Compiled Language|C#,1
+Web Development|Back End|Data,0
+Web Development|Back End|Data|caching,0
+Web Development|Back End|Data|caching|Nginx,1
+Web Development|Back End|Data|caching|Apache,1
+Web Development|Back End|Data|caching|Databse Redis,1
+Web Development|Back End|Data|caching|In-memory Caching,1
+Web Development|Back End|Data|Relational Database,0
+Web Development|Back End|Data|Relational Database|MySQL,1
+Web Development|Back End|Data|Relational Database|PostgreSQL,1
+Web Development|Back End|Data|Relational Database|sqlite3,1
+Web Development|Back End|Data|Document Database,0
+Web Development|Back End|Data|Document Database|MongoDB,1
+Web Development|Back End|Data|Document Database|Couchbase,1
+Web Development|Back End|Data|Document Database|RethinkDB,1
+Web Development|Back End|Data|Search Engine,0
+Web Development|Back End|Data|Search Engine|ElasticSerch,1
+Web Development|Back End|Data|Search Engine|Solr,1
+Web Development|Back End|Data|Things to Learn,0
+Web Development|Back End|Data|Things to Learn|Unit Testing,1
+Web Development|Back End|Data|Things to Learn|API Service,1
+Web Development|Back End|Data|Things to Learn|Authorisation,1
+Web Development|Back End|Data|Things to Learn|Authorisation|OAUTH2,1
+Web Development|Back End|Data|Things to Learn|Authorisation|JSON Web Token,1
+Web Development|Back End|Data|Things to Learn|SOA,1
+Web Development|Back End|Data|Things to Learn|Deploying App,1
+Web Development|Back End|Data|Things to Learn|web socket,1
+Web Development|Back End|Data|Things to Learn|ORM/ Data Structure,1
+Web Development|Back End|Data|DevOps,0
+Web Development|Back End|Data|DevOps|Web Platform,0
+Web Development|Back End|Data|DevOps|Web Platform|Digital Ocean,1
+Web Development|Back End|Data|DevOps|Web Platform|AWS,1
+Web Development|Back End|Data|DevOps|Web Platform|Azure,1
+Web Development|Back End|Data|DevOps|Web Platform|Rackspace,1
+Web Development|Back End|Data|DevOps|Web Platform|Heroku,1
+Web Development|Back End|Data|DevOps|Server Management,0
+Web Development|Back End|Data|DevOps|Server Management|Linux,1
+Web Development|Back End|Data|DevOps|Server Management|Docker,1
+Web Development|Back End|Data|DevOps|Server Management|Docker|Big Scale: Kubernetes,Mesos,1
+Web Development|Back End|Data|DevOps|Server Management|Docker|Small Scale: Docker Swarm,1
+Web Development|Back End|Data|DevOps|Server Management|Docker|UI-Driven,1
+Web Development|Back End|Data|DevOps|Server Management|Docker|UI-Driven|Rancher,1
+Web Development|Back End|Data|DevOps|Server Management|Docker|UI-Driven|Docker Cloud,1
+Web Development|Back End|Data|DevOps|Server Management|Docker|UI-Driven|Docker Datacenter,1
+Web Development|Back End|Data|DevOps|Server Management|Ansible,1
+Web Development|Back End|Data|DevOps|Server Management|Salt Web Development,1
+Web Development|Back End|Data|DevOps|Server Management|Chef Web Dev,1
+Web Development|Back End|Data|DevOps|Server Management|Puppet,1
+Web Development|Back End|Data|DevOps|continuous Testing and Deployment,0
+Web Development|Back End|Data|DevOps|continuous Testing and Deployment|Jenkins,1
+Web Development|Back End|Data|DevOps|continuous Testing and Deployment|SemaphoreCI,1
+Web Development|Back End|Data|DevOps|continuous Testing and Deployment|CircleCI,1
+Web Development|Back End|Data|DevOps|continuous Testing and Deployment|Codeship,1
+Web Development|Back End|Data|DevOps|Local Environment Development,0
+Web Development|Back End|Data|DevOps|Local Environment Development|Vagrant,1

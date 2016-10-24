@@ -16,6 +16,7 @@ import GithubSearch from "./components/GithubSearch"
 import Github from "./components/Github"
 import VideoSearch from "./components/VideoSearch"
 import Search from "./components/HomePage"
+import LearningTree from "./components/LearningTree"
 import store from "./store"
 import { loadProfile } from "./actions/userActions"
 
@@ -51,6 +52,7 @@ ReactDOM.render(<Provider store={store}>
       <Route path="video(/:search)" component={VideoSearch}></Route>
       <Route path="video/display/:videoId" component={Video}></Route>
       <Route path="access_token=:accessToken&id_token=:idToken&token_type=:tokenType" onEnter={access}/>
+      <Route path="tree" component={LearningTree} />
       <Route path="*" component={NotFound}></Route>
     </Route>
     <Route path="*" component={NotFound}></Route>

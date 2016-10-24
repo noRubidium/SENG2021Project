@@ -1,0 +1,318 @@
+{
+  "data":[
+    {"title":"Web Development",
+      "subtree":[
+        {
+          "title":"No Matter Which Route You Take",
+          "subtree": [
+            {
+              "term": "FTP"
+            },
+            {
+              "term": "Web Host Setup"
+            },
+            {
+              "term": "How to use Terminal"
+            },
+            {
+              "term": "Github Basics"
+            },
+            {
+              "term": "RESTful Web service"
+            }
+          ]
+        },
+        {
+          "title": "Front End",
+          "subtree":[
+            {
+              "title": "Text Editors",
+              "subtree": [
+                {
+                  "term": "atom.io"
+                },
+                {
+                  "term": "sublime text"
+                },
+                {
+                  "term": "brackets.io"
+                }
+              ]
+            },
+            {
+              "term": "HTML"
+            },
+            {
+              "term": "CSS",
+              "subtree": [
+                {
+                  "term":"SASS"
+                },
+                {
+                  "term": "SCSS"
+                },
+                {
+                  "term":"bootstrap"
+                },
+                {
+                  "term":"Foundationjs"
+                },
+                {
+                  "term": "responsive design with css"
+                }
+              ]
+            },
+            {
+              "term": "Javascript Basics",
+              "subtree":
+              [
+                {
+                  "term": "Modular JS",
+                  "subtree": [
+                    {
+                      "term":"ES2015"
+                    },
+                    {
+                      "term": "npm",
+                      "subtree": [
+                        {
+                          "term": "JS build tools",
+                          "subtree": [
+                            {
+                              "title":"Task Runner",
+                              "subtree": [
+                                {"term":"Gulp"},
+                                {"term":"Grunt"}
+                              ]
+                            },
+                            {
+                              "title": "Dependency Management",
+                              "subtree": [
+                                {"term":"browserify"},
+                                {"term": "webpack"}
+                              ]
+                            },
+                            {"term":"bower"},
+                            {"term": "Yeoman.io"}
+                          ]
+                        },
+                        {
+                          "term": "MV Javascript Frameworks",
+                          "subtree": [
+                            {
+                              "term": "React.js",
+                              "subtree":[
+                                {"term":"Mobx"},
+                                {"term":"Flux"},
+                                {"term":"Redux"},
+                                {"term": "Relay"},
+                                {"term": "GraphQL"},
+                                {"term": "create-react-app"}
+                              ]
+                            },
+                            {
+                              "term": "Angular.js"
+                            },
+                            {"term": "Ember.js"},
+                            {"term": "Vue.js"},
+                            {"term": "Closurescript"},
+                            {"term": "Elm"},
+                            {
+                              "title": "Unit Testing",
+                              "subtree" : [
+                                {"term": "Mocha"},
+                                {"term": "Jasmine"},
+                                {"term": "Kaema"},
+                                {"term": "enzyme"}
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "term": "jQuery"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Back End",
+          "subtree": [
+            {
+              "title": "Scripting Language",
+              "subtree": [
+                {
+                  "term": "Nodejs",
+                  "subtree": [
+                    {"term": "express"},
+                    {"term": "hapi"}
+                  ]
+                },
+                {
+                  "term": "Python",
+                  "subtree": [
+                    {"term": "Django"},
+                    {"term": "flask"}
+                  ]
+                },
+                {
+                  "term": "Ruby",
+                  "subtree":[
+                    {"term": "Ruby on Rails"},
+                    {"term": "Sinatra"}
+                  ]
+                },
+                {
+                  "term": "PHP",
+                  "subtree": [
+                    {"term": "Laravel"},
+                    {"term": "Symfony2"},
+                    {"term": "Lumen"}
+                  ]
+                }
+              ]
+            },
+
+            {
+              "title": "Functional Languages",
+              "subtree": [
+                {"term": "Elixir"},
+                {"term": "Scala"},
+                {"term": "Clojure"},
+                {"term": "Haskell"}
+              ]
+            },
+            {
+              "title": "HighPerformance/Compiled Language",
+              "subtree": [
+                {"term": "GoLang"},
+                {"term": "Rust"},
+                {"term": "Java"},
+                {"term": "C#"}
+              ]
+            },
+            {
+              "title": "Data",
+              "subtree": [
+                {
+                  "title": "caching",
+                  "subtree": [
+                    {"term":"Nginx"},
+                    {"term":"Apache"},
+                    {"term": "Databse Redis"},
+                    {"term": "In-memory Caching"}
+                  ]
+                },
+                {
+                  "title": "Relational Database",
+                  "subtree": [
+                    {"term": "MySQL"},
+                    {"term": "PostgreSQL"},
+                    {"term": "sqlite3"}
+                  ]
+                },
+                {
+                  "title": "Document Database",
+                  "subtree": [
+                    {"term": "MongoDB"},
+                    {"term": "Couchbase"},
+                    {"term": "RethinkDB"}
+                  ]
+                },
+                {
+                  "title": "Search Engine",
+                  "subtree": [
+                    {"term": "ElasticSerch"},
+                    {"term": "Solr"}
+                  ]
+                },
+                {
+                  "title": "Things to Learn",
+                  "subtree": [
+                    {"term": "Unit Testing"},
+                    {"term": "API Service"},
+                    {
+                      "term": "Authorisation",
+                      "subtree": [
+                        {"term": "OAUTH2"},
+                        {"term": "JSON Web Token"}
+                      ]
+                    },
+                    {"term": "SOA"},
+                    {"term": "Deploying App"},
+                    {"term": "web socket"},
+                    {"term": "ORM/ Data Structure"}
+                  ]
+                },
+                {
+                  "title": "DevOps",
+                  "subtree": [
+                    {
+                      "title": "Web Platform",
+                      "subtree": [
+                        {"term": "Digital Ocean"},
+                        {"term": "AWS"},
+                        {"term": "Azure"},
+                        {"term": "Rackspace"},
+                        {"term": "Heroku"}
+                      ]
+                    },
+                    {
+                      "title": "Server Management",
+                      "subtree": [
+                        {"term": "Linux"},
+                        {
+                          "term": "Docker",
+                          "subtree": [
+                            {"term": "Big Scale: Kubernetes, Mesos"},
+                            {"term": "Small Scale: Docker Swarm"},
+                            {"term": "UI-Driven",
+                              "subtree": [
+                                  {"term": "Rancher"},
+                                  {"term": "Docker Cloud"},
+                                  {"term": "Docker Datacenter"}
+                                ]
+                              }
+                          ]
+                        },
+                        {"term": "Ansible"},
+                        {"term": "Salt Web Development"},
+                        {"term": "Chef Web Dev"},
+                        {"term": "Puppet"}
+                      ]
+                    },
+                    {
+                      "title": "continuous Testing and Deployment",
+                      "subtree": [
+                        {"term": "Jenkins"},
+                        {"term": "SemaphoreCI"},
+                        {"term": "CircleCI"},
+                        {"term": "Codeship"}
+                      ]
+                    },
+                    {
+                      "title": "Local Environment Development",
+                      "subtree": [
+                        {"term": "Vagrant"}
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title":"Machine Learning"
+    },
+    {
+      "title":"Ace the Interview"
+    }
+  ]
+}
