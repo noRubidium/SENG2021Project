@@ -23,7 +23,8 @@ import LearningTreePage from "./LearningTreePage"
     forum: store.forum,
     videoSearch: store.videoSearch,
     user: store.user,
-    github: store.github
+    github: store.github,
+    treeTitle: store.github.treeTitle,
   };
 })
 export default class Dashboard extends React.Component {
@@ -235,9 +236,9 @@ export default class Dashboard extends React.Component {
       middleColTitle = <h4>Favourites</h4>;
     } else if (feed === mappedPreferences) {
       middleColTitle = <h4>Preferences</h4>;
-    } else if (feed === mappedTree) {
-      middleColTitle = <h4>Learning Roadmap</h4>;
-    } else {
+    } else if (feed === mappedTree){
+      middleColTitle = <h4>{this.props.treeTitle}</h4>;
+    }else {
       middleColTitle = <h4>Top Content For You</h4>;
     }
 

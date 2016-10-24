@@ -6,6 +6,7 @@ export default function reducer(state={
     fetching: false,
     fetched: false,
     error: null,
+    treeTitle: "Discover something new",
   }, action) {
 
     switch (action.type) {
@@ -78,6 +79,18 @@ export default function reducer(state={
             fetching: false,
             error: action.payload,
           }
+      }
+      case "CHANGE_TREE_TITLE": {
+        return {
+          ...state,
+          treeTitle: action.payload,
+        }
+      }
+      case "DELETE_TREE_TITLE" : {
+        return {
+          ...state,
+          treeTitle: "Discover something new",
+        }
       }
     }
 
