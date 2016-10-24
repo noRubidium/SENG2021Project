@@ -107,10 +107,10 @@ export default class Dashboard extends React.Component {
     reposSorted = reposSorted.sort((a,b) => {return (a.watchers > b.watchers) ? -1 : ((b.watchers > a.watchers) ? 1 : 0);} )
 
     // form 'Tutorial Videos'/'Forum Threads'/'Code Repositories'
-    const mappedForums = forumsSorted.length ? forumsSorted.map(forum => <ForumResult wordCount="80" key={forum.question_id} forum={forum}/>)
+    const mappedForums = forumsSorted.length ? forumsSorted.map(forum => <ForumResult tags="yes" wordCount="80" key={forum.question_id} forum={forum}/>)
         : <div>No results. Try a different search term.</div>
-    const mappedVideos = videos.map(video => <VideoResult video={video} key={video.id.videoId}></VideoResult>)
-    const mappedRepos = reposSorted.length? reposSorted.map(repo => <GithubResult repo={repo}/>)
+    const mappedVideos = videos.map(video => <VideoResult tags="yes" video={video} key={video.id.videoId}></VideoResult>)
+    const mappedRepos = reposSorted.length? reposSorted.map(repo => <GithubResult tags="yes" repo={repo}/>)
         : <div>No results. Try a different search term.</div>
 
     // form 'All' by combining all and selecting in turn
@@ -126,9 +126,9 @@ export default class Dashboard extends React.Component {
 
     // form 'Favourites' by combining all favourites and shuffling
     const { forumFavs, repoFavs, videoFavs } = this.props.user.user;
-    const mappedFavedForums = forumFavs.map(forum => <ForumResult wordCount="80" forum={forum}/>)
-    const mappedFavedRepos = repoFavs.map(repo => <GithubResult repo={repo}/>)
-    const mappedFavedVideos = videoFavs.map(video => <VideoResult video={video}></VideoResult>)
+    const mappedFavedForums = forumFavs.map(forum => <ForumResult tags="yes" wordCount="80" forum={forum}/>)
+    const mappedFavedRepos = repoFavs.map(repo => <GithubResult tags="yes" repo={repo}/>)
+    const mappedFavedVideos = videoFavs.map(video => <VideoResult tags="yes" video={video}></VideoResult>)
 
     var favourites = mappedFavedForums.concat(mappedFavedRepos).concat(mappedFavedVideos)
 

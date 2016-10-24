@@ -55,7 +55,10 @@ export default class ForumResult extends React.Component {
             { showMore?
               <div> ... <Link to={"/forum/display/"+forum.question_id}> (more) </Link></div>:""
             }
-            <span class="badge pull-right">forums</span>
+            {
+              this.props.tags?
+              <span class="badge pull-right">forums</span>:""
+            }
           </div>
         </div>
       </div>

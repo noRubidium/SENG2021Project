@@ -62,7 +62,10 @@ export default class VideoResult extends React.Component {
                 </div>
               </div>
               <div class="row col-md-12">
-              <span class="badge pull-right">tutorials</span>
+              {
+                this.props.tags?
+                <span class="badge pull-right">tutorials</span>:""
+              }
               </div>
             </div>
           :

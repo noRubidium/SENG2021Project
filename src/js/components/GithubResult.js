@@ -56,7 +56,10 @@ export default class GithubResult extends React.Component {
             &emsp;<span class="octicon octicon-repo-forked"></span> {repo.forks} </h5>
             <h5>Written in <i>{repo.language}</i></h5>
             <h5>{repo.description}</h5>
-            <span class="badge pull-right">repositories</span>
+            {
+              this.props.tags?
+              <span class="badge pull-right">repositories</span>:""
+            }
           </div>
         </div>
       </div>
