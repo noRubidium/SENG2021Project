@@ -1,6 +1,7 @@
 import React from "react"
 import { connect } from "react-redux"
 import { Link } from "react-router"
+import ReactMarkdown from "react-markdown"
 
 import Loading from "./Loading"
 
@@ -37,7 +38,7 @@ export default class Dashboard extends React.Component {
       document.body.style.backgroundImage = "none";
       {/*They may not have any preferences yet*/}
       // keeps this here until we have actual user login
-      const content_list = ["IOS programming", "Python", "Java", "Javascript", "Dynamic Programming"]
+      const content_list = ["IOS", "Python", "Javascript", "Dynamic Programming", "React"]
       if (this.props.user.user.preferences == "initial_user_pref") {
         this.props.dispatch(fetchForums(content_list[Math.floor(Math.random()*content_list.length)]))
         this.props.dispatch(fetchVideos(content_list[Math.floor(Math.random()*content_list.length)]))
@@ -96,12 +97,10 @@ export default class Dashboard extends React.Component {
     const videos = video_items_json.items;
     const repos = github_repos_json.items;
 
-    var ReactMarkdown = require('react-markdown');
-
     // sort forums and repos
     var forumsSorted = forums;
     forumsSorted.sort(function(a,b) {return (a.score > b.score) ? -1 : ((b.score > a.score) ? 1 : 0);} );
-    forumsSorted = forumsSorted.filter(function (forum) {return forum.body.length <= 500;});
+
     var reposSorted = repos
     reposSorted = reposSorted.filter(repo => {return repo.language && repo.description && repo.forks > 100})
     reposSorted = reposSorted.sort((a,b) => {return (a.watchers > b.watchers) ? -1 : ((b.watchers > a.watchers) ? 1 : 0);} )
@@ -121,25 +120,28 @@ export default class Dashboard extends React.Component {
       all.push(mappedForums[i]);
       all.push(mappedRepos[i]);
     }
+
     const mappedAll = all.slice(0, 15);
 
     // form 'Favourites' by combining all favourites and shuffling
-    const favedForums = this.props.user.user.forumFavs;
-    const mappedFavedForums = favedForums.map(forum => <ForumResult forum={forum}/>);
-    const favedRepos = this.props.user.user.repoFavs;
-    const mappedFavedRepos = favedRepos.map(repo => <GithubResult repo={repo}/>)
-    const favedVideos = this.props.user.user.videoFavs;
-    const mappedFavedVideos = favedVideos.map(video => <VideoResult video={video}></VideoResult>)
+    const { forumFavs, repoFavs, videoFavs } = this.props.user.user;
+    const mappedFavedForums = forumFavs.map(forum => <ForumResult forum={forum}/>)
+    const mappedFavedRepos = repoFavs.map(repo => <GithubResult repo={repo}/>)
+    const mappedFavedVideos = videoFavs.map(video => <VideoResult video={video}></VideoResult>)
+
     var favourites = mappedFavedForums.concat(mappedFavedRepos).concat(mappedFavedVideos)
+
     for (var i = favourites.length; i; i--) {
         var j = Math.floor(Math.random() * i);
         var x = favourites[i - 1];
         favourites[i - 1] = favourites[j];
         favourites[j] = x;
     }
+
     if (favourites.length === 0) {
       favourites = ["You have no favourites yet. Start now by exploring some trending content!"]
     }
+
     const mappedFavourites = favourites.slice(0, 15);
 
     // form 'Preferences'
@@ -148,12 +150,13 @@ export default class Dashboard extends React.Component {
 
     var preferences = [];
     if (this.props.user.user.preferences == "initial_user_pref") {
-      preferences = ["IOS", "Python", "Java", "Javascript", "Dynamic Programming"];
+      preferences = ["IOS", "Python", "Javascript", "Dynamic Programming", "React"];
     } else {
       preferences = this.props.user.user.preferences.split(/\s*\|\s*/);
     }
 
-    var mappedPreferences = preferences.map((pref,index) => <li style={{borderStyle:"none"}}><span>{this.capitalizeFirstLetter(pref)}  </span><span data-id={index} onClick={this.handlePrefDelete.bind(this)} class="glyphicon glyphicon-remove"></span></li>);
+    var mappedPreferences = preferences.map((pref,index) => <li><span>{this.capitalizeFirstLetter(pref)} </span>
+                            <span data-id={index} onClick={this.handlePrefDelete.bind(this)} class="glyphicon glyphicon-remove"></span></li>);
     mappedPreferences = <div><h4>Your current preferences:</h4><ul>{mappedPreferences}</ul><br /><h4>Add new preference(s):</h4><PreferenceBar/></div>;
 
 
@@ -199,8 +202,8 @@ export default class Dashboard extends React.Component {
 
     return (
       <div>
-        <div class="text-center">
-          <h2>Welcome back to your Dashboard</h2>
+        <div class="text-center" style={{marginBottom: "30px"}}>
+          <h2>Welcome back to your Dashboard, <b>{this.props.user.user.profile["nickname"]}</b></h2>
         </div>
 
         <div class="row">
@@ -227,12 +230,12 @@ export default class Dashboard extends React.Component {
             <h4>Explore New Topics</h4>
             <hr />
             <ul>
-              <li style={{borderStyle:"none"}}><Link to={"all/Dijkstra's Algorithm"}>Dijkstra's Algorithm</Link></li>
-              <li style={{borderStyle:"none"}}><Link to={"all/Cracking the Coding Interview"}>Cracking the Coding Interview</Link></li>
-              <li style={{borderStyle:"none"}}><Link to={"all/Competitive Programming"}>Competitive Programming</Link></li>
-              <li style={{borderStyle:"none"}}><Link to={"all/Django"}>Django</Link></li>
-              <li style={{borderStyle:"none"}}><Link to={"all/Coding Interview Tips"}>Coding Interview Tips</Link></li>
-              <li style={{borderStyle:"none"}}><Link to={"all/Artificial Intelligence"}>Artificial Intelligence</Link></li>
+              <li><Link to={"all/Dijkstra's Algorithm"}>Dijkstra's Algorithm</Link></li>
+              <li><Link to={"all/Cracking the Coding Interview"}>Cracking the Coding Interview</Link></li>
+              <li><Link to={"all/Competitive Programming"}>Competitive Programming</Link></li>
+              <li><Link to={"all/Django"}>Django</Link></li>
+              <li><Link to={"all/Coding Interview Tips"}>Coding Interview Tips</Link></li>
+              <li><Link to={"all/Artificial Intelligence"}>Artificial Intelligence</Link></li>
             </ul>
           </div>
         </div>

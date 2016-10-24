@@ -56,12 +56,11 @@ export default class AllSearch extends React.Component {
       return <NoResult term={this.props.routeParams.search} history={this.props.history}/>
     }
 
-    // var forums_sorted = forums
-    const forums_sorted = forums.sort((a,b) => b.score - a.score ).filter( (forum) => forum.body.length <= 700);
-    // forums_sorted = forums_sorted
-    const mappedForums = forums_sorted.length ? forums_sorted.map(forum =>  <ForumResult key={forum.question_id} forum={forum}/>)
+    const forums_sorted = forums.sort((a,b) => b.score - a.score)
+    const mappedForums = forums_sorted.length? forums_sorted.map(forum => <ForumResult key={forum.question_id} forum={forum}/>)
         : [<li>No results. Try a different search term.</li>]
-    const mappedVideos = videos.map(video => <VideoResult video={video} key={video.id.videoId}></VideoResult>)
+    const mappedVideos = videos.length? videos.map(video => <VideoResult video={video} key={video.id.videoId}/>)
+        : [<li>No results. Try a different search term.</li>]
 
     var repos_sorted = []
     var minFork = 64
@@ -69,7 +68,8 @@ export default class AllSearch extends React.Component {
       repos_sorted = repos.filter(repo => {return repo.language && repo.description && repo.forks > minFork}).slice(0,5)
       minFork /= 2
     }
-    const mappedRepos = repos_sorted.length? repos_sorted.map(repo => <div key={repo.git_url}><GithubResult repo={repo}/></div>)
+
+    const mappedRepos = repos_sorted.length? repos_sorted.map(repo => <GithubResult repo={repo}/>)
         : <li>No results. Try a different search term.</li>
 
     const forumList = mappedForums.slice(0,5)
@@ -90,7 +90,7 @@ export default class AllSearch extends React.Component {
             <ul class="search-result">{forumList}</ul>
           </div>
           <div class="col-md-4">
-            <h3>Github Repositories</h3>
+            <h3>Repositories</h3>
             <ul class="search-result">{mappedRepos}</ul>
           </div>
         </div>

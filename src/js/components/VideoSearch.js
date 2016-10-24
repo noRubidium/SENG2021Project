@@ -58,7 +58,7 @@ export default class VideoSearch extends React.Component {
       return <NoResult search={search} history={this.props.history}/>
     }
 
-    const mappedVideos = videos.map(video => <li class="search-result"><VideoResult video={video}></VideoResult></li>)
+    const mappedVideos = videos.map(video => <VideoResult video={video}/>)
     return (
       <div class="container title-links">
         <SearchOptions search={search} active="tutorial"/>

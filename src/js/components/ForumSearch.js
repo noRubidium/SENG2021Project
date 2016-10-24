@@ -54,7 +54,7 @@ export default class ForumSearch extends React.Component {
       return <NoResult term={search} history={this.props.history}/>
     }
 
-    const mappedForums = threads.map(forum => <li class="search-result"><ForumResult key={forum.question_id} forum={forum}/></li>)
+    const mappedForums = threads.map(forum => <ForumResult key={forum.question_id} forum={forum}/>)
 
     return (
       <div class="container title-links">

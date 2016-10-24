@@ -44,7 +44,7 @@ export default function reducer(state={
       case "UPDATE_USER_PREFERENCES": {
         var prefsArray = [];
         if (state.user.preferences === "initial_user_pref") {
-          prefsArray = ["IOS", "Python", "Java", "Javascript", "Dynamic Programming"];
+          prefsArray = ["IOS", "Python", "Javascript", "Dynamic Programming", "React"];
         } else {
           prefsArray = state.user.preferences.split(/\s*\|\s*/);
         }
