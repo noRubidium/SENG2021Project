@@ -5,11 +5,14 @@ import { connect } from "react-redux"
 import GithubRepo from "./GithubRepo"
 import { fetchRepoContent } from "../actions/githubActions"
 import { fetchReadme } from "../actions/githubActions"
+import { addRepoFav } from "../actions/userActions"
+import { removeRepoFav } from "../actions/userActions"
 
 import { Loading } from "./Loading"
 
 @connect((store) => {
   return {
+    user: store.user,
     github: store.github,
   };
 })
@@ -24,7 +27,14 @@ export default class Github extends React.Component {
       this.props.dispatch(fetchReadme(repo.full_name))
     }
   }
-
+  favourite(e) {
+    e.preventDefault()
+    if ((this.props.user.user.repoFavs).indexOf(this.props.repo) >= 0) {
+      this.props.dispatch(removeRepoFav(this.props.repo))
+    } else {
+      this.props.dispatch(addRepoFav(this.props.repo))
+    }
+  }
   render() {
     const { github } = this.props
     const repos = github.repos.items
@@ -32,6 +42,10 @@ export default class Github extends React.Component {
     if (repos instanceof Array && !repos.length) {
       return (<div>Illegal access (must go through a link)</div>)
     }
+
+    const icon = (this.props.user.user.repoFavs).indexOf(this.props.repo) >= 0 ?
+                "glyphicon glyphicon-heart pull-right": "glyphicon glyphicon-heart-empty pull-right"
+    const favourite = <a href="#" onClick={this.favourite.bind(this)}><span class={icon}></span></a>
 
     const { repoId } = this.props.routeParams
     const repo = repos.filter(repo => { return repo.id == repoId })[0]
@@ -54,7 +68,7 @@ export default class Github extends React.Component {
     var ReactMarkdown = require('react-markdown')
     return (
       <div class="container title-links">
-          <h3><a target="_blank" href = {repo.html_url}>{repo.full_name}</a></h3>
+          <h3><a target="_blank" href = {repo.html_url}>{repo.full_name}</a>{/*favourite*/}</h3>
           <div class="col-md-9">
             <ReactMarkdown source={github.readme}/>
           </div>

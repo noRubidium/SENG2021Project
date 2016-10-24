@@ -75,7 +75,7 @@ export default function reducer(state={
       case "REMOVE_USER_VIDEO_FAVOURITE": {
         var original = {...state, user:{...state.user, videoFavs: [...state.user.videoFavs].concat(action.payload.favourite)}}
         for (var i = original.user.videoFavs.length - 1; i >= 0; i--) { // note: must be backwards since we are modifying the array and indexes change
-          if (original.user.videoFavs[i] === action.payload.favourite) {
+          if (original.user.videoFavs[i].id.videoId === action.payload.favourite.id.videoId) {
             original.user.videoFavs.splice(i, 1);
           }
         }
