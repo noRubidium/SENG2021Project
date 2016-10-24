@@ -33,6 +33,7 @@ export default function reducer(state={
         logo: 'logo/Sauce.png',
         primaryColor: '#446CB3',
         title: "Log in",
+        name: "Sauce",
       }
     }),
     fetching: false,
@@ -144,25 +145,34 @@ export default function reducer(state={
         }
       }
       case "LOGGEDIN": {
+        const user = {... state.user, token: action.payload};
+        localStorage.setItem("userInfo", JSON.stringify(user))
+
         return {
           ...state,
-          user: {... state.user, token: action.payload}
+          user,
         }
       }
       case "LOGOUT": {
+        const user = {...state.user, token: undefined};
+        localStorage.setItem("userInfo", JSON.stringify(user))
+
         return {
           ...state,
-          user:{...state.user, token: undefined}
+          user,
         }
       }
       case "LOAD_PROFILE_FINISH": {
+        const user = {...state.user,profile:action.payload};
+        localStorage.setItem("userInfo", JSON.stringify(user))
+
         return {
           ...state,
-          user:{...state.user,profile:action.payload}
+          user,
         }
       }
       case "UPDATE_ROOT": {
-        localStorage.setItem("currRoot", action.payload)
+        //localStorage.setItem("currRoot", action.payload)
         const user ={
           ...state.user,
           tree: action.payload.root,
