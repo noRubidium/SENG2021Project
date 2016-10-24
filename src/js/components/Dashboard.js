@@ -40,11 +40,17 @@ export default class Dashboard extends React.Component {
       {/*They may not have any preferences yet*/}
       // keeps this here until we have actual user login
       const content_list = ["IOS", "Python", "Javascript", "Dynamic Programming", "React"]
-      if (this.props.user.user.preferences == "initial_user_pref") {
+      console.log("I'M HERE", this.props.user.user.preferences)
+      if (this.props.user.user.preferences == "initial_user_pref" || !this.props.user.user.preferences ) {
         this.props.dispatch(fetchForums(content_list[Math.floor(Math.random()*content_list.length)]))
         this.props.dispatch(fetchVideos(content_list[Math.floor(Math.random()*content_list.length)]))
         this.props.dispatch(fetchRepos(content_list[Math.floor(Math.random()*content_list.length)]))
-      }
+      }else if (this.props.user.user.preferences) {
+          console.log("I'M HERE")
+          this.props.dispatch(fetchForums(this.props.user.user.preferences))
+          this.props.dispatch(fetchVideos(this.props.user.user.preferences))
+          this.props.dispatch(fetchRepos(this.props.user.user.preferences))
+        }
   }
 
   componentWillUpdate(nextProps, nextState) {

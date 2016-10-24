@@ -57,7 +57,7 @@ export default class Nav extends React.Component {
     return (
       <nav class={"navbar navbar-default " + navClass}>
         <ul class="nav navbar-nav navbar-left">
-            <li><a href="#" onClick={this.props.goBack}>&lt;</a></li>
+            {/* <li><a href="#" onClick={this.props.goBack}>&lt;</a></li> */}
             <li><IndexLink to="/" class="navbar-links">SAUCE</IndexLink></li>
             {token? <li><Link to="/dashboard" class="navbar-links">DASHBOARD</Link></li>:""}
         </ul>
@@ -65,7 +65,7 @@ export default class Nav extends React.Component {
           location.pathname !== "/"? <SearchBar formClass="navbar-form navbar-left"/>:
           ""
         }
-        <Login/>
+        <Login history={this.props.history}/>
 {/* >>>>>>> 8afb4fd9eb044701c91b4b827138a665ae653861 */}
       </nav>
     );

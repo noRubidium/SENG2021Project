@@ -18,6 +18,7 @@ export default class Login extends React.Component {
   logout(e){
     e.preventDefault()
     this.props.dispatch(logout())
+    this.props.history.push("/")
   }
   render(){
     const { token } = this.props.user.user

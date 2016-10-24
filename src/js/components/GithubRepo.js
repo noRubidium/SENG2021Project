@@ -3,6 +3,7 @@ import { connect } from "react-redux"
 import { fetchRepoTree } from "../actions/githubActions"
 import ReactMarkdown  from 'react-markdown'
 import GithubContent from './GithubContent'
+import Loading from "./Loading"
 
 @connect((store) => {
   return {
@@ -22,7 +23,7 @@ export default class GithubRepo extends React.Component {
             const mappedTrees = current_tree.map(tree => <li><GithubContent tree={tree}/></li>)
             return(<ul>{mappedTrees}</ul>)
         } else {
-            return(<h4>Loading</h4>);
+            return(<Loading />);
         }
     }
 }

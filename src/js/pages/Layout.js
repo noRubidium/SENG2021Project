@@ -13,7 +13,7 @@ export default class Layout extends React.Component {
     console.log(this.props)
     return (
       <div>
-        <Nav location={location} goBack={this.props.history.goBack}/>
+        <Nav location={location} history={this.props.history}/>
         <div class="container-fluid">
           <div class="row">
             <div class="col-lg-12">

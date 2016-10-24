@@ -154,7 +154,7 @@ export default function reducer(state={
         }
       }
       case "LOGOUT": {
-        const user = {...state.user, token: undefined};
+        const user = {...state.user, token: null};
         localStorage.setItem("userInfo", JSON.stringify(user))
 
         return {

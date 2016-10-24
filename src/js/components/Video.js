@@ -6,6 +6,7 @@ import { fetchVideo } from "../actions/videoSearchActions"
 import { fetchRelatedVideos } from "../actions/videoSearchActions"
 import VideoResult from "./VideoResult"
 import NoResult from "../pages/NoResult"
+import Loading from "./Loading"
 
 @connect((store) => {
   return {
@@ -56,17 +57,16 @@ export default class Video extends React.Component {
       {
         video.video?
         <h3><a target="_blank" href = {linkToVideo}>{video.video.title}</a></h3>:
-        "Loading..."
+        <Loading />
       }
       <YouTube videoId={videoId} opts={opts} onReady={this._onReady} />
+      <hr />
+      <h3>Related Videos</h3>
+      {mappedRelated}
 
       <hr />
       <h3>Description</h3>
       {video.video?(<div><div><p>{description}</p></div></div>) :<h1> Loading... </h1>}
-
-      <hr />
-      <h3>Related Videos</h3>
-      {mappedRelated}
     </div>);
   }
 }
