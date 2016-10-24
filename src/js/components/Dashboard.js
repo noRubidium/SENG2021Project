@@ -17,6 +17,7 @@ import GithubResult from "./GithubResult"
 import SearchBar from "./SearchBar"
 import PreferenceBar from "./PreferenceBar"
 import LearningTree from "./LearningTree"
+import Board from "./Board"
 
 @connect((store) => {
   return {
@@ -146,10 +147,10 @@ export default class Dashboard extends React.Component {
     reposSorted = reposSorted.sort((a,b) => {return (a.watchers > b.watchers) ? -1 : ((b.watchers > a.watchers) ? 1 : 0);} )
 
     // form 'Tutorial Videos'/'Forum Threads'/'Code Repositories'
-    const mappedForums = forumsSorted.length ? forumsSorted.map(forum => <ForumResult key={forum.question_id} forum={forum}/>)
+    const mappedForums = forumsSorted.length ? forumsSorted.map(forum => <ForumResult tags="yes" wordCount="80" key={forum.question_id} forum={forum}/>)
         : <div>No results. Try a different search term.</div>
-    const mappedVideos = videos.map(video => <VideoResult video={video} key={video.id.videoId}></VideoResult>)
-    const mappedRepos = reposSorted.length? reposSorted.map(repo => <GithubResult repo={repo}/>)
+    const mappedVideos = videos.map(video => <VideoResult tags="yes" video={video} key={video.id.videoId}></VideoResult>)
+    const mappedRepos = reposSorted.length? reposSorted.map(repo => <GithubResult tags="yes" repo={repo}/>)
         : <div>No results. Try a different search term.</div>
 
     // form 'All' by combining all and selecting in turn
@@ -165,9 +166,9 @@ export default class Dashboard extends React.Component {
 
     // form 'Favourites' by combining all favourites and shuffling
     const { forumFavs, repoFavs, videoFavs } = this.props.user.user;
-    const mappedFavedForums = forumFavs.map(forum => <ForumResult forum={forum}/>)
-    const mappedFavedRepos = repoFavs.map(repo => <GithubResult repo={repo}/>)
-    const mappedFavedVideos = videoFavs.map(video => <VideoResult video={video}></VideoResult>)
+    const mappedFavedForums = forumFavs.map(forum => <ForumResult tags="yes" wordCount="80" forum={forum}/>)
+    const mappedFavedRepos = repoFavs.map(repo => <GithubResult tags="yes" repo={repo}/>)
+    const mappedFavedVideos = videoFavs.map(video => <VideoResult tags="yes" video={video}></VideoResult>)
 
     var favourites = mappedFavedForums.concat(mappedFavedRepos).concat(mappedFavedVideos)
 
@@ -202,6 +203,7 @@ export default class Dashboard extends React.Component {
 
 
     const mappedTree = <LearningTree history={this.props.history}/>;
+    const mappedBoard = <Board/>
 
     var feed;
     switch(this.state.feed) {
@@ -225,6 +227,9 @@ export default class Dashboard extends React.Component {
         break;
       case 7:
         feed = mappedTree;
+        break;
+      case 8:
+        feed = mappedBoard;
         break;
       default: // All
         feed = mappedAll;
@@ -256,9 +261,10 @@ export default class Dashboard extends React.Component {
               <li style={{borderStyle:"none"}} data-id="3" onClick={this.handleFeedChange.bind(this)} class={this.state.feed === 3 ? "active" : ""} data-toggle="pill" ><a>Forum Threads</a></li>
               <li style={{borderStyle:"none"}} data-id="4" onClick={this.handleFeedChange.bind(this)} class={this.state.feed === 4 ? "active" : ""} data-toggle="pill" ><a>Code Repositories</a></li>
               <br />
-              <li style={{borderStyle:"none"}} data-id="5" onClick={this.handleFeedChange.bind(this)} class={this.state.feed === 5 ? "active" : ""} data-toggle="pill" ><a><span class="glyphicon glyphicon-heart" />Favourites </a></li>
-              <li style={{borderStyle:"none"}} data-id="6" onClick={this.handleFeedChange.bind(this)} class={this.state.feed === 6 ? "active" : ""} data-toggle="pill" ><a><span class="glyphicon glyphicon-cog"/>Preferences </a></li>
-              <li style={{borderStyle:"none"}} data-id="7" onClick={this.handleFeedChange.bind(this)} class={this.state.feed === 7 ? "active" : ""} data-toggle="pill" ><a><span class="glyphicon glyphicon-road"/>Learning Roadmap </a></li>
+              <li style={{borderStyle:"none"}} data-id="5" onClick={this.handleFeedChange.bind(this)} class={this.state.feed === 5 ? "active" : ""} data-toggle="pill" ><a><span class="glyphicon glyphicon-heart" /> Favourites </a></li>
+              <li style={{borderStyle:"none"}} data-id="6" onClick={this.handleFeedChange.bind(this)} class={this.state.feed === 6 ? "active" : ""} data-toggle="pill" ><a><span class="glyphicon glyphicon-cog"/> Preferences </a></li>
+              <li style={{borderStyle:"none"}} data-id="7" onClick={this.handleFeedChange.bind(this)} class={this.state.feed === 7 ? "active" : ""} data-toggle="pill" ><a><span class="glyphicon glyphicon-road"/> Learning Roadmap </a></li>
+              <li style={{borderStyle:"none"}} data-id="8" onClick={this.handleFeedChange.bind(this)} class={this.state.feed === 8 ? "active" : ""} data-toggle="pill" ><a><span class="glyphicon glyphicon-blackboard"/> Board </a></li>
             </ul>
           </div>
           <div class="col-md-7">

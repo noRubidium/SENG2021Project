@@ -166,7 +166,7 @@ ul.search-result {
 }
 
 .all-search-container {
-	width: 80%;
+	width: 90%;
 }
 
 .title-links {
@@ -197,5 +197,12 @@ ul.search-result {
   fill: none;
   stroke: #ccc;
   stroke-width: 2px;
->>>>>>> b64ad56b7dcaa46baf836cbfc2b37cd867edb6ec
+}
+
+.panel-body {
+	margin-top: -20px;
+}
+
+.column-search {
+	padding: 0px 5px;
 }

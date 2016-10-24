@@ -61,7 +61,7 @@ export default class AllSearch extends React.Component {
     }
 
     const forums_sorted = forums.sort((a,b) => b.score - a.score)
-    const mappedForums = forums_sorted.length? forums_sorted.map(forum => <ForumResult key={forum.question_id} forum={forum}/>)
+    const mappedForums = forums_sorted.length? forums_sorted.map(forum => <ForumResult wordCount="50" key={forum.question_id} forum={forum}/>)
         : [<li>No results. Try a different search term.</li>]
     const mappedVideos = videos.length? videos.map(video => <VideoResult video={video} key={video.id.videoId}/>)
         : [<li>No results. Try a different search term.</li>]
@@ -86,16 +86,22 @@ export default class AllSearch extends React.Component {
         <SearchOptions search={search} active="all"/>
         <div class="row">
           <div class="col-md-4">
-            <h3>Tutorials</h3>
-            <ul class="search-result">{videoRows}</ul>
-          </div>
-          <div class="col-md-4 forumBox">
-            <h3>Forums</h3>
-            <ul class="search-result">{forumList}</ul>
+            <div class="column-search">
+              <h3>Tutorials</h3>
+              {videoRows}
+            </div>
           </div>
           <div class="col-md-4">
-            <h3>Repositories</h3>
-            <ul class="search-result">{mappedRepos}</ul>
+            <div class="column-search">
+              <h3>Forums</h3>
+              {forumList}
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="column-search">
+              <h3>Repositories</h3>
+              {mappedRepos}
+            </div>
           </div>
         </div>
       </div>
