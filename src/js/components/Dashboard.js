@@ -90,7 +90,47 @@ export default class Dashboard extends React.Component {
     if ((forum_threads_json instanceof Array && !forum_threads_json.length)
         || (video_items_json instanceof Array && !video_items_json.length)
         || (github_repos_json instanceof Array && !github_repos_json.length)) {
-      return (<Loading />)
+      return (
+        <div>
+          <div class="text-center" style={{marginBottom: "30px"}}>
+            <h2>Welcome back to your Dashboard, <b>{this.props.user.user.profile["nickname"]}</b></h2>
+          </div>
+
+          <div class="row">
+            <div class="col-md-2">
+              <h4>Feeds</h4>
+              <hr />
+              <ul class="nav nav-pills nav-stacked">
+                <li style={{borderStyle:"none"}} data-id="1" onClick={this.handleFeedChange.bind(this)} class={this.state.feed === 1 ? "active" : ""} data-toggle="pill" ><a>All</a></li>
+                <li style={{borderStyle:"none"}} data-id="2" onClick={this.handleFeedChange.bind(this)} class={this.state.feed === 2 ? "active" : ""} data-toggle="pill" ><a>Tutorial Videos</a></li>
+                <li style={{borderStyle:"none"}} data-id="3" onClick={this.handleFeedChange.bind(this)} class={this.state.feed === 3 ? "active" : ""} data-toggle="pill" ><a>Forum Threads</a></li>
+                <li style={{borderStyle:"none"}} data-id="4" onClick={this.handleFeedChange.bind(this)} class={this.state.feed === 4 ? "active" : ""} data-toggle="pill" ><a>Code Repositories</a></li>
+                <br />
+                <li style={{borderStyle:"none"}} data-id="5" onClick={this.handleFeedChange.bind(this)} class={this.state.feed === 5 ? "active" : ""} data-toggle="pill" ><a><span class="glyphicon glyphicon-heart" />Favourites </a></li>
+                <li style={{borderStyle:"none"}} data-id="6" onClick={this.handleFeedChange.bind(this)} class={this.state.feed === 6 ? "active" : ""} data-toggle="pill" ><a><span class="glyphicon glyphicon-cog"/>Preferences </a></li>
+                <li style={{borderStyle:"none"}} data-id="7" onClick={this.handleFeedChange.bind(this)} class={this.state.feed === 7 ? "active" : ""} data-toggle="pill" ><a><span class="glyphicon glyphicon-road"/>Learning Roadmap </a></li>
+              </ul>
+            </div>
+            <div class="col-md-7">
+              {"Loading..."}
+              <hr />
+              <Loading />
+            </div>
+            <div class="col-md-3">
+              <h4>Explore New Topics</h4>
+              <hr />
+              <ul>
+                <li><Link to={"all/Dijkstra's Algorithm"}>Dijkstra's Algorithm</Link></li>
+                <li><Link to={"all/Cracking the Coding Interview"}>Cracking the Coding Interview</Link></li>
+                <li><Link to={"all/Competitive Programming"}>Competitive Programming</Link></li>
+                <li><Link to={"all/Django"}>Django</Link></li>
+                <li><Link to={"all/Coding Interview Tips"}>Coding Interview Tips</Link></li>
+                <li><Link to={"all/Artificial Intelligence"}>Artificial Intelligence</Link></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      )
     }
 
     const forums = forum_threads_json.items;
