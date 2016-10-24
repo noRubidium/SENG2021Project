@@ -1,6 +1,13 @@
 import React from "react"
 import LearningTree from "./LearningTree"
 
+import { connect } from "react-redux"
+
+@connect((store) => {
+  return {
+    treeTitle: store.github.treeTitle,
+  };
+})
 export default class LearningTreePage extends React.Component {
   constructor(props){
     super(props);
@@ -10,6 +17,15 @@ export default class LearningTreePage extends React.Component {
   }
   showWebDev(){
     this.setState({showWebDev:true})
+    this.props.dispatch({
+      "type":"CHANGE_TREE_TITLE",
+      payload: "Exploring web development"
+    })
+  }
+  componentWillUnmount(){
+    this.props.dispatch({
+      "type":"DELETE_TREE_TITLE",
+    })
   }
   render(){
 

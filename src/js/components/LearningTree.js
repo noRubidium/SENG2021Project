@@ -30,7 +30,7 @@ export default class LearningTree extends React.Component {
     console.log(this)
     return (
       <div>
-        <h1>Exploring {this.props.tree.replace(/Dev$/i,"") + " Development"} </h1>
+        {/* <h1>Exploring {this.props.tree.replace(/Dev$/i,"") + " Development"} </h1> */}
         <div
           ref={this.drawGraph.bind(this)}
           >
