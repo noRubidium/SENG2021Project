@@ -5,20 +5,12 @@ import { connect } from "react-redux"
 import { addRepoFav } from "../actions/userActions"
 import { removeRepoFav } from "../actions/userActions"
 
-import { addTodoList } from "../actions/userActions"
-
 @connect((store) => {
   return {
     user: store.user,
   };
 })
 export default class GithubResult extends React.Component {
-
-  componentWillMount() {
-    this.props.dispatch(addTodoList(this.props.repo))
-    console.log(this.props.user.board)
-
-  }
 
   favourite(e) {
     e.preventDefault()

@@ -72,60 +72,6 @@ export function removeRepoFav(favourite) {
   }
 }
 
-export function addTodoList(item) {
-  return {
-    type: 'ADD_TODO_LIST',
-    payload: {
-      item,
-    },
-  }
-}
-
-export function addDoingList(item) {
-  return {
-    type: 'ADD_DOING_LIST',
-    payload: {
-      item,
-    },
-  }
-}
-
-export function addDoneList(item) {
-  return {
-    type: 'ADD_DONE_LIST',
-    payload: {
-      item,
-    },
-  }
-}
-
-export function removeTodoList(item) {
-  return {
-    type: 'REMOVE_TODO_LIST',
-    payload: {
-      item,
-    },
-  }
-}
-
-export function removeDoingList(item) {
-  return {
-    type: 'REMOVE_DOING_LIST',
-    payload: {
-      item,
-    },
-  }
-}
-
-export function removeDoneList(item) {
-  return {
-    type: 'REMOVE_DONE_LIST',
-    payload: {
-      item,
-    },
-  }
-}
-
 export function fetchUser() {
   return {
     type: "FETCH_USER_FULFILLED",
