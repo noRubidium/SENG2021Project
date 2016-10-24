@@ -17,7 +17,6 @@ import GithubResult from "./GithubResult"
 import SearchBar from "./SearchBar"
 import PreferenceBar from "./PreferenceBar"
 import LearningTreePage from "./LearningTreePage"
-import Board from "./Board"
 
 @connect((store) => {
   return {
@@ -108,13 +107,13 @@ export default class Dashboard extends React.Component {
                 <li style={{borderStyle:"none"}} data-id="3" onClick={this.handleFeedChange.bind(this)} class={this.state.feed === 3 ? "active" : ""} data-toggle="pill" ><a>Forum Threads</a></li>
                 <li style={{borderStyle:"none"}} data-id="4" onClick={this.handleFeedChange.bind(this)} class={this.state.feed === 4 ? "active" : ""} data-toggle="pill" ><a>Code Repositories</a></li>
                 <br />
-                <li style={{borderStyle:"none"}} data-id="5" onClick={this.handleFeedChange.bind(this)} class={this.state.feed === 5 ? "active" : ""} data-toggle="pill" ><a><span class="glyphicon glyphicon-heart" />Favourites </a></li>
-                <li style={{borderStyle:"none"}} data-id="6" onClick={this.handleFeedChange.bind(this)} class={this.state.feed === 6 ? "active" : ""} data-toggle="pill" ><a><span class="glyphicon glyphicon-cog"/>Preferences </a></li>
-                <li style={{borderStyle:"none"}} data-id="7" onClick={this.handleFeedChange.bind(this)} class={this.state.feed === 7 ? "active" : ""} data-toggle="pill" ><a><span class="glyphicon glyphicon-road"/>Learning Roadmap </a></li>
+                <li style={{borderStyle:"none"}} data-id="5" onClick={this.handleFeedChange.bind(this)} class={this.state.feed === 5 ? "active" : ""} data-toggle="pill" ><a><span class="glyphicon glyphicon-heart" /> Favourites </a></li>
+                <li style={{borderStyle:"none"}} data-id="6" onClick={this.handleFeedChange.bind(this)} class={this.state.feed === 6 ? "active" : ""} data-toggle="pill" ><a><span class="glyphicon glyphicon-cog"/> Preferences </a></li>
+                <li style={{borderStyle:"none"}} data-id="7" onClick={this.handleFeedChange.bind(this)} class={this.state.feed === 7 ? "active" : ""} data-toggle="pill" ><a><span class="glyphicon glyphicon-road"/> Learning Roadmap </a></li>
               </ul>
             </div>
             <div class="col-md-7">
-              {"Loading..."}
+              <h4>{"Loading..."}</h4>
               <hr />
               <Loading />
             </div>
@@ -204,7 +203,6 @@ export default class Dashboard extends React.Component {
 
 
     const mappedTree = <LearningTreePage history={this.props.history}/>;
-    const mappedBoard = <Board/>
 
     var feed;
     switch(this.state.feed) {
@@ -228,9 +226,6 @@ export default class Dashboard extends React.Component {
         break;
       case 7:
         feed = mappedTree;
-        break;
-      case 8:
-        feed = mappedBoard;
         break;
       default: // All
         feed = mappedAll;
@@ -267,7 +262,6 @@ export default class Dashboard extends React.Component {
               <li style={{borderStyle:"none"}} data-id="5" onClick={this.handleFeedChange.bind(this)} class={this.state.feed === 5 ? "active" : ""} data-toggle="pill" ><a><span class="glyphicon glyphicon-heart" /> Favourites </a></li>
               <li style={{borderStyle:"none"}} data-id="6" onClick={this.handleFeedChange.bind(this)} class={this.state.feed === 6 ? "active" : ""} data-toggle="pill" ><a><span class="glyphicon glyphicon-cog"/> Preferences </a></li>
               <li style={{borderStyle:"none"}} data-id="7" onClick={this.handleFeedChange.bind(this)} class={this.state.feed === 7 ? "active" : ""} data-toggle="pill" ><a><span class="glyphicon glyphicon-road"/> Learning Roadmap </a></li>
-              <li style={{borderStyle:"none"}} data-id="8" onClick={this.handleFeedChange.bind(this)} class={this.state.feed === 8 ? "active" : ""} data-toggle="pill" ><a><span class="glyphicon glyphicon-blackboard"/> Board </a></li>
             </ul>
           </div>
           <div class="col-md-7">
