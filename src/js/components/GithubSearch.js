@@ -61,7 +61,7 @@ export default class github extends React.Component {
     return (
       <div class="container title-links">
         <SearchOptions search={search} active="repo"/>
-        <ul class="search-result">{mappedRepos}</ul>
+        {mappedRepos}
         <PaginationButton currPage={currPage} prevPage={this.updatePrevPage.bind(this)}
           nextPage={this.updateNextPage.bind(this)}/>
       </div>

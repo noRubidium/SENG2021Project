@@ -62,7 +62,7 @@ export default class VideoSearch extends React.Component {
     return (
       <div class="container title-links">
         <SearchOptions search={search} active="tutorial"/>
-        <ul class="search-result">{mappedVideos}</ul>
+        {mappedVideos}
         <div class="pagination-button">
         {
           this.props.videoSearch.prevPage?

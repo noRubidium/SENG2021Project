@@ -46,33 +46,33 @@ export default class VideoResult extends React.Component {
     const description = this.props.hideDescription ? '' : <p style={{wordWrap: "break-word"}}>{video.snippet.description}</p>
 
     return (
-      <div>
-        {title}
-        { description?
-          <div>
-            <div class="row">
-              <div class="col-md-4">
-                <Link to={"/video/display/"+video.id.videoId} class="thumbnails">
-                  <img src={video.snippet.thumbnails.medium.url} class="img-small" style={{width:"100%"}}/>
-                </Link>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          {title}
+          { description?
+            <div>
+              <div class="row">
+                <div class="col-md-4">
+                  <Link to={"/video/display/"+video.id.videoId} class="thumbnails">
+                    <img src={video.snippet.thumbnails.medium.url} class="img-small" style={{width:"100%"}}/>
+                  </Link>
+                </div>
+                <div class="col-md-8">
+                  {description}
+                </div>
               </div>
-              <div class="col-md-8">
-                {description}
+              <div class="row col-md-12">
+              <span class="badge pull-right">tutorials</span>
               </div>
             </div>
-            <div class="row col-md-12">
-            <span class="badge pull-right">tutorials</span>
-            <br/>
-            <hr/>
+          :
+            <div class="row col-md-10 col-md-offset-1">
+              <Link to={"/video/display/"+video.id.videoId} class="thumbnails">
+                <img src={video.snippet.thumbnails.medium.url} class="img-small" style={{width:"100%"}}/>
+              </Link>
             </div>
-          </div>
-        :
-          <div class="row col-md-10 col-md-offset-1">
-            <Link to={"/video/display/"+video.id.videoId} class="thumbnails">
-              <img src={video.snippet.thumbnails.medium.url} class="img-small" style={{width:"100%"}}/>
-            </Link>
-          </div>
-        }
+          }
+        </div>
       </div>
     )
   }

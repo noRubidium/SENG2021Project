@@ -28,6 +28,11 @@ export default function reducer(state={
       tree: tree,
       oTree: oTree
     },
+    board: {
+      todoList: [],
+      doingList: [],
+      doneList: [],
+    },
     lock: new Auth0Lock('onXEJuNLYjyGYjusgwnVJCCxxmqQq8zJ', 'seng2021.auth0.com',{
       theme: {
         logo: 'logo/Sauce.png',
@@ -159,6 +164,49 @@ export default function reducer(state={
             oTree: action.payload._root
           }
         }
+      }
+      case "ADD_TODO_LIST": {
+        return {
+          ...state,
+          board: {
+            ...state.board,
+            todoList: [...state.board.todoList].concat(action.payload.item)
+          }
+        }
+      }
+      case "ADD_DOING_LIST": {
+        return {
+          ...state,
+          board: {
+            ...state.board,
+            doingList: [...state.board.doingList].concat(action.payload.item)
+          }
+        }
+      }
+      case "ADD_DONE_LIST": {
+        return {
+          ...state,
+          board: {
+            ...state.board,
+            doneList: [...state.board.doneList].concat(action.payload.item)
+          }
+        }
+      }
+      case "REMOVE_TODO_LIST": {
+        const i = state.board.todoList.indexOf(action.payload.item)
+        console.log(i)
+        state.board.todoList.splice(i,1)
+        return state
+      }
+      case "REMOVE_DONE_LIST": {
+        const i = state.board.doneList.indexOf(action.payload.item)
+        state.board.doneList.splice(i,1)
+        return state
+      }
+      case "REMOVE_DOING_LIST": {
+        const i = state.board.doingList.indexOf(action.payload.item)
+        state.board.doingList.splice(i,1)
+        return state
       }
     }
 
