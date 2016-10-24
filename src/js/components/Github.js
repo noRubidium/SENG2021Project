@@ -28,11 +28,17 @@ export default class Github extends React.Component {
     }
   }
   favourite(e) {
+    const repos = this.props.github.repos.items
+    const { repoId } = this.props.routeParams
+    const repo = repos.filter(repo => { return repo.id == repoId })[0]
+    console.log("jete",repo)
     e.preventDefault()
-    if ((this.props.user.user.repoFavs).indexOf(this.props.repo) >= 0) {
-      this.props.dispatch(removeRepoFav(this.props.repo))
+    if ((this.props.user.user.repoFavs).indexOf(repo) >= 0) {
+      console.log("remove",repo)
+      this.props.dispatch(removeRepoFav(repo))
     } else {
-      this.props.dispatch(addRepoFav(this.props.repo))
+      console.log("add",repo)
+      this.props.dispatch(addRepoFav(repo))
     }
   }
   render() {
@@ -43,32 +49,32 @@ export default class Github extends React.Component {
       return (<div>Illegal access (must go through a link)</div>)
     }
 
-    const icon = (this.props.user.user.repoFavs).indexOf(this.props.repo) >= 0 ?
-                "glyphicon glyphicon-heart pull-right": "glyphicon glyphicon-heart-empty pull-right"
-    const favourite = <a href="#" onClick={this.favourite.bind(this)}><span class={icon}></span></a>
-
     const { repoId } = this.props.routeParams
     const repo = repos.filter(repo => { return repo.id == repoId })[0]
 
-//<<<<<<< HEAD
+    const icon = (this.props.user.user.repoFavs).indexOf(repo) >= 0 ?
+                "glyphicon glyphicon-heart pull-right": "glyphicon glyphicon-heart-empty pull-right"
+    const favourite = <a href="#" onClick={this.favourite.bind(this)}><span class={icon}></span></a>
 
     // get the sha of the latest commit
     if(!github.content){
       // can't put Loading somehow
       return (
-          <div>
-            <center><h3> Loading Results <img src="../../rolling.svg" style={{verticalAlign: "top"}}/></h3></center>
-          </div>
+        <div>
+            <center><img src="loading.gif" style={{verticalAlign: "top", width: "120px", marginTop: "50px", marginBottom: "10px"}}/></center>
+            <div class="row">
+              <center><h3 class="loading" style={{color: "#446CB3"}}><strong>Squeezing our sauces</strong></h3></center>
+            </div>
+        </div>
         )
     }
 
     const latest_commit_sha = github.content[0].sha
 
     console.log("This is github:",github)
-    var ReactMarkdown = require('react-markdown')
     return (
       <div class="container title-links">
-          <h3><a target="_blank" href = {repo.html_url}>{repo.full_name}</a>{/*favourite*/}</h3>
+          <h3><a target="_blank" href = {repo.html_url}>{repo.full_name}</a>{favourite}</h3>
           <div class="col-md-9">
             <ReactMarkdown source={github.readme}/>
           </div>

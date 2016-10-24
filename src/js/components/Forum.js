@@ -17,6 +17,21 @@ export default class Forum extends React.Component {
   componentWillMount() {
     this.props.dispatch(fetchRelatedForums(this.props.routeParams.id))
   }
+
+  favourite(e) {
+    const { forum } = this.props
+    const { forum_threads } = forum
+    const { id } = this.props.routeParams;
+    const threads = forum_threads.items;
+    const target_thread = threads.filter((question) => { return question.question_id == id })[0]
+    e.preventDefault()
+    if ((this.props.user.user.forumFavs).indexOf(target_thread) >= 0) {
+      this.props.dispatch(removeForumFav(target_thread))
+    } else {
+      this.props.dispatch(addForumFav(target_thread))
+    }
+  }
+
   render() {
     const { forum } = this.props
     const { forum_threads } = forum
@@ -40,14 +55,14 @@ export default class Forum extends React.Component {
     answers.sort(function(a,b) {return (a.score > b.score) ? -1 : ((b.score > a.score) ? 1 : 0);} );
     const top_answers = answers.slice(0,3)
 
-    const icon = (this.props.user.user.forumFavs).indexOf(this.target_thread) >= 0 ?
+    const icon = (this.props.user.user.forumFavs).indexOf(target_thread) >= 0 ?
     "glyphicon glyphicon-heart pull-right": "glyphicon glyphicon-heart-empty pull-right"
     const favourite = <a href="#" onClick={this.favourite.bind(this)}><span class={icon}></span></a>
     const topAnswersMapped = top_answers.map((answer,index) => <div><h3>Answer {index+1} - Score: {answer.score}
                             {answer.is_accepted ? '(Accepted)': ''}</h3><ReactMarkdown source={answer.body} /></div>)
     return (
       <div class="container title-links">
-        <h3><a target="_blank" href={target_thread.link}>{/*favourite*/}
+        <h3>{favourite}<a target="_blank" href={target_thread.link}>
           <ReactMarkdown source={target_thread.title} /></a></h3>
           <ReactMarkdown source={target_thread.body} />
           <hr/>
