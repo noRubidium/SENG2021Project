@@ -16,7 +16,7 @@ import ForumResult from "./ForumResult"
 import GithubResult from "./GithubResult"
 import SearchBar from "./SearchBar"
 import PreferenceBar from "./PreferenceBar"
-import LearningTree from "./LearningTree"
+import LearningTreePage from "./LearningTreePage"
 import Board from "./Board"
 
 @connect((store) => {
@@ -202,7 +202,7 @@ export default class Dashboard extends React.Component {
 
 
 
-    const mappedTree = <LearningTree history={this.props.history}/>;
+    const mappedTree = <LearningTreePage history={this.props.history}/>;
     const mappedBoard = <Board/>
 
     var feed;
