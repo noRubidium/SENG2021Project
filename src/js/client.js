@@ -40,7 +40,7 @@ const loadProf = function(){
   }
 }
 
-const clearnUp = function(route){
+const cleanUp = function(route){
   localStorage.removeItem("userInfo")
   localStorage.removeItem("access_token")
   localStorage.removeItem("id_token")
@@ -60,7 +60,7 @@ ReactDOM.render(<Provider store={store}>
       <Route path="video/display/:videoId" component={Video}></Route>
       <Route path="access_token=:accessToken&id_token=:idToken&token_type=:tokenType" onEnter={access}/>
       <Route path="tree" component={LearningTree} />
-      <Route path="clean" component={Search} onEnter={clearnUp} />
+      <Route path="clean" component={Search} onEnter={cleanUp} />
       <Route path="*" component={NotFound}></Route>
     </Route>
     <Route path="*" component={NotFound}></Route>

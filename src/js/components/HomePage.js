@@ -36,7 +36,7 @@ export default class HomePage extends React.Component {
     const videoLink = '/video/'+videoRaffle[raffleIndex]
     const forumLink = '/forum/'+forumRaffle[raffleIndex]
     const githubLink = '/github/'+githubRaffle[raffleIndex]
-
+    
     return (
       <div class="text-center homepage-container">
         <img src="sauceLogoHome.png" class="logo-image"></img>

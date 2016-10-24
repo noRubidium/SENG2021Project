@@ -53,9 +53,11 @@ export default class Nav extends React.Component {
       //           </div>
       //         </div>
       // ======= */
+      //console.log(this);
     return (
       <nav class={"navbar navbar-default " + navClass}>
         <ul class="nav navbar-nav navbar-left">
+            <li><a href="#" onClick={this.props.goBack}>&lt;</a></li>
             <li><IndexLink to="/" class="navbar-links">SAUCE</IndexLink></li>
             {token? <li><Link to="/dashboard" class="navbar-links">DASHBOARD</Link></li>:""}
         </ul>
