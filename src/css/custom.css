@@ -206,3 +206,7 @@ ul.search-result {
 .column-search {
 	padding: 0px 5px;
 }
+
+.nav li, a {
+	cursor: pointer;
+}
