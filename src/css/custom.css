@@ -127,7 +127,7 @@ ul.search-result {
 	transition: all 0.3s;
 }
 
-.btn-primary:hover, .btn-primary:active, .btn-primary:focus, .btn-primary.active{
+.btn-primary:hover, .btn-primary:focus{
 	color: #FFF;
 	background-color: #000;
 }
@@ -169,12 +169,14 @@ ul.search-result {
 	width: 80%;
 }
 
-body #a0-lock.a0-theme-default .a0-panel * {
-    font-family: 'Open Sans' !important;
-}
-
 .title-links {
 	word-wrap: "break-word" !important;
+}
+
+.badge {
+	font-size: 14px;
+	padding: 5px 10px;
+	background-color: rgb(0,0,0,0.5);
 }
 
 .node {
@@ -195,4 +197,5 @@ body #a0-lock.a0-theme-default .a0-panel * {
   fill: none;
   stroke: #ccc;
   stroke-width: 2px;
+>>>>>>> b64ad56b7dcaa46baf836cbfc2b37cd867edb6ec
 }

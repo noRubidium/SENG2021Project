@@ -33,7 +33,7 @@ export default class ForumResult extends React.Component {
     const icon = (this.props.user.user.forumFavs).indexOf(this.props.forum) >= 0 ?
                 "glyphicon glyphicon-heart pull-right": "glyphicon glyphicon-heart-empty pull-right"
     const favourite = <a href="#" onClick={this.favourite.bind(this)}><span class={icon}></span></a>
-    
+
     return (
       <div>
         <div class="row">
@@ -53,6 +53,8 @@ export default class ForumResult extends React.Component {
           { showMore?
             <div> ... <Link to={"/forum/display/"+forum.question_id}> (more) </Link></div>:""
           }
+          <span class="badge pull-right">forums</span>
+          <br/>
           <hr/>
         </div>
       </div>

@@ -60,8 +60,10 @@ export default class VideoResult extends React.Component {
                 {description}
               </div>
             </div>
-            <div class="row">
-              <hr/>
+            <div class="row col-md-12">
+            <span class="badge pull-right">tutorials</span>
+            <br/>
+            <hr/>
             </div>
           </div>
         :
