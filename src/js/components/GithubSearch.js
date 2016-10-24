@@ -41,6 +41,7 @@ export default class github extends React.Component {
 
   render() {
     const { github } = this.props
+    const search = this.props.routeParams.search
 
     if ((!github) || github.fetching || !github.fetched) {
       return (
@@ -53,7 +54,6 @@ export default class github extends React.Component {
 
     const { currPage } = github
     const repos = github.repos.items
-    const search = this.props.routeParams.search
 
     const filtered_repos = repos.filter(repo => {return repo.language && repo.description})
 

@@ -40,6 +40,7 @@ export default class AllSearch extends React.Component {
 
   render() {
     const { forum, videoSearch, github } = this.props
+    const { search } = this.props.routeParams
 
     if (!(forum.fetched && videoSearch.fetched && github.fetched)) {
       return (
@@ -79,7 +80,6 @@ export default class AllSearch extends React.Component {
     const forumList = mappedForums.slice(0,5)
     const videoRows = mappedVideos.slice(0,5)
 
-    const { search } = this.props.routeParams
 
     return (
       <div class="container all-search-container">
