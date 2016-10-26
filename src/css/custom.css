@@ -45,13 +45,13 @@
 }
 
 body {
-	background-size: cover;
+	/*background-size: cover;*/
 	background-repeat: no-repeat;
-	background-position: center center;
+	/*background-position: center center;*/
 }
 
 .logo-image {
-	margin-top: 40px;
+	/*margin-top: 20%;*/
 	margin-bottom: 20px;
 	width: 300px;
 }

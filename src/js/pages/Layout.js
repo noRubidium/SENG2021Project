@@ -14,7 +14,7 @@ export default class Layout extends React.Component {
     return (
       <div>
         <Nav location={location} history={this.props.history}/>
-        <div class="container-fluid">
+        <div class="container-fluid" style={{position:"absolute",top:"50%",transform: "translateY(-50%)"}}>
           <div class="row">
             <div class="col-lg-12">
               {this.props.children}
